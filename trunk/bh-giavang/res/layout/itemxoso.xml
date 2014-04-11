@@ -1,0 +1,368 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/borderlv"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/tmp2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/status"
+            style="@style/text"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/date"
+            style="@style/textWhite"
+            android:layout_width="match_parent"
+            android:background="@drawable/borderlvtop"
+            android:gravity="center_horizontal"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:text="Ngày 03/03/1990" />
+
+        <TextView
+            android:id="@+id/location"
+            style="@style/text"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/tmp1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/tableRow5"
+                style="@style/layitem" >
+
+                <TextView
+                    android:id="@+id/num0"
+                    style="@style/tvitem3"
+                    android:text="Đặc biệt" />
+
+                <TextView
+                    android:id="@+id/rank0"
+                    style="@style/tvitem4"
+                    android:text="123" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/layitem" >
+
+                <TextView
+                    android:id="@+id/num1"
+                    style="@style/tvitem1"
+                    android:layout_height="fill_parent"
+                    android:text="nhat" />
+
+                <TextView
+                    android:id="@+id/rank1"
+                    style="@style/tvitem2"
+                    android:text="123" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tableRow5"
+                style="@style/layitem" >
+
+                <TextView
+                    android:id="@+id/num2"
+                    style="@style/tvitem3"
+                    android:text="nhi" />
+
+                <TextView
+                    android:id="@+id/rank2"
+                    style="@style/tvitem4"
+                    android:text="123" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/layitem" >
+
+                <TextView
+                    android:id="@+id/num3"
+                    style="@style/tvitem1"
+                    android:layout_height="fill_parent"
+                    android:text="3" />
+
+                <TextView
+                    android:id="@+id/rank3"
+                    style="@style/tvitem2"
+                    android:text="123" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tableRow5"
+                style="@style/layitem" >
+
+                <TextView
+                    android:id="@+id/num4"
+                    style="@style/tvitem3"
+                    android:text="4" />
+
+                <TextView
+                    android:id="@+id/rank4"
+                    style="@style/tvitem4"
+                    android:text="123" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/layitem" >
+
+                <TextView
+                    android:id="@+id/num5"
+                    style="@style/tvitem1"
+                    android:layout_height="fill_parent"
+                    android:text="5" />
+
+                <TextView
+                    android:id="@+id/rank5"
+                    style="@style/tvitem2"
+                    android:text="123" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tableRow5"
+                style="@style/layitem" >
+
+                <TextView
+                    android:id="@+id/num6"
+                    style="@style/tvitem3"
+                    android:text="6" />
+
+                <TextView
+                    android:id="@+id/rank6"
+                    style="@style/tvitem4"
+                    android:text="123" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/layitem" >
+
+                <TextView
+                    android:id="@+id/num7"
+                    style="@style/tvitem1"
+                    android:layout_height="fill_parent"
+                    android:text="7" />
+
+                <TextView
+                    android:id="@+id/rank7"
+                    style="@style/tvitem2"
+                    android:text="123" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tableRow5"
+                style="@style/layitem" >
+
+                <TextView
+                    android:id="@+id/num8"
+                    style="@style/tvitem3"
+                    android:text="8" />
+
+                <TextView
+                    android:id="@+id/rank8"
+                    style="@style/tvitem4"
+                    android:text="123" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tmp3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            style="@style/textWhite"
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:background="@color/cam"
+            android:gravity="center_horizontal"
+            android:padding="4dp"
+            android:text="Kết Quả Lô Tô" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" >
+
+            <TableRow
+                android:id="@+id/tableRow6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                
+                <LinearLayout style="@style/layitemlo" >
+
+                    <TextView
+                        
+                        style="@style/tvitemlo"
+                        android:text="0" />
+
+                    <TextView
+                        android:id="@+id/lo0"
+                        style="@style/tvitemlo2"
+                        android:text="2,3,0,7,7,9" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/layitemlo" >
+
+                    <TextView
+                        style="@style/tvitemlo"
+                        android:text="1" />
+
+                    <TextView
+                        
+                        android:id="@+id/lo1"
+                        style="@style/tvitemlo2"
+                        android:text="234234" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/layitemlo" >
+
+                    <TextView
+                        style="@style/tvitemlo"
+                        android:text="2" />
+
+                    <TextView
+                        android:id="@+id/lo2"
+                        style="@style/tvitemlo2"
+                        android:text="234234" />
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout style="@style/layitemlo" >
+
+                    <TextView
+                        style="@style/tvitemlo"
+                        android:text="3" />
+
+                    <TextView
+                        android:id="@+id/lo3"
+                        style="@style/tvitemlo2"
+                        android:text="2,3,0,7,7,9" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/layitemlo" >
+
+                    <TextView
+                        style="@style/tvitemlo"
+                        android:text="4" />
+
+                    <TextView
+                        android:id="@+id/lo4"
+                        style="@style/tvitemlo2"
+                        android:text="234234" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/layitemlo" >
+
+                    <TextView
+                        style="@style/tvitemlo"
+                        android:text="5" />
+
+                    <TextView
+                        android:id="@+id/lo5"
+                        style="@style/tvitemlo2"
+                        android:text="234234" />
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout style="@style/layitemlo" >
+
+                    <TextView
+                        style="@style/tvitemlo"
+                        android:text="6" />
+
+                    <TextView
+                        android:id="@+id/lo6"
+                        style="@style/tvitemlo2"
+                        android:text="2,3,0,7,7,9" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/layitemlo" >
+
+                    <TextView
+                        style="@style/tvitemlo"
+                        android:text="7" />
+
+                    <TextView
+                        android:id="@+id/lo7"
+                        style="@style/tvitemlo2"
+                        android:text="234234" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/layitemlo" >
+
+                    <TextView
+                        style="@style/tvitemlo"
+                        android:text="8" />
+
+                    <TextView
+                        android:id="@+id/lo8"
+                        style="@style/tvitemlo2"
+                        android:text="234234" />
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout style="@style/layitemlo" >
+
+                    <TextView
+                        style="@style/tvitemlo"
+                        android:text="9" />
+
+                    <TextView
+                        android:id="@+id/lo9"
+                        style="@style/tvitemlo2"
+                        android:text="2,3,0,7,7,9" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/layitemlo"
+                    android:visibility="invisible" >
+
+                    <TextView
+                        style="@style/tvitemlo"
+                        android:text="9" />
+
+                    <TextView
+                        style="@style/tvitemlo2"
+                        android:text="234234" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/layitemlo"
+                    android:visibility="invisible" >
+
+                    <TextView
+                        style="@style/tvitemlo"
+                        android:text="5" />
+
+                    <TextView
+                        style="@style/tvitemlo2"
+                        android:text="234234" />
+                </LinearLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+</LinearLayout>

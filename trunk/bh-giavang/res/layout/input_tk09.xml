@@ -1,0 +1,83 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/deco_2" >
+
+    <LinearLayout
+        style="@style/form_ww"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:padding="7dp"
+        android:weightSum="100" >
+
+        <RelativeLayout
+            android:id="@+id/temp1"
+            style="@style/form_ww"
+            android:layout_width="0dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="40"
+            android:background="@drawable/drop_bg" >
+
+            <TextView
+                android:id="@+id/sp1"
+                style="@style/cal_input"
+                android:text="@string/tinhthanhpho" />
+
+            <ImageView
+                android:id="@+id/templine"
+                style="@style/drop_line"
+                android:layout_toLeftOf="@+id/tempcal" />
+
+            <ImageView
+                android:id="@+id/tempcal"
+                style="@style/temp_cal"
+                android:src="@drawable/arrow" />
+        </RelativeLayout>
+
+        <LinearLayout
+            style="@style/form_ww"
+            android:layout_width="0dp"
+            android:layout_weight="60"
+            android:orientation="horizontal"
+            android:weightSum="2" >
+
+           
+
+            <RelativeLayout
+                android:id="@+id/ed"
+                style="@style/form_ww"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/drop_bg" >
+
+                <TextView
+                    android:id="@+id/sp2"
+                    style="@style/cal_input"
+                    android:text="30" />
+
+                <ImageView
+                    android:id="@+id/templine"
+                    style="@style/drop_line"
+                    android:layout_toLeftOf="@+id/tempcal" />
+
+                <ImageView
+                    android:id="@+id/tempcal"
+                    style="@style/temp_cal"
+                    android:src="@drawable/arrow" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/submit"
+                style="@style/submit_input"
+                android:layout_width="0dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

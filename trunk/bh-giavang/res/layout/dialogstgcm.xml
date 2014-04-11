@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/form_fw"
+    android:background="#88140000"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <TextView
+        style="@style/text"
+        android:id="@id/dialogSupport_title"
+        android:layout_width="fill_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textColor="#ffffff"
+        android:text="Bạn có muốn thực hiện thao tác này không?" />
+
+    <LinearLayout style="@style/form_fw" >
+
+        <Button
+            android:id="@id/dialogSupport_ok"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:padding="7dp"
+            android:layout_marginRight="2dp"
+            android:text="Ok" />
+
+        <Button
+            android:layout_marginLeft="2dp"
+            android:id="@id/dialogSupport_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:padding="7dp"
+            android:text="Hủy" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,8 @@
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tempcal"
+    android:layout_width="@dimen/height_view_input"
+    android:layout_height="@dimen/height_view_input"
+    android:layout_gravity="right"
+    android:padding="4dp"
+    android:src="@drawable/calendar_png" />

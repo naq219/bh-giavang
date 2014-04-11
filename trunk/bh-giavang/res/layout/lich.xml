@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <RelativeLayout
+        android:id="@+id/temp"
+        style="@style/form_fw"
+        android:layout_height="@dimen/top_heigh" >
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/form_ff"
+            android:background="#000000"
+            android:gravity="center"
+            android:text="Lịch mở thưởng"
+            android:textColor="#ffffff"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/back"
+            style="@style/form_ww"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:background="@drawable/back"
+            android:paddingBottom="10dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="10dp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/temp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitStart"
+                android:src="@drawable/lich_quay" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

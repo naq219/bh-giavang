@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/tabbartam"
+    android:orientation="horizontal"
+    android:padding="4dp" >
+
+    <TextView
+        android:id="@+id/tvHeader"
+        style="@style/textWhite"
+        android:layout_marginLeft="35dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="Xo so mien bac"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        style="@style/form_ww"
+        android:layout_marginRight="7dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/hr_line" />
+
+</RelativeLayout>

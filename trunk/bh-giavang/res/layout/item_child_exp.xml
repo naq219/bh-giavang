@@ -1,0 +1,18 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="4dp" >
+
+    <TextView
+        android:id="@+id/tv"
+        style="@style/text"
+        android:layout_marginLeft="15sp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="Xo so mien bac"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

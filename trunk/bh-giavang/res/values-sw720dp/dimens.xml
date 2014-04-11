@@ -1,0 +1,21 @@
+<resources>
+
+<!--    <dimen name="activity_horizontal_margin">16dp</dimen> -->
+<!--     <dimen name="activity_vertical_margin">16dp</dimen> -->
+<!--     <dimen name="height_tab">70dp</dimen> -->
+<!--     <dimen name="space_view_input">17dp</dimen> -->
+<!--      <dimen name="btn_top_heigh">52dp</dimen> -->
+<!--      <dimen name="height_view_input">30dp</dimen> -->
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="height_tab">70dp</dimen>
+    <dimen name="space_view_input">17dp</dimen>
+    <dimen name="btn_top_heigh">52dp</dimen>
+    <dimen name="top_heigh">70dp</dimen>
+    <dimen name="height_view_input">30dp</dimen>
+    <dimen name="height_tructiep_rel2">65dp</dimen>
+    <dimen name="height_hori_listview">50dp</dimen>
+    <dimen name="height_hori_listview_item">45dp</dimen>
+
+</resources>

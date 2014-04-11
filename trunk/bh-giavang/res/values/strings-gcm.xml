@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="alert_live_mb">Hiện chưa đến giờ quay.\n Xổ số miền Bắc sẽ quay số lúc 18h 15p</string>
+    <string name="alert_live_mn">Hiện chưa đến giờ quay.\n Xổ số miền Nam sẽ quay số lúc 16h 12p</string>
+    <string name="alert_live_mt">Hiện chưa đến giờ quay.\n Xổ số miền Trung sẽ quay số lúc 17h 15p</string>
+    <string name="app_name">xoso.com</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="ket_qua_ngay">Kết quả ngày:</string>
+    <string name="dangtai">Đang tải...</string>
+    <string name="chon_ngay">Chọn ngày</string>
+    <string name="chon_cap_so">Chọn cặp số</string>
+    <string name="tinhthanhpho">Miền Bắc</string>
+    <string name="solan">Số lần</string>
+    <string name="dayso">Dãy số, vd:23,65,22</string>
+    <string name="biendo">Biên độ</string>
+    <string name="thongkedauduoi">Thống kê đầu đuôi</string>
+    <string name="thongke0099">Thống kê 00-99</string>
+    <string name="thongke09">Thống kê đầu đuôi 0-9</string>
+    <string name="thongkesolanxuathien">Thống kê số lần xuất hiện</string>
+    <string name="thongkequantrong">Thống kê quan trọng</string>
+    <string name="thongkegancucdai">Thống kê gan cực đại</string>
+    <string name="dk_nhan_xoso">1. Đăng kí nhận kết quả xổ số</string>
+    <string name="caidat_ungdung">2. Cài đặt ứng dụng</string>
+    <string name="kq_mienbac">Nhận kết quả miền Bắc</string>
+    <string name="kq_miennam">Nhận kết quả miền Nam</string>
+    <string name="kq_mientrung">Nhận kết quả miền Trung</string>
+    <string name="cd_themungdung">Thêm các ứng dụng liên quan</string>
+    <string name="cd_vietdanhgia">Viết đánh giá về ứng dụng</string>
+    <string name="cd_dangxuatface">Đăng xuất Facebook</string>
+    <string name="cd_mail">Mail cho nhà phát triển</string>
+    <string name="app_id">496883337088413</string>
+    <string name="share_subject">Kết quả xổ số</string>
+     <string name="share_sms">Ứng dụng xổ số cực chuẩn, miễn phí tại </string>
+    
+    
+<!--         <string name="email_support">support.ios@bhmedia.vn</string> -->
+<!--     <string name="hello_world">Hello world!</string> -->
+<!--     <string name="dk_nhan_xoso">1. Đăng Kí Nhận Kết Quả Sổ Xố</string> -->
+<!--     <string name="caidat_ungdung">2. Cài Đặt Ứng Dụng</string> -->
+<!--     <string name="kq_mienbac">Nhận Kết Quả Miền Bắc</string> -->
+<!--     <string name="kq_miennam">Nhận Kết Quả Miền Nam</string> -->
+<!--     <string name="kq_mientrung">Nhận Kết Quả Miền Trung</string> -->
+<!--     <string name="cd_themungdung">Thêm Các Ứng Dụng Liên Quan</string> -->
+<!--     <string name="cd_vietdanhgia">Viết Đánh Giá Về Ứng Dụng</string> -->
+<!--     <string name="cd_dangxuatface">Đăng xuất Facebook</string> -->
+<!--     <string name="cd_mail">Mail cho nhà phát triển</string> -->
+    <string name="sms_no_device">Thiết bị không hỗ trợ tin nhắn SMS</string>
+    
+    
+
+</resources>

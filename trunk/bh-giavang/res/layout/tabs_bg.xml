@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2010 Josh Clemm -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tabsLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="50dp"
+    android:background="#000000"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="0dip" >
+
+    <ImageView
+        android:id="@+id/tabsIcon"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:layout_above="@+id/tabsText"
+        android:src="@drawable/caidat" />
+    
+
+    <TextView
+        android:id="@+id/tabsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:maxLines="1"
+        android:text="Thống kê"
+        android:textSize="11dip"
+        android:paddingBottom="2dp"
+        android:textStyle="bold" />
+    <View 
+        android:layout_width="1px"
+         android:id="@+id/line"
+        android:layout_height="fill_parent"
+        android:background="@drawable/linel"
+        />
+
+</RelativeLayout>
