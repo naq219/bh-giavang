@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:id="@+id/root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        style="@style/form_fw"
+        android:background="@drawable/tienich_bgtop" >
+
+        <ImageView
+            android:id="@+id/temp"
+            style="@style/form_ww"
+            
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/tienichtextop" />
+
+        <ImageView
+            style="@style/form_fw"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/temp"
+            android:src="@drawable/tienich_icon" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv"
+        android:layout_margin="7dp"
+        style="@style/form_ff"
+        android:layout_below="@+id/relativeLayout1" >
+    </ListView>
+
+</RelativeLayout>

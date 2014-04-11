@@ -1,0 +1,261 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        style="@style/form_fw"
+        android:orientation="horizontal"
+        android:paddingRight="5dp"
+        android:weightSum="4" >
+
+        <LinearLayout
+            style="@style/form_ww"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:weightSum="3" >
+
+            <LinearLayout
+                style="@style/form_ww"
+                android:layout_width="0dp"
+                android:layout_marginLeft="1px"
+                android:layout_marginRight="1px"
+                android:layout_marginTop="2dp"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/topMB"
+                    style="@style/btn_top_ketqua"
+                    android:layout_width="fill_parent"
+                    android:background="@drawable/borderbtnred"
+                    android:text="Miền Bắc" />
+
+                <View
+                    android:id="@+id/line1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/hong" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/form_ww"
+                android:layout_width="0dp"
+                android:layout_marginLeft="1px"
+                android:layout_marginRight="1px"
+                android:layout_marginTop="2dp"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/topMT"
+                    style="@style/btn_top_ketqua"
+                    android:layout_width="fill_parent"
+                    android:background="@drawable/borderbtn_black"
+                    android:text="Miền Trung" />
+
+                <View
+                    android:id="@+id/line2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/hong"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/form_ww"
+                android:layout_width="0dp"
+                android:layout_marginLeft="1px"
+                android:layout_marginRight="1px"
+                android:layout_marginTop="2dp"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/topMN"
+                    style="@style/btn_top_ketqua"
+                    android:layout_width="fill_parent"
+                    android:background="@drawable/borderbtn_black"
+                    android:text="Miền Nam" />
+
+                <View
+                    android:id="@+id/line3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/hong"
+                    android:visibility="invisible" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/form_ww"
+            android:layout_width="0dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="1px"
+            android:layout_marginTop="2dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/topNow"
+                style="@style/btn_top_ketqua"
+                android:layout_width="fill_parent"
+                android:background="@drawable/borderbtnred2"
+                android:text="@string/hom_nay" />
+
+            <View
+                android:id="@+id/line4"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/hong"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/horizontalScrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/height_hori_listview"
+        android:layout_below="@+id/linearLayout1"
+        android:background="@color/hong" />
+
+    <HorizontalScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout1"
+        android:background="@color/hong"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                style="@style/btn_tinh"
+                android:text="ha noi" />
+
+            <TextView
+                style="@style/btn_tinh"
+                android:background="@null"
+                android:text="ha noi" />
+
+            <TextView
+                style="@style/btn_tinh"
+                android:background="@null"
+                android:text="tp ho chi  minh " />
+
+            <TextView
+                style="@style/btn_tinh"
+                android:background="@null"
+                android:text="tp ho chi  minh " />
+
+            <TextView
+                style="@style/btn_tinh"
+                android:background="@null"
+                android:text="tp ho chi  minh " />
+
+            <TextView
+                style="@style/btn_tinh"
+                android:background="@null"
+                android:text="tp ho chi  minh " />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_tructiep_rel2"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/horizontalScrollView1"
+        android:background="@drawable/ngay" >
+
+        <ImageView
+            android:id="@+id/share"
+            style="@style/form_ww"
+            android:layout_height="match_parent"
+            android:paddingBottom="15dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:scaleType="fitStart"
+            android:src="@drawable/sharebig" />
+
+        <ImageView
+            android:id="@+id/ivCalendar"
+            style="@style/form_ww"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="15dp"
+            android:paddingTop="5dp"
+            android:src="@drawable/lich" />
+        
+        <ImageView
+            android:id="@+id/rating"
+            style="@style/form_ww"
+            android:layout_height="fill_parent"
+            android:paddingBottom="15dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_toLeftOf="@+id/ivCalendar"
+            android:src="@drawable/star" />
+
+        <TextView
+            android:id="@+id/tvdate"
+            style="@style/textWhite"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="@string/hom_nay" />
+
+       
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvLocation"
+        style="@style/text"
+        android:layout_below="@+id/relativeLayout1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/loading"
+        style="@style/form_ww"
+        android:layout_below="@+id/tvLocation"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <ProgressBar
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
+
+        <TextView
+            style="@style/text"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="@string/dangtai" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/alert"
+        style="@style/tv_alert"
+       
+        android:layout_below="@+id/loading"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal" />
+
+    <ListView
+        android:id="@+id/lv"
+        style="@style/lv"
+        android:layout_below="@+id/loading"
+        android:scrollbars="none" >
+    </ListView>
+
+</RelativeLayout>

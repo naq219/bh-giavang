@@ -1,0 +1,161 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        style="@style/form_fw"
+        android:orientation="horizontal"
+        android:paddingRight="5dp"
+        android:weightSum="4" >
+
+        <LinearLayout
+            style="@style/form_ww"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:weightSum="3" >
+
+            <LinearLayout
+                style="@style/form_ww"
+                android:layout_width="0dp"
+                android:layout_marginLeft="1px"
+                android:layout_marginRight="1px"
+                android:layout_marginTop="2dp"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/topMB"
+                    style="@style/btn_top_ketqua"
+                    android:layout_width="fill_parent"
+                    android:background="@drawable/borderbtnred"
+                    android:text="Miền Bắc" />
+
+                <View
+                    android:id="@+id/line1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/hong" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/form_ww"
+                android:layout_width="0dp"
+                android:layout_marginLeft="1px"
+                android:layout_marginRight="1px"
+                android:layout_marginTop="2dp"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/topMT"
+                    style="@style/btn_top_ketqua"
+                    android:layout_width="fill_parent"
+                    android:background="@drawable/borderbtn_black"
+                    android:text="Miền Trung" />
+
+                <View
+                    android:id="@+id/line2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/hong"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/form_ww"
+                android:layout_width="0dp"
+                android:layout_marginLeft="1px"
+                android:layout_marginRight="1px"
+                android:layout_marginTop="2dp"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/topMN"
+                    style="@style/btn_top_ketqua"
+                    android:layout_width="fill_parent"
+                    android:background="@drawable/borderbtn_black"
+                    android:text="Miền Nam" />
+
+                <View
+                    android:id="@+id/line3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/hong"
+                    android:visibility="invisible" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/form_ww"
+            android:layout_width="0dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="1px"
+            android:layout_marginTop="2dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <Button
+                android:id="@+id/topNow"
+                style="@style/btn_top_ketqua"
+                android:layout_width="fill_parent"
+                android:background="@drawable/borderbtnred2"
+                android:text="Hôm nay" />
+
+            <View
+                android:id="@+id/line4"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/hong"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        style="@style/form_ff"
+        android:layout_below="@+id/linearLayout1"
+        android:background="@color/hong" >
+
+        <ImageView
+            style="@style/form_ff"
+            android:scaleType="centerCrop"
+            android:src="@drawable/hntkbb1" />
+
+        <View
+            android:id="@+id/temp4"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/hong" />
+
+        <LinearLayout
+            android:id="@+id/loading"
+            style="@style/form_ww"
+            android:layout_below="@+id/temp4"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <ProgressBar
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+            <TextView
+                style="@style/text"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:text="@string/dangtai" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lv"
+            style="@style/form_ff"
+            android:layout_below="@+id/loading"
+            android:dividerHeight="0dp"
+            android:layout_marginTop="10dp" >
+        </ListView>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,99 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_body" >
+
+    <RelativeLayout
+        android:id="@+id/temp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/header"
+        android:padding="10dp" >
+
+        <ImageView
+            android:id="@+id/home"
+            style="@style/form_ww"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ico_home" />
+
+        <ImageView
+            style="@style/form_ww"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ico_share"
+            android:visibility="invisible" />
+
+        <TextView
+            style="@style/form_fw"
+            android:layout_width="fill_parent"
+            android:singleLine="true"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:text="@string/thongkexoso_big"
+            android:textColor="#ffffff"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <TableLayout
+        style="@style/form_fw"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="40dp" >
+
+        <TableRow
+            style="@style/form_fw"
+            android:orientation="horizontal"
+            android:padding="6dp" >
+
+            <Button
+                android:id="@+id/btn1"
+                style="@style/btn_thongke"
+                android:drawableTop="@drawable/ico_1"
+                android:text="Quan trọng" />
+
+            <Button
+                android:id="@+id/btn2"
+                style="@style/btn_thongke"
+                android:drawableTop="@drawable/ico_2"
+                android:text="Thống kê lô nhanh" />
+
+            <Button
+                android:id="@+id/btn3"
+                style="@style/btn_thongke"
+                android:drawableTop="@drawable/ico_4"
+                android:text="Thống kê 00-99" />
+        </TableRow>
+
+        <TableRow
+            style="@style/form_fw"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:padding="6dp"
+            android:weightSum="3" >
+
+            <Button
+                android:id="@+id/btn4"
+                style="@style/btn_thongke"
+                android:drawableTop="@drawable/ico_3"
+                android:text="Đầu đuôi 0-9" />
+
+            <Button
+                android:id="@+id/btn5"
+                style="@style/btn_thongke"
+                android:drawableTop="@drawable/ico_6"
+                android:text="Thống kê lô Gan" />
+
+            <Button
+                android:id="@+id/btn6"
+                style="@style/btn_thongke"
+                android:drawableTop="@drawable/ico_5"
+                android:text="Thống kê đầu đuôi" />
+        </TableRow>
+    </TableLayout>
+
+</RelativeLayout>

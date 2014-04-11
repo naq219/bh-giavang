@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="4dp" >
+
+    <TextView
+        android:id="@+id/tv"
+        style="@style/textWhite"
+        android:layout_height="@dimen/height_hori_listview_item"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
+        android:paddingBottom="1dp"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:paddingTop="1dp"
+        android:text="Đặc biệt" />
+
+</LinearLayout>

@@ -1,0 +1,242 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="btn_top_ketqua" parent="android:Widget.Holo.Light.Button">
+
+        <item name="android:background">@drawable/mltablealertbackground</item>
+        <item name="android:background">@drawable/borderbtn_black</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:layout_height">@dimen/btn_top_heigh</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="btn_tinh" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/borderbtn_black4</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:paddingLeft">7dp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:paddingRight">7dp</item>
+    </style>
+
+    <style name="text" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:textColor">#000000</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="textWhite" parent="text">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+    <style name="styleName" parent="@style/text">
+        <item name="android:background">#CCC</item>
+        <item name="android:padding">2dp</item>
+    </style>
+
+    <style name="tvitem1" parent="@style/text">
+        <item name="android:background">#CCCCCC</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">35</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="tvitem2" parent="@style/text">
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:background">#CCCCCC</item>
+        <item name="android:layout_marginLeft">2px</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">65</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="tvitem3" parent="@style/tvitem1">
+        <item name="android:background">#F7F7F3</item>
+    </style>
+
+    <style name="tvitem4" parent="@style/tvitem2">
+        <item name="android:background">#F7F7F3</item>
+    </style>
+
+    <style name="layitem">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:weightSum">100</item>
+    </style>
+
+    <style name="layitemlo">
+        <item name="android:background">@drawable/borderlv</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="tvitemlo" parent="@style/textWhite">
+        <item name="android:background">@drawable/border_tv_trangnhat</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_margin">2px</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:textColor">#003399</item>
+    </style>
+
+    <style name="tvitemlo2" parent="@style/text">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:paddingTop">4dp</item>
+    </style>
+
+    <style name="lv" parent="@style/form_ff">
+        <item name="android:dividerHeight">7dp</item>
+        <item name="android:layout_marginBottom">7dp</item>
+        <item name="android:layout_marginLeft">7dp</item>
+        <item name="android:layout_marginRight">7dp</item>
+    </style>
+
+    <style name="tv_alert" parent="@style/textWhite">
+        <item name="android:gravity">center</item>
+        <item name="android:padding">5dp</item>
+         <item name="android:textColor">#000000</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="textSetting" parent="@style/text">
+        <item name="android:textColor">#223347</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="btn_thongke" parent="android:Widget.Holo.Light.Button">
+        <item name="android:background">@null</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="spinnertv" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:background">@drawable/drop_2</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_height">@dimen/height_view_input</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+    </style>
+
+    <style name="ed_input" parent="android:Widget.Holo.Light.EditText">
+        <item name="android:background">@drawable/edbg</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/height_view_input</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:inputType">text</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:paddingTop">6dp</item>
+    </style>
+
+    <style name="text_input" parent="@style/text">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="submit_input" parent="@style/form_ww">
+        <item name="android:layout_height">35dp</item>
+        <item name="android:background">@drawable/borderbtnred4</item>
+        <item name="android:layout_marginLeft">3dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:text">Xem kết quả</item>
+        <item name="android:id">@+id/submit</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="cal_input" parent="@style/text">
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_marginRight">32dp</item>
+    </style>
+
+    <style name="drop_line">
+        <item name="android:layout_width">2dp</item>
+        <item name="android:layout_height">@dimen/height_view_input</item>
+        <item name="android:src">@drawable/drop_line</item>
+    </style>
+
+    <style name="checktv" parent="@style/form_fw">
+        <item name="android:checked">true</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#323a3d</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+    </style>
+
+    <style name="line_setting">
+        <item name="android:background">#9eaeb3</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginLeft">2dp</item>
+        <item name="android:layout_marginRight">2dp</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="temp_cal">
+        <item name="android:padding">4dp</item>
+        <item name="android:layout_width">@dimen/height_view_input</item>
+        <item name="android:layout_height">@dimen/height_view_input</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:src">@drawable/calendar_png</item>
+    </style>
+
+    <style name="radiobutton" parent="@style/form_ww">
+        <item name="android:button">@drawable/custom_radio_button</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+</resources>

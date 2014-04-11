@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <color name="cam">#a13c05</color>
+    <color name="dodam">#8e0309</color>
+    <color name="trangnhat">#CCCCCC</color>
+    <color name="dob">#FF0000</color>
+    <color name="hong">#AD103C</color>
+    <color name="den">#000000</color>
+    <color name="do1">#AD103C</color>
+
+</resources>

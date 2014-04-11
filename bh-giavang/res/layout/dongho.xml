@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#380202" >
+
+    <TextView
+        style="@style/textWhite"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:id="@+id/tv_alert"
+        android:text="Hiện chưa đến giờ quay.\n Xổ số miền bắc sẽ quay số lúc 18h 15&apos;"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <AnalogClock
+        android:id="@+id/analogClock1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_alert"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:dial="@drawable/dongho"
+        android:hand_hour="@drawable/gio1"
+        android:hand_minute="@drawable/phut1" />
+
+</RelativeLayout>
