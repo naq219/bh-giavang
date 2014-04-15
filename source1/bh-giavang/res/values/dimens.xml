@@ -1,0 +1,19 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="height_tab">50dp</dimen>
+    <dimen name="space_view_input">7dp</dimen>
+    <dimen name="btn_top_heigh">32dp</dimen>
+    <dimen name="top_heigh">50dp</dimen>
+    <dimen name="height_view_input">30dp</dimen>
+    <dimen name="height_tructiep_rel2">45dp</dimen>
+    <dimen name="height_hori_listview">30sp</dimen>
+    <dimen name="height_hori_listview_item">25dp</dimen>
+
+    <!-- new -->
+
+    <dimen name="them_row">50dp</dimen>
+
+</resources>
