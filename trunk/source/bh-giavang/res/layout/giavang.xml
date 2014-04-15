@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:id="@+id/root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout style="@style/rel_top" >
+
+        <ImageView
+            android:id="@+id/btn_reload"
+            style="@style/btn_top"
+            android:src="@drawable/refresh" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/text_top"
+            android:text="Giá vàng" />
+
+        <ImageView
+            android:id="@+id/btnShare"
+            style="@style/btn_top"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/share" />
+    </RelativeLayout>
+
+    <TextView
+        style="@style/text"
+        android:id="@+id/tv_date"
+        android:layout_width="fill_parent"
+        android:gravity="center_horizontal"
+        android:padding="7dp"
+        android:text="Cập nhật ngày: 12/4/2013"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        style="@style/form_fw"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_tab"
+        android:orientation="horizontal"
+        android:weightSum="4" >
+
+        <ImageView
+            style="@style/btn_tab"
+            android:id="@+id/btnMaSo"
+            android:src="@drawable/maso" />
+
+        <ImageView style="@style/btn_tab" />
+
+        <ImageView
+            style="@style/btn_tab"
+             android:id="@+id/btnMua"
+            android:src="@drawable/mua" />
+
+        <ImageView
+            style="@style/btn_tab"
+            android:layout_marginRight="5dp"
+             android:id="@+id/btnBan"
+            android:src="@drawable/ban" />
+    </LinearLayout>
+
+    <RelativeLayout style="@style/form_ff" >
+
+        <ImageView
+            style="@style/form_ff"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bgh586" />
+
+        <ExpandableListView
+            android:id="@+id/elv"
+            style="@style/form_ff" >
+        </ExpandableListView>
+    </RelativeLayout>
+
+</LinearLayout>
