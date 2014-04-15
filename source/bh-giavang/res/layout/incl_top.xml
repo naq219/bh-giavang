@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:id="@+id/root"
+    style="@style/rel_top" >
+
+    <ImageView
+        android:id="@+id/btn_top"
+        style="@style/btn_top"
+        android:src="@drawable/close" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/text_top"
+        android:text="Giá cả thị trường" />
+
+</RelativeLayout>
