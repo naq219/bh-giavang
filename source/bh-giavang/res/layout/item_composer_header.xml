@@ -4,9 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_header"
+    android:clickable="false"
     android:padding="6dp"
-    android:text="Header"
-    android:textColor="#000"
-    
-    
+    android:textColor="#000000"
     android:textStyle="bold" />

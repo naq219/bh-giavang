@@ -3,11 +3,13 @@ package com.bhmedia.tigia.giavang;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bhmedia.tigia.HomeActivity;
 import com.bhmedia.tigia.MyFragment;
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.adapter.SectionComposerAdapter;
@@ -36,6 +38,12 @@ public class GiaVangLayout extends MyFragment {
 		btnBan = (ImageView) v.findViewById(R.id.btnBan);
 		lsComposer= (AmazingListView) v.findViewById(R.id.lsComposer);
 		tv_date= (TextView) v.findViewById(R.id.tv_date);
+		
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
 		
 	}
 }

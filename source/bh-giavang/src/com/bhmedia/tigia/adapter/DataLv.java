@@ -72,4 +72,21 @@ public class DataLv {
 		return map;
 
 	}
+	
+	public static ArrayList<BaseObject> fixPosition(ArrayList<BaseObject> ojs){
+		HashMap<String, ArrayList<BaseObject>> map=grouping(ojs);
+		ArrayList<BaseObject> ojs1=new ArrayList<BaseObject>();
+		
+		Set<String> keys = map.keySet();
+		for (String string : keys) {
+			ArrayList<BaseObject> ojscon= map.get(string);
+			ojs1.addAll(ojscon);
+		}
+		
+		return ojs1;
+		
+		
+	}
+	
+	
 }

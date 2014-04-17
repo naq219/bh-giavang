@@ -7,11 +7,11 @@ import org.json.JSONException;
 import android.content.Context;
 
 import com.bhmedia.tigia.NetSupport;
+import com.bhmedia.tigia.R;
 import com.telpoo.frame.model.BaseTask;
 import com.telpoo.frame.model.TaskListener;
 import com.telpoo.frame.model.TaskParams;
 import com.telpoo.frame.object.BaseObject;
-import com.telpoo.frame.utils.Mlog;
 
 public class TaskNetWork extends BaseTask implements TaskType {
 
@@ -30,10 +30,24 @@ public class TaskNetWork extends BaseTask implements TaskType {
 			try {
 				datares = NetSupport.getGiaVang(date);
 			} catch (JSONException e) {
-				Mlog.E(e.toString());
+				msg = context.getString(R.string.errconnect);
+				return TASK_FAILED;
 			}
 
 			dataReturn = datares;
+			return TASK_DONE;
+
+		case TASK_GET_TIGIA:
+
+			ArrayList<BaseObject> datares1 = null;
+			try {
+				datares1 = NetSupport.getTiGia();
+			} catch (JSONException e) {
+				msg = context.getString(R.string.errconnect);
+				return TASK_FAILED;
+			}
+
+			dataReturn = datares1;
 			return TASK_DONE;
 
 		default:
