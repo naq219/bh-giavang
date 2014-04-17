@@ -25,15 +25,16 @@ public class TaskNetWork extends BaseTask implements TaskType {
 
 		switch (taskType) {
 		case TASK_GET_GIAVANG:
-
-			ArrayList<BaseObject> datares;
+			String date = (String) dataFromModel.get(0);
+			ArrayList<BaseObject> datares = null;
 			try {
-				datares = NetSupport.getGiaVang();
+				datares = NetSupport.getGiaVang(date);
 			} catch (JSONException e) {
 				Mlog.E(e.toString());
 			}
 
-			return TASK_FAILED;
+			dataReturn = datares;
+			return TASK_DONE;
 
 		default:
 			msg = "no tasktype???";

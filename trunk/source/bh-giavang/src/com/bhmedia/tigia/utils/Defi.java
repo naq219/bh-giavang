@@ -8,6 +8,7 @@ public class Defi {
 	public static final String adposition = "bottom";
 	public static final String jb = "app_test";
 	public static final String USER_TYPE = "free";
+	public static final String FORMAT_DATE = "dd-MM-yyyy";
 	
 	public static final String GOOGLE_ANALYTIC_ID = "UA-48254014-3";
 
@@ -27,7 +28,11 @@ public class Defi {
 	
 	public class url{
 		public static final String GIA_CA_THI_TRUONG="http://app.vietbao.vn/tienich/giacathitruong.html";
-		public static final String API_GIA_VANG="http://pay.bhmedia.vn/vn/market/gia-vang/api/";
+		public static final String API_GIA_VANG="http://pay.bhmedia.vn/vn/market/gia-vang/api/?date=";
 		public static final String TI_GIA="http://pay.bhmedia.vn/vn/ty-gia-ngoai-te/api/";
+	}
+	
+	public class whereIdelegate{
+		public static final int DIALOGCHOOSE=0;
 	}
 }
