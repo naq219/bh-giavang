@@ -34,5 +34,6 @@ public class Defi {
 	
 	public class whereIdelegate{
 		public static final int DIALOGCHOOSE=0;
+		public static final int UTILS1_SPINNERHEAD=1;
 	}
 }

@@ -3,7 +3,7 @@
     xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="#80000000"
+    android:background="@drawable/u"
     android:orientation="vertical" >
 
     <TextView
@@ -12,6 +12,11 @@
         android:layout_gravity="center_horizontal"
         android:text="ten local"
         android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#ffffff" />
 
     <TableLayout style="@style/form_fw" >
 
@@ -31,13 +36,12 @@
                 android:layout_weight="37"
                 android:gravity="center_horizontal"
                 android:text="Hôm nay" />
-            
+
             <TextView
                 style="@style/text_dialog"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="6"
-                android:gravity="center_horizontal"
-                />
+                android:gravity="center_horizontal" />
 
             <TextView
                 style="@style/text_dialog"
@@ -46,79 +50,73 @@
                 android:gravity="center_horizontal"
                 android:text="Hôm qua" />
         </TableRow>
-        
-         <TableRow
+
+        <TableRow
             style="@style/form_fw"
             android:orientation="horizontal"
             android:weightSum="100" >
 
-              <TextView
+            <TextView
                 style="@style/text_dialog"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="20"
                 android:gravity="center_horizontal"
                 android:text="Mua" />
 
-             <TextView
+            <TextView
+                android:id="@+id/mua_homnay"
                 style="@style/text_dialog"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="37"
-                android:id="@+id/mua_homnay"
-                android:gravity="center_horizontal"
-               />
-            
+                android:gravity="center_horizontal" />
+
             <TextView
+                android:id="@+id/ssmua"
                 style="@style/text_dialog"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="6"
-                android:id="@+id/ssmua"
-                android:gravity="center_horizontal"
-                />
+                android:gravity="center_horizontal" />
 
             <TextView
+                android:id="@+id/mua_homqua"
                 style="@style/text_dialog"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="37"
-                 android:id="@+id/mua_homqua"
-                android:gravity="center_horizontal"
-                 />
+                android:gravity="center_horizontal" />
         </TableRow>
-        
-          <TableRow
+
+        <TableRow
             style="@style/form_fw"
             android:orientation="horizontal"
             android:weightSum="100" >
 
-           <TextView
+            <TextView
                 style="@style/text_dialog"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="20"
                 android:gravity="center_horizontal"
                 android:text="Bán" />
 
-             <TextView
+            <TextView
+                android:id="@+id/ban_homnay"
                 style="@style/text_dialog"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="37"
-                 android:id="@+id/ban_homnay"
-                android:gravity="center_horizontal"
-                />
-            
+                android:gravity="center_horizontal" />
+
             <TextView
+                android:id="@+id/ssban"
                 style="@style/text_dialog"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="6"
-                android:id="@+id/ssban"
-                android:gravity="center_horizontal"
-                 />
+                android:gravity="center_horizontal" />
 
             <TextView
+                android:id="@+id/ban_homqua"
                 style="@style/text_dialog"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="37"
-                android:id="@+id/ban_homqua"
-                android:gravity="center_horizontal"
-                 />
+                android:gravity="center_horizontal" />
         </TableRow>
     </TableLayout>
 

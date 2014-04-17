@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_id">TODO</string>
-    <string name="app_name">TODO</string>
+    <string name="app_name">Giá Vàng</string>
     <string name="gia_ca_thi_truong">Giá cả thị trường</string>
     <string name="bethua">&lt;</string>
+    <string name="chuacodulieu">Chưa có dữ liệu!</string>
+    <string name="c_p_nh_t_ng_y_">"Cập nhật ngày: "</string>
+
+    <string-array name="arrDo">
+        <item>Lượng</item>
+        <item>Chỉ</item>
+        <item>Kilogram</item>
+        <item>Tấn</item>
+        <item>Ounce</item>
+    </string-array>
+
+    <string name="ban_">"Bán: "</string>
+    <string name="quydoigiavang">Quy đổi giá vàng</string>
+<string name="errconnect">Lỗi kết nối dữ liệu!</string>
 </resources>

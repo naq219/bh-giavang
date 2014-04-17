@@ -96,7 +96,15 @@ public class MyDialog {
 		ban_homqua.setText(oj.get(GiaVangOj.SALEOLD));
 		mua_homnay.setText(oj.get(GiaVangOj.BUY));
 		mua_homqua.setText(oj.get(GiaVangOj.BUYOLD));
-		title.setText(oj.get(GiaVangOj.LOCATION_NAME));
+		title.setText(oj.get(GiaVangOj.GOLD_NAME));
+		layoutView.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				DialogUtils.dismisDialog(dialog);
+				
+			}
+		});
 
 		try {
 			float banhomnay = Float.parseFloat(oj.get(GiaVangOj.SALE));
