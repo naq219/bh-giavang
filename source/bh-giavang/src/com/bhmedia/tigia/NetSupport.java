@@ -14,8 +14,8 @@ import com.telpoo.frame.object.BaseObject;
 
 public class NetSupport {
 
-	public static ArrayList<BaseObject> getGiaVang() throws JSONException {
-		String urlGiaVang = getUrlGiaVang();
+	public static ArrayList<BaseObject> getGiaVang(String date) throws JSONException {
+		String urlGiaVang = getUrlGiaVang(date);
 		String res = BaseNetSupportBeta.getInstance().method_GET(urlGiaVang);
 
 		JSONObject root = new JSONObject(res);
@@ -38,8 +38,11 @@ public class NetSupport {
 					oj.set(keyJson1, ojNow.getString(keyJson1));
 				}
 			}
-
+			oj.set(GiaVangOj.GROUP_NAME, oj.get(GiaVangOj.LOCATION_NAME));
+			
 			// lay du lieu ngay truoc do
+			
+			
 			if (ojYesterday.has("created"))
 				oj.set(GiaVangOj.CREATEDOLD, ojYesterday.getString("created"));
 
@@ -74,7 +77,8 @@ public class NetSupport {
 					oj.set(keyJson1, ojgNow.getString(keyJson1));
 				}
 			}
-
+			oj.set(GiaVangOj.GROUP_NAME, "Các ngân hàng và thế giới");
+			oj.set(GiaVangOj.GOLD_NAME, oj.get(GiaVangOj.LOCATION_NAME) );
 			// lay du lieu ngay truoc do
 			if (ojgYesterday.has("created"))
 				oj.set(GiaVangOj.CREATEDOLD, ojgYesterday.getString("created"));
@@ -94,7 +98,7 @@ public class NetSupport {
 		return arrData;
 	}
 
-	private static String getUrlGiaVang() {
-		return Defi.url.API_GIA_VANG;
+	private static String getUrlGiaVang(String date) {
+		return Defi.url.API_GIA_VANG+date;
 	}
 }
