@@ -60,6 +60,15 @@ public class Utils1 {
 		TaskNetWork netWork = new TaskNetWork(taskListener, TaskType.TASK_GET_GIAVANG, list, context);
 		taskListener.exeTask(null, netWork);
 	}
+	
+	public static void runTaskTiGia(Calendar cal, BaseModel taskListener, Activity context, BaseFragment fm) {
+		String date = TimeUtils.cal2String(cal, Defi.FORMAT_DATE);
+		fm.showProgressDialog(context);
+		ArrayList<String> list = new ArrayList<String>();
+		list.add(date);
+		TaskNetWork netWork = new TaskNetWork(taskListener, TaskType.TASK_GET_TIGIA, list, context);
+		taskListener.exeTask(null, netWork);
+	}
 
 	static String curKey;
 	static BaseObject ojCur = new BaseObject();

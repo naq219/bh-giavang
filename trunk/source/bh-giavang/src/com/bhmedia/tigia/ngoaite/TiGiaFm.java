@@ -1,4 +1,4 @@
-package com.bhmedia.tigia.giavang;
+package com.bhmedia.tigia.ngoaite;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,17 +7,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 
-import com.bhmedia.tigia.HomeActivity;
 import com.bhmedia.tigia.R;
-import com.bhmedia.tigia.adapter.DataLv;
-import com.bhmedia.tigia.adapter.SectionComposerAdapter;
+import com.bhmedia.tigia.adapter.DataLvTiGia;
+import com.bhmedia.tigia.adapter.TiGiaAdapter;
 import com.bhmedia.tigia.task.TaskType;
 import com.bhmedia.tigia.utils.Defi;
 import com.bhmedia.tigia.utils.MyDialog;
-import com.bhmedia.tigia.utils.TabId;
 import com.bhmedia.tigia.utils.Utils1;
 import com.telpoo.frame.delegate.Idelegate;
 import com.telpoo.frame.delegate.WhereIdelegate;
@@ -25,7 +21,7 @@ import com.telpoo.frame.object.BaseObject;
 import com.telpoo.frame.utils.DialogUtils;
 import com.telpoo.frame.utils.TimeUtils;
 
-public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskType, Idelegate {
+public class TiGiaFm extends TiGiaLayout implements OnClickListener, TaskType, Idelegate {
 	ArrayList<BaseObject> curLvData = new ArrayList<BaseObject>();
 	Calendar curcal;
 
@@ -36,19 +32,8 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 		btn_reload.setOnClickListener(this);
 		btnShare.setOnClickListener(this);
 
-		lsComposer.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-
-				MyDialog.detail(getActivity(), curLvData.get(arg2));
-
-			}
-		});
-
 		curcal = Calendar.getInstance();
-		Utils1.runTaskGiaVang(Calendar.getInstance(), getModel(), getActivity(), this);
-
+		Utils1.runTaskTiGia(Calendar.getInstance(), getModel(), getActivity(), this);
 	}
 
 	@Override
@@ -57,14 +42,12 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 		switch (v.getId()) {
 		case R.id.btn_reload:
 			curcal = Calendar.getInstance();
-			Utils1.runTaskGiaVang(Calendar.getInstance(), getModel(), getActivity(), this);
-			// tv_date.setText(R.string.c_p_nh_t_ng_y_ +
-			// TimeUtils.cal2String(Calendar.getInstance(), Defi.FORMAT_DATE));
+			Utils1.runTaskTiGia(Calendar.getInstance(), getModel(), getActivity(), this);
 
 			break;
 
 		case R.id.btnShare:
-			MyDialog.dialogChoose(this, getActivity(), 0);
+			MyDialog.dialogChoose(this, getActivity(), 1);
 			break;
 
 		default:
@@ -77,7 +60,7 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 		super.onSuccess(taskType, list, msg);
 
 		switch (taskType) {
-		case TASK_GET_GIAVANG:
+		case TASK_GET_TIGIA:
 
 			closeProgressDialog();
 			ArrayList<BaseObject> ojres = (ArrayList<BaseObject>) list;
@@ -89,8 +72,8 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 
 			tv_date.setText(getString(R.string.c_p_nh_t_ng_y_) + TimeUtils.cal2String(curcal, Defi.FORMAT_DATE));
 
-			curLvData = DataLv.fixPosition(ojres);
-			adapter = new SectionComposerAdapter(getActivity(), ojres);
+			curLvData = DataLvTiGia.fixPosition(ojres);
+			adapter = new TiGiaAdapter(getActivity(), ojres);
 			LayoutInflater inflater = LayoutInflater.from(getActivity());
 			View v = inflater.inflate(R.layout.item_composer_header, lsComposer, false);
 			lsComposer.setPinnedHeaderView(v);
@@ -125,18 +108,21 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 			if (vlChoose == 1) // chon ngay
 				DialogUtils.datePicker(getActivity(), this);
 
-			if (vlChoose == 0)// quy doi gia vang
-				if (curLvData != null && curLvData.size() > 0)
-					HomeActivity.getInstance().pushFragments(TabId.GIAVANG, new QuyDoiGiaVang(DataLv.grouping(curLvData)), true, null);
-				else
-					showToast(getContext().getString(R.string.chuacodulieu));
+			//if (vlChoose == 0)// quy doi gia vang
+				//if (curLvData != null && curLvData.size() > 0)
+					// HomeActivity.getInstance().pushFragments(TabId.GIAVANG,
+					// new QuyDoiGiaVang(DataLv.grouping(curLvData)), true,
+					// null);
+					// else
+					// showToast(getContext().getString(R.string.chuacodulieu));
+					
+			
+			
 			break;
 
 		case WhereIdelegate.DIALOGUTILS_DATEPICKER:
 			curcal = (Calendar) value;
-			Utils1.runTaskGiaVang(curcal, getModel(), getActivity(), this);
-			// tv_date.setText(getString(R.string.c_p_nh_t_ng_y_) +
-			// TimeUtils.cal2String(cal, Defi.FORMAT_DATE));
+			Utils1.runTaskTiGia(curcal, getModel(), getActivity(), this);
 
 			break;
 		default:
@@ -145,7 +131,4 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 
 	}
 
-	
-	
-	
 }

@@ -25,7 +25,11 @@ public class MyDialog {
 		final AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View layoutView = inflater.inflate(R.layout.dialog_choose_lichsu, null);
+		View layoutView;
+		if (from == 0)
+			layoutView = inflater.inflate(R.layout.dialog_choose_lichsu, null);
+		else
+			layoutView = inflater.inflate(R.layout.dialog_choose_tigia, null);
 		builder.setView(layoutView);
 		final Dialog dialog = builder.create();
 		Button quydoigia, lichsugia, bieudo, huy;
@@ -66,7 +70,7 @@ public class MyDialog {
 
 			@Override
 			public void onClick(View arg0) {
-				idelegate.callBack(2, where);
+
 				DialogUtils.dismisDialog(dialog);
 			}
 		});
@@ -98,11 +102,11 @@ public class MyDialog {
 		mua_homqua.setText(oj.get(GiaVangOj.BUYOLD));
 		title.setText(oj.get(GiaVangOj.GOLD_NAME));
 		layoutView.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				DialogUtils.dismisDialog(dialog);
-				
+
 			}
 		});
 
