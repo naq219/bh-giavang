@@ -1,0 +1,220 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/form_ff"
+    android:layout_width="match_parent"
+    android:background="#b8bcbd" >
+
+    <RelativeLayout style="@style/form_ff" >
+
+        <ImageView
+            style="@style/form_ff"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bgh586" />
+
+        <LinearLayout
+            style="@style/form_ff"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/text_top"
+                android:layout_height="@dimen/top_heigh"
+                android:background="@drawable/thanhtren"
+                android:text="Thêm" />
+
+            <TextView
+                style="@style/them_text"
+                android:text="Tiện ích khác"
+                android:textColor="#4c566c" />
+
+            <LinearLayout
+                
+                style="@style/form_fw"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:background="@drawable/border_setting"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:id="@+id/xoso"
+                    style="@style/form_fw"
+                    android:layout_height="@dimen/them_row" >
+
+                    <ImageView
+                        style="@style/them_icon"
+                        android:src="@drawable/xoso" />
+
+                    <TextView
+                        style="@style/them_text"
+                        android:text="Xổ số" />
+
+                    <ImageView style="@style/them_arrow" />
+                </RelativeLayout>
+
+                <View style="@style/line_setting" />
+
+                <RelativeLayout
+                    android:id="@+id/thoitiet"
+                    style="@style/form_fw"
+                    android:layout_height="@dimen/them_row" >
+
+                    <ImageView
+                        style="@style/them_icon"
+                        android:src="@drawable/thoitiet" />
+
+                    <TextView
+                        style="@style/them_text"
+                        android:text="Thời tiết" />
+
+                    <ImageView style="@style/them_arrow" />
+                </RelativeLayout>
+
+                <View style="@style/line_setting" />
+
+                <RelativeLayout
+                    android:id="@+id/lichphatsong"
+                    style="@style/form_fw"
+                    android:layout_height="@dimen/them_row" >
+
+                    <ImageView
+                        style="@style/them_icon"
+                        android:src="@drawable/tiviicon" />
+
+                    <TextView
+                        style="@style/them_text"
+                        android:text="Lịch phát sóng" />
+
+                    <ImageView style="@style/them_arrow" />
+                </RelativeLayout>
+
+                <View style="@style/line_setting" />
+
+                <RelativeLayout
+                    android:id="@+id/lichchieurap"
+                    style="@style/form_fw"
+                    android:layout_height="@dimen/them_row" >
+
+                    <ImageView
+                        style="@style/them_icon"
+                        android:src="@drawable/filmicon" />
+
+                    <TextView
+                        style="@style/them_text"
+                        android:text="Lịch chiếu phim rạp" />
+
+                    <ImageView style="@style/them_arrow" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                style="@style/them_text"
+                android:text="Phản hồi" />
+
+            <LinearLayout
+                style="@style/form_fw"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:background="@drawable/border_setting"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:id="@+id/gopy"
+                    style="@style/form_fw"
+                    android:layout_height="@dimen/them_row" >
+
+                    <ImageView
+                        style="@style/them_icon"
+                        android:src="@drawable/ykiengopy" />
+
+                    <TextView
+                        style="@style/them_text"
+                        android:text="Ý kiến góp ý" />
+
+                    <ImageView style="@style/them_arrow" />
+                </RelativeLayout>
+
+                <View style="@style/line_setting" />
+
+                <RelativeLayout
+                    android:id="@+id/danhgia"
+                    style="@style/form_fw"
+                    android:layout_height="@dimen/them_row" >
+
+                    <ImageView
+                        style="@style/them_icon"
+                        android:src="@drawable/danhgiaungdung" />
+
+                    <TextView
+                        style="@style/them_text"
+                        android:text="Đánh giá ứng dụng" />
+
+                    <ImageView style="@style/them_arrow" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                style="@style/them_text"
+                android:text="Chia sẻ"
+                android:textColor="#4c566c" />
+
+            <LinearLayout
+                style="@style/form_fw"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:background="@drawable/border_setting"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:id="@+id/email"
+                    style="@style/form_fw"
+                    android:layout_height="@dimen/them_row" >
+
+                    <ImageView
+                        style="@style/them_icon"
+                        android:src="@drawable/mail" />
+
+                    <TextView
+                        style="@style/them_text"
+                        android:text="Qua email" />
+
+                    <ImageView style="@style/them_arrow" />
+                </RelativeLayout>
+
+                <View style="@style/line_setting" />
+
+                <RelativeLayout
+                    android:id="@+id/facebook"
+                    style="@style/form_fw"
+                    android:layout_height="@dimen/them_row" >
+
+                    <ImageView
+                        style="@style/them_icon"
+                        android:src="@drawable/fb" />
+
+                    <TextView
+                        style="@style/them_text"
+                        android:text="Qua Facebook" />
+
+                    <ImageView style="@style/them_arrow" />
+                </RelativeLayout>
+
+                <View style="@style/line_setting" />
+
+                <RelativeLayout
+                    android:id="@+id/twitter"
+                    style="@style/form_fw"
+                    android:layout_height="@dimen/them_row" >
+
+                    <ImageView
+                        style="@style/them_icon"
+                        android:src="@drawable/twiter" />
+
+                    <TextView
+                        style="@style/them_text"
+                        android:text="Qua Twitter" />
+
+                    <ImageView style="@style/them_arrow" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</ScrollView>
