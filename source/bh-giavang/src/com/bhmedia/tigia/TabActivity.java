@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.giavang.GiaVangFm;
+import com.bhmedia.tigia.more.MoreFm;
 import com.bhmedia.tigia.ngoaite.TiGiaFm;
 import com.bhmedia.tigia.thitruong.ThiTruongFm;
 import com.bhmedia.tigia.utils.TabId;
@@ -25,7 +26,7 @@ public class TabActivity extends BaseFmActivity implements OnTabChangeListener {
 	public TabActivity() {
 		super(TabId.keys, R.id.realtabcontent, "Bấm lần nữa để thoát ứng dụng");
 	}// bac thu tao project moi copy qua xem sao :D
-	//ok
+		// ok
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -51,15 +52,13 @@ public class TabActivity extends BaseFmActivity implements OnTabChangeListener {
 
 		for (int i = 0; i < TabId.keys.length; i++) {
 			TabHost.TabSpec spec = CreateTabSpec(TabId.keys[i]);
-			spec.setIndicator(createTabView(this, TabId.name[i],
-					TabId.resource[i]));
+			spec.setIndicator(createTabView(this, TabId.name[i], TabId.resource[i]));
 			mTabHost.addTab(spec);
 		}
 
 		mTabHost.getTabWidget().setStripEnabled(false);
 		mTabHost.getTabWidget().setDividerDrawable(null);
-		mTabHost.getTabWidget().getChildAt(0).findViewById(R.id.line)
-				.setVisibility(View.GONE);
+		mTabHost.getTabWidget().getChildAt(0).findViewById(R.id.line).setVisibility(View.GONE);
 
 	}
 
@@ -73,10 +72,8 @@ public class TabActivity extends BaseFmActivity implements OnTabChangeListener {
 		return spec;
 	}
 
-	protected static View createTabView(final Context context, String tag,
-			int resId) {
-		View view = LayoutInflater.from(context)
-				.inflate(R.layout.tabs_bg, null);
+	protected  View createTabView(final Context context, String tag, int resId) {
+		View view = LayoutInflater.from(context).inflate(R.layout.tabs_bg, null);
 		TextView tv = (TextView) view.findViewById(R.id.tabsText);
 		tv.setText(tag);
 		tv.setTextColor(Color.GRAY);
@@ -100,21 +97,16 @@ public class TabActivity extends BaseFmActivity implements OnTabChangeListener {
 		final int FILTERED_GREY = Color.parseColor("#e8ce00");
 
 		for (int i = 0; i < mTabHost.getTabWidget().getChildCount(); i++) {
-			txtTab = (TextView) mTabHost.getTabWidget().getChildAt(i)
-					.findViewById(R.id.tabsText);
+			txtTab = (TextView) mTabHost.getTabWidget().getChildAt(i).findViewById(R.id.tabsText);
 			txtTab.setTextColor(Color.GRAY);
-			((ImageView) mTabHost.getTabWidget().getChildAt(i)
-					.findViewById(R.id.tabsIcon))
-					.setColorFilter(TRANSPARENT_GREY);
+			((ImageView) mTabHost.getTabWidget().getChildAt(i).findViewById(R.id.tabsIcon)).setColorFilter(TRANSPARENT_GREY);
 
 		}
 
 		int pos = getPostByTabid(tabId);
-		TextView txtTab = (TextView) mTabHost.getTabWidget().getChildAt(pos)
-				.findViewById(R.id.tabsText);
+		TextView txtTab = (TextView) mTabHost.getTabWidget().getChildAt(pos).findViewById(R.id.tabsText);
 		txtTab.setTextColor(Color.WHITE);
-		((ImageView) mTabHost.getTabWidget().getChildAt(pos)
-				.findViewById(R.id.tabsIcon)).setColorFilter(FILTERED_GREY);
+		((ImageView) mTabHost.getTabWidget().getChildAt(pos).findViewById(R.id.tabsIcon)).setColorFilter(FILTERED_GREY);
 
 		setCurrentTab(tabId);
 
@@ -125,9 +117,9 @@ public class TabActivity extends BaseFmActivity implements OnTabChangeListener {
 			} else if (tabId.equals(TabId.THITRUONG)) {
 				pushFragments(TabId.THITRUONG, new ThiTruongFm(), true, null);
 			} else if (tabId.equals(TabId.THEM)) {
-				pushFragments(TabId.THEM, new More(), true, null);
+				pushFragments(TabId.THEM, new MoreFm(), true, null);
 			} else if (tabId.equals(TabId.NGOAITE)) {
-				 pushFragments(TabId.NGOAITE, new TiGiaFm(), true, null);
+				pushFragments(TabId.NGOAITE, new TiGiaFm(), true, null);
 			} else if (tabId.equals(TabId.TINTUC)) {
 				// pushFragments(TabId.UTILS, new TienichFm(), true, null);
 

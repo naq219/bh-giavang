@@ -12,6 +12,6 @@
     <TextView
         android:id="@+id/tv_title"
         style="@style/text_top"
-        android:text="Giá cả thị trường" />
+        android:text="" />
 
 </RelativeLayout>
