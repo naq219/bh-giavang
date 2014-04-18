@@ -19,4 +19,5 @@
     <string name="ban_">"Bán: "</string>
     <string name="quydoigiavang">Quy đổi giá vàng</string>
 <string name="errconnect">Lỗi kết nối dữ liệu!</string>
+<string name="ngoaite">Ngoại tệ</string>
 </resources>

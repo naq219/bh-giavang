@@ -38,10 +38,10 @@ public class TaskNetWork extends BaseTask implements TaskType {
 			return TASK_DONE;
 
 		case TASK_GET_TIGIA:
-
+			String date1 = (String) dataFromModel.get(0);
 			ArrayList<BaseObject> datares1 = null;
 			try {
-				datares1 = NetSupport.getTiGia();
+				datares1 = NetSupport.getTiGia(date1);
 			} catch (JSONException e) {
 				msg = context.getString(R.string.errconnect);
 				return TASK_FAILED;

@@ -103,8 +103,8 @@ public class NetSupport {
 		return Defi.url.API_GIA_VANG + date;
 	}
 
-	public static ArrayList<BaseObject> getTiGia() throws JSONException {
-		String url = getUrlTiGia();
+	public static ArrayList<BaseObject> getTiGia(String date) throws JSONException {
+		String url = getUrlTiGia(date);
 
 		String res = BaseNetSupportBeta.getInstance().method_GET(url);
 
@@ -130,9 +130,9 @@ public class NetSupport {
 					if (ojEnd.has(keyOj))
 						oj.set(keyOj, ojEnd.getString(keyOj));
 				}
-				
+
 				ojs.add(oj);
-				
+
 			}
 
 		}
@@ -140,8 +140,8 @@ public class NetSupport {
 
 	}
 
-	private static String getUrlTiGia() {
-		return Defi.url.TI_GIA;
+	private static String getUrlTiGia(String date) {
+		return Defi.url.TI_GIA+date;
 	}
 
 }

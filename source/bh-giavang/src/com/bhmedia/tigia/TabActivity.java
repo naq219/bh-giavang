@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.giavang.GiaVangFm;
-import com.bhmedia.tigia.ngoaite.NgoaiTeFm;
+import com.bhmedia.tigia.ngoaite.TiGiaFm;
 import com.bhmedia.tigia.thitruong.ThiTruongFm;
 import com.bhmedia.tigia.utils.TabId;
 import com.telpoo.frame.ui.BaseFmActivity;
@@ -127,7 +127,7 @@ public class TabActivity extends BaseFmActivity implements OnTabChangeListener {
 			} else if (tabId.equals(TabId.THEM)) {
 				pushFragments(TabId.THEM, new More(), true, null);
 			} else if (tabId.equals(TabId.NGOAITE)) {
-				 pushFragments(TabId.NGOAITE, new NgoaiTeFm(), true, null);
+				 pushFragments(TabId.NGOAITE, new TiGiaFm(), true, null);
 			} else if (tabId.equals(TabId.TINTUC)) {
 				// pushFragments(TabId.UTILS, new TienichFm(), true, null);
 

@@ -29,7 +29,7 @@ public class Defi {
 	public class url{
 		public static final String GIA_CA_THI_TRUONG="http://app.vietbao.vn/tienich/giacathitruong.html";
 		public static final String API_GIA_VANG="http://pay.bhmedia.vn/vn/market/gia-vang/api/?date=";
-		public static final String TI_GIA="http://pay.bhmedia.vn/vn/ty-gia-ngoai-te/api/";
+		public static final String TI_GIA="http://pay.bhmedia.vn/vn/ty-gia-ngoai-te/api?date=";
 	}
 	
 	public class whereIdelegate{
