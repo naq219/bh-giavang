@@ -36,4 +36,8 @@ public class Defi {
 		public static final int DIALOGCHOOSE=0;
 		public static final int UTILS1_SPINNERHEAD=1;
 	}
+	
+	public class spr{
+		public static final String TEXT_ZOOM="textzoom";
+	}
 }
