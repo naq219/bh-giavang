@@ -16,6 +16,7 @@ import com.bhmedia.tigia.giavang.GiaVangFm;
 import com.bhmedia.tigia.more.MoreFm;
 import com.bhmedia.tigia.ngoaite.TiGiaFm;
 import com.bhmedia.tigia.thitruong.ThiTruongFm;
+import com.bhmedia.tigia.tintuc.ListNewsFragment;
 import com.bhmedia.tigia.utils.TabId;
 import com.telpoo.frame.ui.BaseFmActivity;
 
@@ -121,7 +122,7 @@ public class TabActivity extends BaseFmActivity implements OnTabChangeListener {
 			} else if (tabId.equals(TabId.NGOAITE)) {
 				pushFragments(TabId.NGOAITE, new TiGiaFm(), true, null);
 			} else if (tabId.equals(TabId.TINTUC)) {
-				// pushFragments(TabId.UTILS, new TienichFm(), true, null);
+				 pushFragments(TabId.TINTUC, new ListNewsFragment(), true, null);
 
 			}
 
