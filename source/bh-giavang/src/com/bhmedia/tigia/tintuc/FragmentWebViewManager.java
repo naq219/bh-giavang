@@ -3,6 +3,7 @@ package com.bhmedia.tigia.tintuc;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -19,24 +20,12 @@ import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.utils.Defi;
 import com.telpoo.frame.utils.Utils;
 
+@SuppressLint("ValidFragment")
 public class FragmentWebViewManager extends MyFragment implements OnClickListener {
 
 	public static final String URL_LIST = "URL_LIST";
 	public static final String POSITION_SHOW = "POSITION_SHOW";
-	private View back, zoomin, zoomout;
-	
-	
-	
-	public static final FragmentWebViewManager newsInstance(ArrayList<String> urlS, int position) {
-
-		FragmentWebViewManager fragmentWebViewManager = new FragmentWebViewManager();
-		Bundle bundle = new Bundle(1);
-		bundle.putStringArrayList("URL_LIST", urlS);
-		bundle.putInt("POSITION_SHOW", position);
-		fragmentWebViewManager.setArguments(bundle);
-		return fragmentWebViewManager;
-	}
-
+	//private View back, zoomin, zoomout;
 	WebView webView;
 	List<String> urlS;
 	List<FragmentWebview> fragmentWebviews;
@@ -44,6 +33,28 @@ public class FragmentWebViewManager extends MyFragment implements OnClickListene
 	String data;
 	NgPageViewAdapter ngPageViewAdapter;
 	ViewPager viewPager;
+	int position;
+	public FragmentWebViewManager(ArrayList<String> urlS, int position) {
+
+		this.urlS=urlS;
+		this.position=position;
+		
+	}
+	
+	
+	
+	
+//	public static final FragmentWebViewManager newsInstance(ArrayList<String> urlS, int position) {
+//
+//		FragmentWebViewManager fragmentWebViewManager = new FragmentWebViewManager();
+//		Bundle bundle = new Bundle(1);
+//		bundle.putStringArrayList("URL_LIST", urlS);
+//		bundle.putInt("POSITION_SHOW", position);
+//		fragmentWebViewManager.setArguments(bundle);
+//		return fragmentWebViewManager;
+//	}
+
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,12 +67,12 @@ public class FragmentWebViewManager extends MyFragment implements OnClickListene
 
 		//
 		//
-		urlS = new ArrayList<String>();
-		urlS = getArguments().getStringArrayList(URL_LIST);
+		//urlS = new ArrayList<String>();
+		//urlS = getArguments().getStringArrayList(URL_LIST);
 		fragmentWebviews = new ArrayList<FragmentWebview>();
 		fragmentWebviews = getFragments();
 		//
-		int positionShow = getArguments().getInt(POSITION_SHOW);
+		//int positionShow = getArguments().getInt(POSITION_SHOW);
 		//
 		//
 		FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -70,7 +81,7 @@ public class FragmentWebViewManager extends MyFragment implements OnClickListene
 		//
 		viewPager = (ViewPager) v.findViewById(R.id.pager_view);
 		viewPager.setAdapter(ngPageViewAdapter);
-		viewPager.setCurrentItem(positionShow);
+		viewPager.setCurrentItem(position);
 		return v;
 	}
 
@@ -79,7 +90,8 @@ public class FragmentWebViewManager extends MyFragment implements OnClickListene
 		List<FragmentWebview> fList = new ArrayList<FragmentWebview>();
 		// //
 		for (String i : urlS) {
-			fList.add(FragmentWebview.newsInstance(i));
+			//fList.add(FragmentWebview.newsInstance(i));
+			fList.add(new FragmentWebview(i));
 		}
 		//
 		// fList.add(FragmentWebview.newsInstance(url.get(1)));
@@ -102,7 +114,21 @@ public class FragmentWebViewManager extends MyFragment implements OnClickListene
 			
 			try {
 				int msize= Integer.parseInt(size);
-				Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, ""+(msize+1), getActivity());
+				Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, ""+(msize+4), getActivity());
+				
+			} catch (Exception e) {
+				Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, "0", getActivity());
+			}
+			
+			break;
+			
+			
+		case R.id.zoomout:
+			String size1= Utils.getStringSPR(Defi.spr.TEXT_ZOOM, getActivity());
+			
+			try {
+				int msize= Integer.parseInt(size1);
+				Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, ""+(msize-4), getActivity());
 				
 			} catch (Exception e) {
 				Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, "0", getActivity());

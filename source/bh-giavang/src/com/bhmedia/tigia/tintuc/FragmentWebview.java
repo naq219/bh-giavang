@@ -1,41 +1,44 @@
 package com.bhmedia.tigia.tintuc;
 
-import java.util.concurrent.ExecutionException;
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
+import android.os.Build;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebSettings.TextSize;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.bhmedia.tigia.MyFragment;
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.utils.Defi;
 import com.telpoo.frame.utils.Utils;
 
-import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.os.Build;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.webkit.WebSettings.TextSize;
-
-@SuppressLint("NewApi")
+@SuppressLint({ "NewApi", "ValidFragment" })
 public class FragmentWebview extends MyFragment {
 	public static final String INTRO_HTML = "INTRO_HTML";
 	WebView ngWebView;
 	ProgressDialog progressDialog;
 	String data;
-
-	public static final FragmentWebview newsInstance(String html) {
-
-		FragmentWebview fragmentWebview = new FragmentWebview();
-		Bundle bundle = new Bundle(1);
-		bundle.putString(INTRO_HTML, html);
-		fragmentWebview.setArguments(bundle);
-		return fragmentWebview;
+	String html;
+	
+	public FragmentWebview() {
+		
 	}
+	public FragmentWebview(String html) {
+		this.html=html;
+	}
+//	public static final FragmentWebview newsInstance(String html) {
+//
+//		FragmentWebview fragmentWebview = new FragmentWebview();
+//		Bundle bundle = new Bundle(1);
+//		bundle.putString(INTRO_HTML, html);
+//		fragmentWebview.setArguments(bundle);
+//		return fragmentWebview;
+//	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,7 +54,14 @@ public class FragmentWebview extends MyFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		showToast(Utils.getStringSPR(Defi.spr.TEXT_ZOOM, getActivity()));
+		//showToast(Utils.getStringSPR(Defi.spr.TEXT_ZOOM, getActivity()));
+		
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		
 		String size = Utils.getStringSPR(Defi.spr.TEXT_ZOOM, getActivity());
 		int msize = 0;
 		try {
@@ -62,7 +72,9 @@ public class FragmentWebview extends MyFragment {
 		}
 		setTextSize(msize);
 		ngWebView.setWebViewClient(new WebViewClient());
-		String html = getArguments().getString(INTRO_HTML);
+		//String html = getArguments().getString(INTRO_HTML);
+		
+		
 		Log.d("test", "data : " + html);
 		ngWebView.loadUrl(html);
 

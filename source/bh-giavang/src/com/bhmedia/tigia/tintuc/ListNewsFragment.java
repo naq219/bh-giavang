@@ -43,7 +43,7 @@ public class ListNewsFragment extends MyFragment{
 		NewsAsyntask asyntask = new NewsAsyntask(getModel(), 1, urlList, getActivity());
 		getModel().exeTask(null, asyntask);
 		//turn on progressdialog
-		showProgressDialog(getActivity(), "LoadDing");
+		showProgressDialog(getActivity());
 		//
 		//list view
 		//
@@ -55,8 +55,8 @@ public class ListNewsFragment extends MyFragment{
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				// TODO Auto-generated method stub
 				
-				showToast(""+position);
-				HomeActivity.getInstance().pushFragments(TabId.TINTUC, FragmentWebViewManager.newsInstance(urlListWeb, position), true, null);
+				//showToast(""+position);
+				HomeActivity.getInstance().pushFragments(TabId.TINTUC, new FragmentWebViewManager(urlListWeb, position), true, null);
 				//pushFragment(R.id.realtabcontent, FragmentWebViewManager.newsInstance(urlListWeb, position));
 				
 //				FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
