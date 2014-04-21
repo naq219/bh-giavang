@@ -12,6 +12,7 @@ import com.telpoo.frame.model.BaseTask;
 import com.telpoo.frame.model.TaskListener;
 import com.telpoo.frame.model.TaskParams;
 import com.telpoo.frame.object.BaseObject;
+import com.telpoo.frame.utils.Mlog;
 
 public class TaskNetWork extends BaseTask implements TaskType {
 
@@ -30,6 +31,7 @@ public class TaskNetWork extends BaseTask implements TaskType {
 			try {
 				datares = NetSupport.getGiaVang(date);
 			} catch (JSONException e) {
+				Mlog.E(e.toString());
 				msg = context.getString(R.string.errconnect);
 				return TASK_FAILED;
 			}

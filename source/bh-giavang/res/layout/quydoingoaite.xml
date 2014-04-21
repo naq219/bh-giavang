@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <include layout="@layout/incl_top" />
+
+        <TextView
+            android:id="@+id/created"
+            style="@style/text"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="Cập nhật ngày 12/12/1212" />
+
+        <TextView
+            android:id="@+id/location_name"
+            style="@style/spinnertv"
+            android:layout_width="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:text="hà nội hồ " />
+
+        <TextView
+            android:id="@+id/tvfrom"
+            style="@style/spinnertv"
+            android:layout_width="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:text="hà nội hồ " />
+
+        <RelativeLayout
+            style="@style/form_fw"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp" >
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/text"
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="USD"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/edFrom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/textView2"
+                android:digits="0123456789."
+                android:hint="@string/sotienquydoi"
+                android:inputType="numberDecimal" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvTo"
+            style="@style/spinnertv"
+            android:layout_width="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:text="hà nội hồ " />
+
+        <RelativeLayout
+            style="@style/form_fw"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp" >
+
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/text"
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="VNĐ"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/edTo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/textView1"
+                android:digits="0123456789."
+                android:hint="@string/sotienquydoi"
+                android:inputType="numberDecimal" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -18,7 +18,7 @@
         android:layout_height="fill_parent"
         android:layout_centerInParent="true"
         android:layout_above="@+id/tabsText"
-        android:src="@drawable/com_facebook_picker_top_button" />
+        />
     
 
     <TextView

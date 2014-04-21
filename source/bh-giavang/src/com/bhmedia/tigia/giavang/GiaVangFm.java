@@ -108,6 +108,7 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 		switch (taskType) {
 		case TASK_GET_GIAVANG:
 			closeProgressDialog();
+			showToast(""+msg);
 			break;
 
 		default:
