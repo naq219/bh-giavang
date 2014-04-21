@@ -1,5 +1,6 @@
 package com.bhmedia.tigia.utils;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -60,7 +61,7 @@ public class Utils1 {
 		TaskNetWork netWork = new TaskNetWork(taskListener, TaskType.TASK_GET_GIAVANG, list, context);
 		taskListener.exeTask(null, netWork);
 	}
-	
+
 	public static void runTaskTiGia(Calendar cal, BaseModel taskListener, Activity context, BaseFragment fm) {
 		String date = TimeUtils.cal2String(cal, Defi.FORMAT_DATE);
 		fm.showProgressDialog(context);
@@ -78,8 +79,8 @@ public class Utils1 {
 			final Idelegate idelegate) {
 		Set<String> titles = map.keySet();
 		final String[] mtitle = new String[titles.size()];
-		final String[] mkeys=titles.toArray(new String[0]);
-		
+		final String[] mkeys = titles.toArray(new String[0]);
+
 		int dem = 0;
 		for (String string : titles) {
 			ArrayList<BaseObject> ojs = map.get(string);
@@ -132,10 +133,10 @@ public class Utils1 {
 					@Override
 					public void callBack(Object value, int where) {
 						int key = (Integer) value;
-						
+
 						curKey = mkeys[key];
-						ojs=new ArrayList<BaseObject>();
-						
+						ojs = new ArrayList<BaseObject>();
+
 						ojs = map.get(curKey);
 						ojCur = ojs.get(0);
 						gold_name.setText(ojCur.get(GiaVangOj.GOLD_NAME));
@@ -146,7 +147,7 @@ public class Utils1 {
 							goldNames.add(baseObject.get(GiaVangOj.GOLD_NAME));
 						}
 					}
-				}, 1,true);
+				}, 1, true);
 			}
 		});
 
@@ -180,6 +181,13 @@ public class Utils1 {
 		});
 		AlertDialog alert = builder.create();
 		alert.show();
+	}
+	
+	public static String double2String(double vl){
+		NumberFormat f = NumberFormat.getInstance();
+		f.setGroupingUsed(false);
+
+		return f.format(vl);
 	}
 
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_id">TODO</string>
+    <string name="app_id">240356972804786</string>
     <string name="app_name">Giá Vàng</string>
     <string name="gia_ca_thi_truong">Giá cả thị trường</string>
     <string name="bethua">&lt;</string>
@@ -20,4 +20,8 @@
     <string name="quydoigiavang">Quy đổi giá vàng</string>
 <string name="errconnect">Lỗi kết nối dữ liệu!</string>
 <string name="ngoaite">Ngoại tệ</string>
+<string name="sotienquydoi">Số tiền cần quy đổi</string>
+<string name="quydoingoaite">Quy đổi ngoại tệ</string>
+<string name="dulieukhonghople">Dữ liệu không hợp lệ</string>
+<string name="share_twitter_content">Xem ứng dụng tỉ giá tại đây</string>
 </resources>

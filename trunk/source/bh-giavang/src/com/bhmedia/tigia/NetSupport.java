@@ -29,6 +29,8 @@ public class NetSupport {
 
 			JSONArray ojJar = apiJoj.getJSONArray(key);
 
+			
+			
 			for (int i = 0; i < ojJar.length(); i++) {
 				BaseObject oj = new BaseObject();
 				oj.set(GiaVangOj.GROUP, key);

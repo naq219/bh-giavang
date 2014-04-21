@@ -1,5 +1,6 @@
 package com.bhmedia.tigia.more;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +10,15 @@ import android.view.ViewGroup;
 import com.bhmedia.tigia.HomeActivity;
 import com.bhmedia.tigia.MyFragment;
 import com.bhmedia.tigia.R;
+import com.bhmedia.tigia.utils.Defi;
 import com.bhmedia.tigia.utils.TabId;
 import com.telpoo.bhlib.Bhdefi;
 import com.telpoo.bhlib.ads.BHAds;
+import com.telpoo.bhlib.object.ShareFbOj;
 import com.telpoo.bhlib.share.BHShareUtils;
+import com.telpoo.bhlib.share.facebook.ShareFacebook;
+import com.telpoo.frame.object.BaseObject;
+import com.telpoo.frame.utils.FileSupport;
 
 public class MoreFm extends MyFragment implements OnClickListener {
 
@@ -77,7 +83,34 @@ public class MoreFm extends MyFragment implements OnClickListener {
 			BHShareUtils.rating(getActivity());
 			break;
 			
-
+		case R.id.twitter:
+			FileSupport.saveBitmap(FileSupport.drawableToBitmap(getResources().getDrawable(R.drawable.ic_launcher)), "imgShare",
+					FileSupport.getCatcheDir(getActivity()).getPath());
+			
+			
+			BHShareUtils.shareTwitter(getActivity(), getContext().getString(R.string.share_twitter_content), FileSupport.getCatcheDir(getActivity()).getPath()+"/imgShare");
+			break;
+			
+		case R.id.facebook:
+			
+			FileSupport.saveBitmap(FileSupport.drawableToBitmap(getResources().getDrawable(R.drawable.ic_launcher)), "imgShare",
+					FileSupport.getCatcheDir(getActivity()).getPath());
+			
+			
+			
+			Intent intentFb=new Intent(getActivity(), ShareFacebook.class);
+			
+			BaseObject ojShare=new BaseObject();
+			ojShare.set(ShareFbOj.CAPTION, "caption");
+			ojShare.set(ShareFbOj.DESCRIPTION, "DESCRIPTION");
+			ojShare.set(ShareFbOj.LINK, "https://play.google.com/store/apps/details?id=vn.com.cmc.vas");
+			ojShare.set(ShareFbOj.NAME, "NAME");
+			ojShare.set(ShareFbOj.PATH, FileSupport.getCatcheDir(getActivity()).getPath()+"/imgShare");
+			intentFb.putExtra("oj-share", ojShare);
+			startActivityForResult(intentFb, 122);
+			
+			break;
+			
 		default:
 			break;
 		}

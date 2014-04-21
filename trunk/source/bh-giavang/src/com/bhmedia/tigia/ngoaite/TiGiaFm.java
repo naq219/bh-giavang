@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import com.bhmedia.tigia.HomeActivity;
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.adapter.DataLvTiGia;
 import com.bhmedia.tigia.adapter.TiGiaAdapter;
 import com.bhmedia.tigia.task.TaskType;
 import com.bhmedia.tigia.utils.Defi;
 import com.bhmedia.tigia.utils.MyDialog;
+import com.bhmedia.tigia.utils.TabId;
 import com.bhmedia.tigia.utils.Utils1;
 import com.telpoo.frame.delegate.Idelegate;
 import com.telpoo.frame.delegate.WhereIdelegate;
@@ -91,6 +93,7 @@ public class TiGiaFm extends TiGiaLayout implements OnClickListener, TaskType, I
 		switch (taskType) {
 		case TASK_GET_GIAVANG:
 			closeProgressDialog();
+			showToast("" + msg);
 			break;
 
 		default:
@@ -108,16 +111,12 @@ public class TiGiaFm extends TiGiaLayout implements OnClickListener, TaskType, I
 			if (vlChoose == 1) // chon ngay
 				DialogUtils.datePicker(getActivity(), this);
 
-			//if (vlChoose == 0)// quy doi gia vang
-				//if (curLvData != null && curLvData.size() > 0)
-					// HomeActivity.getInstance().pushFragments(TabId.GIAVANG,
-					// new QuyDoiGiaVang(DataLv.grouping(curLvData)), true,
-					// null);
-					// else
-					// showToast(getContext().getString(R.string.chuacodulieu));
-					
-			
-			
+			if (vlChoose == 0)// quy doi ngoai te
+				if (curLvData != null && curLvData.size() > 0)
+					HomeActivity.getInstance().pushFragments(TabId.Ti_GIA, new QuyDoiNgoaiTe(DataLvTiGia.grouping(curLvData),tv_date.getText().toString()), true, null);
+				else
+					showToast(getContext().getString(R.string.chuacodulieu));
+
 			break;
 
 		case WhereIdelegate.DIALOGUTILS_DATEPICKER:

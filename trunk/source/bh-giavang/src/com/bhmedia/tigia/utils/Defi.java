@@ -11,6 +11,7 @@ public class Defi {
 	public static final String FORMAT_DATE = "dd-MM-yyyy";
 	
 	public static final String GOOGLE_ANALYTIC_ID = "UA-48254014-3";
+	
 
 
 	public interface categoryTrack{

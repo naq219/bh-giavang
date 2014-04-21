@@ -119,8 +119,8 @@ public class TabActivity extends BaseFmActivity implements OnTabChangeListener {
 				pushFragments(TabId.THITRUONG, new ThiTruongFm(), true, null);
 			} else if (tabId.equals(TabId.THEM)) {
 				pushFragments(TabId.THEM, new MoreFm(), true, null);
-			} else if (tabId.equals(TabId.NGOAITE)) {
-				pushFragments(TabId.NGOAITE, new TiGiaFm(), true, null);
+			} else if (tabId.equals(TabId.Ti_GIA)) {
+				pushFragments(TabId.Ti_GIA, new TiGiaFm(), true, null);
 			} else if (tabId.equals(TabId.TINTUC)) {
 				 pushFragments(TabId.TINTUC, new ListNewsFragment(), true, null);
 
@@ -137,7 +137,7 @@ public class TabActivity extends BaseFmActivity implements OnTabChangeListener {
 	private int getPostByTabid(String tabId) {
 		if (tabId.equalsIgnoreCase(TabId.GIAVANG))
 			return 0;
-		if (tabId.equalsIgnoreCase(TabId.NGOAITE))
+		if (tabId.equalsIgnoreCase(TabId.Ti_GIA))
 			return 1;
 		if (tabId.equalsIgnoreCase(TabId.THITRUONG))
 			return 2;
