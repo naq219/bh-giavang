@@ -75,6 +75,7 @@
                 style="@style/text_dialog"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="6"
+                android:text="="
                 android:gravity="center_horizontal" />
 
             <TextView
@@ -109,6 +110,7 @@
                 style="@style/text_dialog"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="6"
+                 android:text="="
                 android:gravity="center_horizontal" />
 
             <TextView

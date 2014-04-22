@@ -1,5 +1,6 @@
 package com.bhmedia.tigia.thitruong;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +15,15 @@ import com.bhmedia.tigia.MyFragment;
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.utils.Defi;
 
+@SuppressLint("ValidFragment")
 public class ThiTruongFm extends MyFragment {
 	WebView wv;
 	ImageView btn_top;
+	String url;
+	
+	public ThiTruongFm(String url) {
+		this.url=url;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,7 +44,7 @@ public class ThiTruongFm extends MyFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
-		wv.loadUrl(Defi.url.GIA_CA_THI_TRUONG);
+		wv.loadUrl(url);
 		wv.setWebViewClient(new WebViewClient(){
 			@Override
 			public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
@@ -53,7 +60,7 @@ public class ThiTruongFm extends MyFragment {
 			@Override
 			public void onClick(View arg0) {
 
-				wv.loadUrl(Defi.url.GIA_CA_THI_TRUONG);
+				wv.loadUrl(url);
 
 			}
 		});

@@ -14,6 +14,7 @@ import com.bhmedia.tigia.HomeActivity;
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.adapter.DataLv;
 import com.bhmedia.tigia.adapter.SectionComposerAdapter;
+import com.bhmedia.tigia.more.WebvFm;
 import com.bhmedia.tigia.task.TaskType;
 import com.bhmedia.tigia.utils.Defi;
 import com.bhmedia.tigia.utils.MyDialog;
@@ -108,7 +109,7 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 		switch (taskType) {
 		case TASK_GET_GIAVANG:
 			closeProgressDialog();
-			showToast(""+msg);
+			showToast("" + msg);
 			break;
 
 		default:
@@ -131,6 +132,36 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 					HomeActivity.getInstance().pushFragments(TabId.GIAVANG, new QuyDoiGiaVang(DataLv.grouping(curLvData)), true, null);
 				else
 					showToast(getContext().getString(R.string.chuacodulieu));
+
+			if (vlChoose == 2)// bieu do
+
+				MyDialog.dialogChoose(new Idelegate() {
+
+					@Override
+					public void callBack(Object value, int where) {
+						int vlChoose = (Integer) value;
+						switch (vlChoose) {
+						case 0:// bieu do trong nuoc
+
+							break;
+
+						case 1:// bieu do the gioi
+							HomeActivity.getInstance().pushFragments(TabId.GIAVANG, new BieudoTheGioi(), true	, null);
+							
+							break;
+
+						case 2:// bieu do san kitco
+							HomeActivity.getInstance().pushFragments(TabId.GIAVANG, new WebvFm(Defi.url.KITCO, "Biểu đồ sàn Kitco"), true, null);
+
+							break;
+
+						default:
+							break;
+						}
+
+					}
+				}, getActivity(), 2);
+
 			break;
 
 		case WhereIdelegate.DIALOGUTILS_DATEPICKER:
@@ -146,7 +177,4 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 
 	}
 
-	
-	
-	
 }
