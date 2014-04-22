@@ -10,14 +10,15 @@ import org.jsoup.select.Elements;
 import android.content.Context;
 import android.util.Log;
 
+import com.bhmedia.tigia.task.TaskType;
 import com.telpoo.frame.model.BaseTask;
 import com.telpoo.frame.model.TaskListener;
 import com.telpoo.frame.model.TaskParams;
 import com.telpoo.frame.net.BaseNetSupportBeta;
 
-public class NewsAsyntask extends BaseTask{
+public class NewsAsyntask extends BaseTask implements TaskType{
 	
-	public static int NEWS_ASYNCTASK = 1;
+	
 
 	public NewsAsyntask(TaskListener taskListener, int taskType,
 			ArrayList<?> list, Context context) {
@@ -29,11 +30,11 @@ public class NewsAsyntask extends BaseTask{
 	protected Boolean doInBackground(TaskParams... params) {
 		// TODO Auto-generated method stub
 		switch (taskType) {
-		case 1:
+		case NEWS_ASYNCTASK:
 		{
 			ArrayList<ObjectNews> arrayList = new ArrayList<ObjectNews>();
 			Document document = null;
-			String url = (String) dataFromModel.get(0);
+			String url = (String) dataFromModel.get(ListNewsFragment.numpage);
 			String html = BaseNetSupportBeta.getInstance().method_GET(url);
 			if( html.equals("") || (html == null ))
 			{
@@ -61,7 +62,7 @@ public class NewsAsyntask extends BaseTask{
 					{
 						imgLink = "";
 					}
-					Log.d("test", "img : " +imgLink);
+					//Log.d("test", "img : " +imgLink);
 					//--urlweb mobile
 					urlWeb = StringS.get(4).text();
 					
@@ -83,6 +84,62 @@ public class NewsAsyntask extends BaseTask{
 				return TASK_DONE;
 			}		
 		}	
+		//
+		//------------load------------
+		//
+		case TASKTYPE_LOADMORE:
+		{
+			ArrayList<ObjectNews> arrayList = new ArrayList<ObjectNews>();
+			Document document = null;
+			String url = (String) dataFromModel.get(0);
+			String html = BaseNetSupportBeta.getInstance().method_GET(url);
+			if( html.equals("") || (html == null ))
+			{
+				msg = "Mất kết nối";
+				return TASK_FAILED;
+			}
+			else
+			{
+				document = Jsoup.parse(html);
+				Element elementsItemList = document.select("array").get(ListNewsFragment.numpage);
+				Elements dictElements = elementsItemList.select("dict");
+				for(Element item : dictElements)
+				{
+					String urlWeb = "", imgLink = "", title ="", info = "", time = "" ;
+					//get 
+					Elements StringS = item.select("String");
+					//
+					//--time
+					time = StringS.get(0).text();
+					//--title
+					title = getInfo(StringS.get(1).text());
+					//--thumb
+					imgLink = StringS.get(2).text();
+					if( imgLink.equals("") || imgLink == null)
+					{
+						imgLink = "";
+					}
+					//Log.d("test", "img : " +imgLink);
+					//--urlweb mobile
+					urlWeb = StringS.get(4).text();					
+					//--urlweb tablet
+					//urlWebTab = StringS.get(5).text();
+					//
+					ObjectNews objectNews = new ObjectNews();
+					//set values
+					objectNews.set(ObjectNews.URL_WEB, urlWeb);
+					objectNews.set(ObjectNews.URL_IMAGE, imgLink);
+					objectNews.set(ObjectNews.TITTLE, title);
+					objectNews.set(ObjectNews.TIME, time);
+					objectNews.set(ObjectNews.INFO, info);
+					//
+					arrayList.add(objectNews);					
+				}
+				//return 
+				dataReturn = arrayList;
+				return TASK_DONE;
+			}		
+		}
 		default:
 			break;
 		}
