@@ -12,6 +12,7 @@ import com.bhmedia.tigia.HomeActivity;
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.adapter.DataLvTiGia;
 import com.bhmedia.tigia.adapter.TiGiaAdapter;
+import com.bhmedia.tigia.giavang.BieudoTheGioi;
 import com.bhmedia.tigia.task.TaskType;
 import com.bhmedia.tigia.utils.Defi;
 import com.bhmedia.tigia.utils.MyDialog;
@@ -116,7 +117,10 @@ public class TiGiaFm extends TiGiaLayout implements OnClickListener, TaskType, I
 					HomeActivity.getInstance().pushFragments(TabId.Ti_GIA, new QuyDoiNgoaiTe(DataLvTiGia.grouping(curLvData),tv_date.getText().toString()), true, null);
 				else
 					showToast(getContext().getString(R.string.chuacodulieu));
-
+			
+			if(vlChoose==2) 
+				HomeActivity.getInstance().pushFragments(TabId.Ti_GIA, new BieudoNgoaiTe(), true, null);
+			
 			break;
 
 		case WhereIdelegate.DIALOGUTILS_DATEPICKER:

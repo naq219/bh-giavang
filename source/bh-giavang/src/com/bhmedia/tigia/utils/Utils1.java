@@ -183,6 +183,8 @@ public class Utils1 {
 		alert.show();
 	}
 	
+	
+	
 	public static String double2String(double vl){
 		NumberFormat f = NumberFormat.getInstance();
 		f.setGroupingUsed(false);

@@ -36,7 +36,10 @@ public class NetSupport {
 				oj.set(GiaVangOj.GROUP, key);
 				JSONArray ojJar2 = ojJar.getJSONArray(i);
 				JSONObject ojNow = ojJar2.getJSONObject(0);
-				JSONObject ojYesterday = ojJar2.getJSONObject(1);
+				JSONObject ojYesterday;
+				if(ojJar2.length()>1)
+				 ojYesterday = ojJar2.getJSONObject(1);
+				else  ojYesterday = ojJar2.getJSONObject(0);
 
 				for (String keyJson1 : GiaVangOj.keysJson1) { // lay du lieu hom
 																// nay

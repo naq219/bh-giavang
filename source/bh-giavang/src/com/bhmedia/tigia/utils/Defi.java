@@ -31,6 +31,9 @@ public class Defi {
 		public static final String GIA_CA_THI_TRUONG="http://app.vietbao.vn/tienich/giacathitruong.html";
 		public static final String API_GIA_VANG="http://pay.bhmedia.vn/vn/market/gia-vang/api/?date=";
 		public static final String TI_GIA="http://pay.bhmedia.vn/vn/ty-gia-ngoai-te/api?date=";
+		public static final String KITCO="http://www.kitco.com/images/live/gold.gif";
+		
+		
 	}
 	
 	public class whereIdelegate{
@@ -41,4 +44,6 @@ public class Defi {
 	public class spr{
 		public static final String TEXT_ZOOM="textzoom";
 	}
+	
+	
 }

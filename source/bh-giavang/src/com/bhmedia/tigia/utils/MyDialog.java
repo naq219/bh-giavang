@@ -28,8 +28,10 @@ public class MyDialog {
 		View layoutView;
 		if (from == 0)
 			layoutView = inflater.inflate(R.layout.dialog_choose_lichsu, null);
-		else
+		else if (from == 1)
 			layoutView = inflater.inflate(R.layout.dialog_choose_tigia, null);
+		else
+			layoutView = inflater.inflate(R.layout.dialog_choose_bieudo_giavang, null);
 		builder.setView(layoutView);
 		final Dialog dialog = builder.create();
 		Button quydoigia, lichsugia, bieudo, huy;
@@ -118,11 +120,15 @@ public class MyDialog {
 
 			if (banhomnay > banhomqua)
 				ssban.setText(">");
+			else if (banhomnay == banhomqua)
+				ssban.setText("=");
 			else
 				ssban.setText("<");
 
 			if (muahomnay > muahomqua)
 				ssmua.setText(">");
+			else if (muahomnay == muahomqua)
+				ssmua.setText("=");
 			else
 				ssmua.setText("<");
 		} catch (Exception e) {
