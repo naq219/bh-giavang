@@ -6,7 +6,8 @@
 
     <ListView
         android:id="@+id/lv"
-        style="@style/form_ff" >
+        style="@style/form_ff"
+        android:background="@android:color/black" >
     </ListView>
 
 </RelativeLayout>

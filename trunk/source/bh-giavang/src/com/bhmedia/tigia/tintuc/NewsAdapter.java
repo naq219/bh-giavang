@@ -35,9 +35,9 @@ public class NewsAdapter extends ArrayAdapter<ObjectNews> {
 			viewHolder = new ViewHolder();
 			convertView = layoutInflater.inflate(layoutID, parent, false);
 			// find id item
-			viewHolder.imageView = (ImageView) convertView.findViewById(R.id.image_news);
-			viewHolder.titleTextView = (TextView) convertView.findViewById(R.id.title_news);
-			viewHolder.timeTextView = (TextView) convertView.findViewById(R.id.date_and_time);
+			viewHolder.imageView = (ImageView) convertView.findViewById(R.id.img_item_listview);
+			viewHolder.titleTextView = (TextView) convertView.findViewById(R.id.title_item_listview);
+			viewHolder.timeTextView = (TextView) convertView.findViewById(R.id.time_item_listview);
 			// set tag for view
 			convertView.setTag(viewHolder);
 		} else {

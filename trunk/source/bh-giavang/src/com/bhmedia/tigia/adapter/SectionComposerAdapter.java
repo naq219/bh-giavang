@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.object.GiaVangOj;
 import com.foound.widget.AmazingAdapter;
+
 import com.telpoo.frame.object.BaseObject;
 
 public class SectionComposerAdapter extends AmazingAdapter {
