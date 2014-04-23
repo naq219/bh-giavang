@@ -67,32 +67,16 @@ public class TaskNetWork extends BaseTask implements TaskType {
 			int type = (Integer) dataFromModel.get(0);
 
 			Calendar cal = Calendar.getInstance();
-			String fromDate = TimeUtils.cal2String(cal, Defi.FORMAT_DATE);
-			cal.add(Calendar.MONTH, type);
-
 			String toDate = TimeUtils.cal2String(cal, Defi.FORMAT_DATE);
-			// switch (type) {
-			// case 1:
-			//
-			// break;
-			// case 3:
-			// cal.add(Calendar.MONTH, -1);
-			// break;
-			// case 6:
-			// cal.add(Calendar.MONTH, -1);
-			// break;
-			// case :
-			// cal.add(Calendar.MONTH, -1);
-			// break;
-			//
-			// default:
-			// break;
-			// }
+			cal.add(Calendar.MONTH, -type);
+
+			String fromDate = TimeUtils.cal2String(cal, Defi.FORMAT_DATE);
+			
 
 			try {
 				ArrayList<BaseObject> ojsBd = NetSupport.getBieuDo(fromDate, toDate);
 				dataReturn = ojsBd;
-				return TASK_FAILED;
+				return TASK_DONE;
 			} catch (JSONException e) {
 				Mlog.E(TAG + " TASK_BIEUDO");
 

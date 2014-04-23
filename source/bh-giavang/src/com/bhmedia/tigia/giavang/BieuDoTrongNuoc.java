@@ -9,17 +9,21 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bhmedia.tigia.MyFragment;
 import com.bhmedia.tigia.R;
+import com.bhmedia.tigia.object.BieuDoOj;
 import com.bhmedia.tigia.task.TaskNetWork;
 import com.bhmedia.tigia.task.TaskType;
+import com.telpoo.frame.delegate.Idelegate;
 import com.telpoo.frame.object.BaseObject;
 
 @SuppressLint("ValidFragment")
 public class BieuDoTrongNuoc extends MyFragment implements OnClickListener {
 	ImageView motthang, haithang, sauthang, motnam;
-
+	ChartView chartView;
+	TextView ban,mua,time,theo;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.bieudotrongnuoc, container, false);
@@ -34,17 +38,38 @@ public class BieuDoTrongNuoc extends MyFragment implements OnClickListener {
 		haithang = (ImageView) v.findViewById(R.id.haithang);
 		sauthang = (ImageView) v.findViewById(R.id.sauthang);
 		motnam = (ImageView) v.findViewById(R.id.motnam);
-
+		chartView=(ChartView) v.findViewById(R.id.charView);
+		ban= (TextView) v.findViewById(R.id.ban);
+		mua= (TextView) v.findViewById(R.id.mua);
+		time= (TextView) v.findViewById(R.id.time);
+		theo= (TextView) v.findViewById(R.id.theo);
+		
 	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
+		
+		getView().findViewById(R.id.btn_top).setOnClickListener(this);
+		((TextView)getView().findViewById(R.id.tv_title)).setText(R.string.bieudotrongnuoc);
 		motthang.setOnClickListener(this);
 		haithang.setOnClickListener(this);
 		sauthang.setOnClickListener(this);
 		motnam.setOnClickListener(this);
+		
+		chartView.setListtener(new Idelegate() {
+			
+			@Override
+			public void callBack(Object value, int where) {
+				
+				BaseObject oj =(BaseObject) value;
+				ban.setText("Bán: "+oj.get(BieuDoOj.SALE));
+				mua.setText("Mua: "+oj.get(BieuDoOj.BUY));
+				time.setText(""+oj.get(BieuDoOj.CREATED));
+				//theo.setText("Theo giá vàng: "+oj.get(BieuDoOj.SALE));
+				
+			}
+		});
 	}
 
 	@Override
@@ -108,7 +133,7 @@ public class BieuDoTrongNuoc extends MyFragment implements OnClickListener {
 
 	private void updateUI(ArrayList<?> list) {
 	ArrayList<BaseObject> ojs=(ArrayList<BaseObject>) list;
-		
+		chartView.setData(ojs);
 	}
 
 	@Override
