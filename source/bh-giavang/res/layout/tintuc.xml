@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:id="@+id/root"
+    android:orientation="vertical"
     style="@style/form_ff"
-    android:background="#ffffff" >
+     >
 
     <ListView
         android:id="@+id/lv"
         style="@style/form_ff"
-        >
+        android:background="@android:color/black" >
     </ListView>
+</LinearLayout>
 
-</RelativeLayout>

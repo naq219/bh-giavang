@@ -33,7 +33,8 @@ public class NgPageViewAdapter  extends FragmentStatePagerAdapter{
 		// TODO Auto-generated method stub
 		//MyFragment fragment = (MyFragment) object;
 		
-		return POSITION_UNCHANGED;
+		return POSITION_UNCHANGED
+				;
 	}
 
 		
