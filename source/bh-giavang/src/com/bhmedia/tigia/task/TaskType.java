@@ -5,7 +5,8 @@ public interface TaskType {
 	public static int TASK_GET_TIGIA = 1;
 	//
 	//
-	public static int NEWS_ASYNCTASK = 1;
-	public static int TASKTYPE_LOADMORE = 2;
+	public static int NEWS_ASYNCTASK = 2;
+	public static int TASKTYPE_LOADMORE = 3;
+	public static int TASK_BIEUDO = 4;
 
 }

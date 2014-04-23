@@ -81,8 +81,5 @@ public class HomeActivity extends TabActivity {
 
 	}
 
-	public void pushTop(int type, ITop iTop) {
-
-	}
 
 }

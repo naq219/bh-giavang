@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.bhmedia.tigia.object.BieuDoOj;
 import com.bhmedia.tigia.object.GiaVangOj;
 import com.bhmedia.tigia.object.TiGiaOj;
 import com.bhmedia.tigia.utils.Defi;
@@ -29,17 +30,16 @@ public class NetSupport {
 
 			JSONArray ojJar = apiJoj.getJSONArray(key);
 
-			
-			
 			for (int i = 0; i < ojJar.length(); i++) {
 				BaseObject oj = new BaseObject();
 				oj.set(GiaVangOj.GROUP, key);
 				JSONArray ojJar2 = ojJar.getJSONArray(i);
 				JSONObject ojNow = ojJar2.getJSONObject(0);
 				JSONObject ojYesterday;
-				if(ojJar2.length()>1)
-				 ojYesterday = ojJar2.getJSONObject(1);
-				else  ojYesterday = ojJar2.getJSONObject(0);
+				if (ojJar2.length() > 1)
+					ojYesterday = ojJar2.getJSONObject(1);
+				else
+					ojYesterday = ojJar2.getJSONObject(0);
 
 				for (String keyJson1 : GiaVangOj.keysJson1) { // lay du lieu hom
 																// nay
@@ -146,7 +146,35 @@ public class NetSupport {
 	}
 
 	private static String getUrlTiGia(String date) {
-		return Defi.url.TI_GIA+date;
+		return Defi.url.TI_GIA + date;
+	}
+
+	public static ArrayList<BaseObject> getBieuDo(String fromDate, String toDate) throws JSONException {
+		String res = BaseNetSupportBeta.getInstance().method_GET(getUrlBieuDo(fromDate, toDate));
+		ArrayList<BaseObject> ojs = new ArrayList<BaseObject>();
+		JSONArray array = new JSONArray(res);
+
+		for (int i = 0; i < array.length(); i++) {
+			BaseObject oj = new BaseObject();
+			Object object = array.get(i);
+			if (object instanceof JSONObject) {
+				JSONObject joj = (JSONObject) object;
+
+				for (String key : BieuDoOj.keys) {
+					oj.set(key, joj.getString(key));
+				}
+				
+				ojs.add(oj);
+			}
+
+		}
+		
+		return ojs;
+
+	}
+
+	private static String getUrlBieuDo(String fromDate, String toDate) {
+		return Defi.url.BIEUDO + "fromdate=" + fromDate + "&todate=" + toDate;
 	}
 
 }
