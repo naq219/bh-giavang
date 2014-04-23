@@ -77,11 +77,12 @@
             <View
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:background="#ff6666" />
+                android:background="#9d014e" />
 
             <TextView
                 android:id="@+id/ban"
                 style="@style/text"
+                android:minWidth="90dp"
                 android:layout_marginLeft="5dp"
                 android:text="Ban 234.23" />
         </LinearLayout>
@@ -95,11 +96,12 @@
             <View
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:background="#ff6666" />
+                android:background="#c34f09" />
 
             <TextView
                 android:id="@+id/mua"
                 style="@style/text"
+                android:minWidth="90dp"
                 android:layout_marginLeft="5dp"
                 android:text="Ban 234.23" />
         </LinearLayout>
@@ -124,9 +126,9 @@
     </RelativeLayout>
 
     <com.bhmedia.tigia.giavang.ChartView
-        android:layout_width="fill_parent"
         android:id="@+id/charView"
-        android:layout_margin="10dp"
-        android:layout_height="fill_parent" />
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="10dp" />
 
 </LinearLayout>

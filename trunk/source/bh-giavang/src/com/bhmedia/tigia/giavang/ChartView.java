@@ -38,7 +38,7 @@ public class ChartView extends View {
 	public ChartView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		paintBan.setStrokeWidth(1f);
-		paintBan.setColor(Color.RED);
+		paintBan.setColor(Color.parseColor("#9d014e"));
 		
 		paintLine.setStrokeWidth(1f);
 		paintLine.setColor(Color.BLACK);
@@ -111,8 +111,8 @@ public class ChartView extends View {
 		
 		for (int i = 0; i < ojs.size(); i++) { // gan du lieu that 
 			try {
-				arrBan[i]= Float.parseFloat(ojs.get(i).get(BieuDoOj.SALE));
-				arrMua[i]= Float.parseFloat(ojs.get(i).get(BieuDoOj.BUY));
+				arrBan[i]= Float.parseFloat(ojs.get(i).get(BieuDoOj.SALE))-20;
+				arrMua[i]= Float.parseFloat(ojs.get(i).get(BieuDoOj.BUY))-20;
 				if(minBan<0)minBan=arrBan[i];
 				if(minMua<0)minMua=arrMua[i];
 				
@@ -181,12 +181,12 @@ public class ChartView extends View {
 	}
 
 	private void setPaintWidth() {
-		widCol = width / numCol;
+		widCol = (width / numCol)+1;
 		paintLine.setStrokeWidth(widCol);
 		paintBan.setStrokeWidth(widCol);
 		
 		paintMua=new Paint(paintBan);
-		paintMua.setColor(Color.CYAN);
+		paintMua.setColor(Color.parseColor("#c34f09"));
 	}
 
 }
