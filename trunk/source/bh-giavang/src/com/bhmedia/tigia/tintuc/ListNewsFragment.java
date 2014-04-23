@@ -21,6 +21,7 @@ import android.widget.ListView;
 import com.bhmedia.tigia.MyFragment;
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.task.TaskType;
+import com.telpoo.frame.model.TaskParams;
 
 public class ListNewsFragment extends MyFragment implements OnItemClickListener,TaskType {
 
@@ -31,7 +32,7 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 	ListView listViewNews;
 	ArrayList<String> urlList;
 	ArrayList<String> urlListWeb;
-	public static int numpage = 0;
+	public  int numpage, numitem ;
 	public int oldSizeUrlList;
 	String urlHead = "http://app.vietbao.vn/v2.0/vbcat/";
 	String urlTail = "/giavang-tygia.rss";
@@ -47,11 +48,16 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 		objectNewsList = new ArrayList<ObjectNews>();
 		urlList = new ArrayList<String>();
 		urlListWeb = new ArrayList<String>();
+		numpage = 0;
 		String url = urlHead + numpage + urlTail;
 		urlList.add(url);
-		NewsAsyntask asyntask = new NewsAsyntask(getModel(), 1, urlList,
+		
+		TaskParams taskParams =new TaskParams();
+		int[] intParams={numpage};
+		taskParams.setIntParams(intParams);
+		NewsAsyntask asyntask = new NewsAsyntask(getModel(), NEWS_ASYNCTASK, urlList,
 				getActivity());
-		getModel().exeTask(null, asyntask);
+		getModel().exeTask(taskParams, asyntask);
 		// turn on progressdialog
 		showProgressDialog(getActivity());
 		//
@@ -60,6 +66,7 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 		newsAdapter = new NewsAdapter(getActivity(), R.layout.item_tintuc_list,
 				objectNewsList);
 		listViewNews.setAdapter(newsAdapter);
+		
 		listViewNews.setOnItemClickListener(this);
 
 		// dang ra la ko code xu ly trong nay,, ở day chi khai bao cac view thoi
@@ -70,7 +77,13 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 	boolean isLoading = true;
 
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState) { 
+	public void onActivityCreated(Bundle savedInstanceState) { // Bundle
+																// savedInstanceState
+																// phai lay duoc
+																// du lieu truoc
+																// do de set
+																// lai, thay vi
+																// load lại
 		super.onActivityCreated(savedInstanceState);
 
 		listViewNews.setOnScrollListener(new OnScrollListener() {
@@ -89,14 +102,24 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 					// load more :D
 					if (!isLoading) {
 						// thuc hien loadmore
-						numpage = numpage + 1;
+						numpage= numpage+15; // = numpage + 1;
 						String url = urlHead + numpage + urlTail;
-						urlList.add(url);
+						Log.d("testurl"," url:   "+ url);
+						urlList.set(0, url);//get(0) = url;
+						//urlList.add(url);
+						
+//						int[] intParams={numpage};
+//						TaskParams taskParam1s=new TaskParams();
+//						
+//						taskParam1s.setStringParams(stringParams);;
+						
 						NewsAsyntask asyntask = new NewsAsyntask(getModel(), TASKTYPE_LOADMORE, urlList,
-								getActivity());
+								getActivity());    // khai bao tasktype ro rang. task chay ngam co the co ow tab khac, rat nguy hiem nu ko khai bao
 						getModel().exeTask(null, asyntask);
+						// show toast for user
 						showToast("load more");
-						isLoading=true;
+						
+						isLoading= true; 
 					}
 				}
 
@@ -114,7 +137,7 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 		case NEWS_ASYNCTASK:
 			isLoading=false;
 			objectNewsList = (ArrayList<ObjectNews>) list;
-			closeProgressDialog();
+			
 			// haha ga qua ^^
 			for (int i = 0; i < objectNewsList.size(); i++) {
 				urlListWeb.add(objectNewsList.get(i).get(ObjectNews.URL_WEB));
@@ -123,20 +146,35 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 			oldSizeUrlList = objectNewsList.size();
 			newsAdapter.SetItems(objectNewsList);
 			newsAdapter.notifyDataSetChanged();
+			closeProgressDialog();
+			Log.d("test size 1 ", ""+newsAdapter.getCount());
 			break;
 //			
 			// moi lan load phai cap nhat old size de xem xet
 			//
 		case TASKTYPE_LOADMORE:
-			isLoading=false;
+			
 			// them vao listview
-			objectNewsList.addAll((Collection<? extends ObjectNews>) list);
+			for(int i =0; i < list.size(); i++)
+			{
+				if(objectNewsList.contains(list.get(i)))
+				{
+					Log.d("test state ", ""+i);
+					//objectNewsList.add(list.get(i))
+					continue;
+				}
+				objectNewsList.add((ObjectNews) list.get(i));
+			}
+			//objectNewsList.addAll((Collection<? extends ObjectNews>) list);
 			for (int i = oldSizeUrlList ; i < objectNewsList.size(); i++) {
 				urlListWeb.add(objectNewsList.get(i).get(ObjectNews.URL_WEB));
 			}
 			oldSizeUrlList = objectNewsList.size();
-			newsAdapter.Adds((List<ObjectNews>) list);
+			
+			newsAdapter.Adds((List<ObjectNews>) list);  // them item vao chu ko phai set moi , 
 			newsAdapter.notifyDataSetChanged();
+			Log.d("test size", ""+newsAdapter.getCount());
+			isLoading=false;
 			break;
 			
 		default:
@@ -149,7 +187,7 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 		// TODO Auto-generated method stub
 		super.onFail(taskType, msg);
 		switch (taskType) {
-		case 1:
+		case NEWS_ASYNCTASK: // kieu j the nay @@ :D
 			showToast("Loading failded");
 			break;
 		case TASKTYPE_LOADMORE:
@@ -183,6 +221,10 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 		// TODO Auto-generated method stub
 		switchFragment(new FragmentWebViewManager(urlListWeb, position));
 		
+	}
+	ArrayList<String> getAllUrlList()
+	{
+		return urlListWeb;
 	}
 
 }

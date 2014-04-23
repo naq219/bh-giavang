@@ -98,8 +98,8 @@
                 android:background="#ff6666" />
 
             <TextView
-                style="@style/text"
                 android:id="@+id/mua"
+                style="@style/text"
                 android:layout_marginLeft="5dp"
                 android:text="Ban 234.23" />
         </LinearLayout>
@@ -110,17 +110,23 @@
         android:padding="10dp" >
 
         <TextView
-            style="@style/text"
             android:id="@+id/time"
+            style="@style/text"
             android:text="2014-04-10 16:22:12"
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/theo"
             style="@style/text"
             android:layout_alignParentRight="true"
-            android:id="@+id/theo"
             android:text="Theo giá vàng SJC Hà Nội"
             android:textSize="12sp" />
     </RelativeLayout>
+
+    <com.bhmedia.tigia.giavang.ChartView
+        android:layout_width="fill_parent"
+        android:id="@+id/charView"
+        android:layout_margin="10dp"
+        android:layout_height="fill_parent" />
 
 </LinearLayout>

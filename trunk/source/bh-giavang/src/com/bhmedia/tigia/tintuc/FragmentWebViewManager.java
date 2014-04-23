@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
+import android.os.RemoteException;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -102,6 +104,11 @@ public class FragmentWebViewManager extends MyFragment implements OnClickListene
 
 	@Override
 	public void onClick(View v) {
+		
+		boolean isHB = Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+		
+
+		
 		FragmentWebview  fragmentWebview = fragmentWebviews.get(viewPager.getCurrentItem());
 		Messenger messenger = new Messenger(fragmentWebview.handler);
 		
@@ -115,29 +122,70 @@ public class FragmentWebViewManager extends MyFragment implements OnClickListene
 			break;
 			
 		case R.id.zoomin:
-			String size= Utils.getStringSPR(Defi.spr.TEXT_ZOOM, getActivity());
-			Log.d("test click", "click zoom");
-			try {
-				int msize= Integer.parseInt(size);
-				Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, ""+(msize+1), getActivity());
-				//((WebView)ngPageViewAdapter.getItem(viewPager.getCurrentItem()).getView()).getSettings().setTextSize(TextSize.LARGEST);
-				Message msg = new Message();
-				msg.what = 1;
-				msg.obj = msize + 1;
-				messenger.send(msg);				
-			} catch (Exception e) {
-				Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, "0", getActivity());
+			if(isHB)
+			{
+				String size= Utils.getStringSPR(Defi.spr.TEXT_ZOOM, getActivity());
+				Log.d("test click", "click zoom");
+				try {
+					int msize= Integer.parseInt(size);
+					
+					//((WebView)ngPageViewAdapter.getItem(viewPager.getCurrentItem()).getView()).getSettings().setTextSize(TextSize.LARGEST);
+					Message msg = new Message();
+					msg.what = 1;
+					msg.obj =  1;
+					messenger.send(msg);		
+					//Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, ""+(msize+1), getActivity());
+				} catch (Exception e) {
+					Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, 100+"", getActivity());
+				}		
+			}
+			else
+			{
+				String size= Utils.getStringSPR(Defi.spr.TEXT_ZOOM, getActivity());
+				Log.d("test click", "click zoom");
+				try {
+					int msize= Integer.parseInt(size);
+					
+					//((WebView)ngPageViewAdapter.getItem(viewPager.getCurrentItem()).getView()).getSettings().setTextSize(TextSize.LARGEST);
+					Message msg = new Message();
+					msg.what = 1;
+					msg.obj = msize + 1;
+					messenger.send(msg);		
+					//Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, ""+(msize+1), getActivity());
+				} catch (Exception e) {
+					Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, FragmentWebview.NORMAL+"", getActivity());
+				}
 			}
 			
 			break;
 			
 			
 		case R.id.zoomout:
+			if(isHB)
+			{
+				String size= Utils.getStringSPR(Defi.spr.TEXT_ZOOM, getActivity());
+				Log.d("test click", "click zoom");
+				try {
+					int msize= Integer.parseInt(size);
+					
+					//((WebView)ngPageViewAdapter.getItem(viewPager.getCurrentItem()).getView()).getSettings().setTextSize(TextSize.LARGEST);
+					Message msg = new Message();
+					msg.what = 1;
+					msg.obj =  -1;
+					messenger.send(msg);		
+					//Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, ""+(msize+1), getActivity());
+				} catch (Exception e) {
+					Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, 100+"", getActivity());
+				}		
+				
+			}
+			else
+			{
 			String size1= Utils.getStringSPR(Defi.spr.TEXT_ZOOM, getActivity());
 			
 			try {
 				int msize= Integer.parseInt(size1);
-				Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, ""+(msize-1), getActivity());
+				//Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, ""+(msize-1), getActivity());
 				Message msg = new Message();
 				msg.what = 1;
 				msg.obj = msize - 1;
@@ -145,6 +193,7 @@ public class FragmentWebViewManager extends MyFragment implements OnClickListene
 				
 			} catch (Exception e) {
 				Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, FragmentWebview.NORMAL+"", getActivity());
+			}
 			}
 			
 			break;

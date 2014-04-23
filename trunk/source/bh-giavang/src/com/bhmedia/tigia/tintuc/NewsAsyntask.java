@@ -18,6 +18,7 @@ import com.telpoo.frame.net.BaseNetSupportBeta;
 
 public class NewsAsyntask extends BaseTask implements TaskType{
 	
+	ArrayList<String> urlWebList;
 	
 
 	public NewsAsyntask(TaskListener taskListener, int taskType,
@@ -34,7 +35,8 @@ public class NewsAsyntask extends BaseTask implements TaskType{
 		{
 			ArrayList<ObjectNews> arrayList = new ArrayList<ObjectNews>();
 			Document document = null;
-			String url = (String) dataFromModel.get(ListNewsFragment.numpage);
+			//int page= params[0].getIntParams()[0];
+			String url = (String) dataFromModel.get(0);
 			String html = BaseNetSupportBeta.getInstance().method_GET(url);
 			if( html.equals("") || (html == null ))
 			{
@@ -85,26 +87,32 @@ public class NewsAsyntask extends BaseTask implements TaskType{
 			}		
 		}	
 		//
-		//------------load------------
+		//------------load more------------
 		//
 		case TASKTYPE_LOADMORE:
 		{
 			ArrayList<ObjectNews> arrayList = new ArrayList<ObjectNews>();
 			Document document = null;
+			
+			//int page= params[0].getIntParams()[0];
 			String url = (String) dataFromModel.get(0);
 			String html = BaseNetSupportBeta.getInstance().method_GET(url);
+			Log.d("testurl", url);
 			if( html.equals("") || (html == null ))
 			{
 				msg = "Mất kết nối";
 				return TASK_FAILED;
 			}
 			else
+				
 			{
 				document = Jsoup.parse(html);
-				Element elementsItemList = document.select("array").get(ListNewsFragment.numpage);
+				//Element elementsTemp = document.select("array").get;
+				Element elementsItemList = document.select("array").get( 0 );
 				Elements dictElements = elementsItemList.select("dict");
 				for(Element item : dictElements)
 				{
+					
 					String urlWeb = "", imgLink = "", title ="", info = "", time = "" ;
 					//get 
 					Elements StringS = item.select("String");

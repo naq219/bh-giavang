@@ -12,6 +12,7 @@ import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
 
 import com.bhmedia.tigia.R;
+import com.bhmedia.tigia.giavang.BieuDoTrongNuoc;
 import com.bhmedia.tigia.giavang.GiaVangFm;
 import com.bhmedia.tigia.more.MoreFm;
 import com.bhmedia.tigia.ngoaite.TiGiaFm;

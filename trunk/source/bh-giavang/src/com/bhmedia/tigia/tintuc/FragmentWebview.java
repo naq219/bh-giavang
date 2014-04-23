@@ -120,10 +120,36 @@ public class FragmentWebview extends MyFragment {
 	}	
 	private void setTextSize(int size) {
 		boolean isHB = Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH;
-		
+		String nsize = Utils.getStringSPR(Defi.spr.TEXT_ZOOM, getActivity());
+		int msize = 0;
+		try {
+			msize = Integer.parseInt(nsize);
+			Log.d("test size", "msize : " +msize +"");
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		Log.d("text size", msize+"");
 
 		if (isHB) {
-			ngWebView.getSettings().setTextZoom(50 + size/2);
+			if( size > 0 )
+			{
+				int temp = msize + msize /2;
+				if( temp < 200 )
+					ngWebView.getSettings().setTextZoom(msize + msize/2);
+				else
+					showToast("Max size");
+			}
+			else
+				if( size < 0)
+				{
+					int temp = msize - msize /2;
+				
+					if( temp > 50  )
+						ngWebView.getSettings().setTextZoom(msize - msize/2);
+					else
+						showToast("Min size");
+				}
 		} else {
 //			if (size < 25)
 //				ngWebView.getSettings().setTextSize(TextSize.SMALLEST);
