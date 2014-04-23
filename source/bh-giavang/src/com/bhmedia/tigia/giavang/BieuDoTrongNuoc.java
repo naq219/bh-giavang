@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bhmedia.tigia.HomeActivity;
 import com.bhmedia.tigia.MyFragment;
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.object.BieuDoOj;
@@ -50,7 +51,14 @@ public class BieuDoTrongNuoc extends MyFragment implements OnClickListener {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		
-		getView().findViewById(R.id.btn_top).setOnClickListener(this);
+		getView().findViewById(R.id.btn_top).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				HomeActivity.getInstance().popFragments();
+				
+			}
+		});
 		((TextView)getView().findViewById(R.id.tv_title)).setText(R.string.bieudotrongnuoc);
 		motthang.setOnClickListener(this);
 		haithang.setOnClickListener(this);
@@ -66,10 +74,16 @@ public class BieuDoTrongNuoc extends MyFragment implements OnClickListener {
 				ban.setText("Bán: "+oj.get(BieuDoOj.SALE));
 				mua.setText("Mua: "+oj.get(BieuDoOj.BUY));
 				time.setText(""+oj.get(BieuDoOj.CREATED));
-				//theo.setText("Theo giá vàng: "+oj.get(BieuDoOj.SALE));
 				
 			}
 		});
+		
+		motthang.setImageResource(R.drawable.motthang);
+		ArrayList<Integer> dataSend1 = new ArrayList<Integer>();
+		dataSend1.add(1);
+		TaskNetWork netWork1 = new TaskNetWork(getModel(), TaskType.TASK_BIEUDO, dataSend1, getActivity());
+		getModel().exeTask(null, netWork1);
+		showProgressDialog(getActivity());
 	}
 
 	@Override
@@ -103,6 +117,7 @@ public class BieuDoTrongNuoc extends MyFragment implements OnClickListener {
 			dataSend.add(12);
 			break;
 
+			
 		default:
 			break;
 		}
