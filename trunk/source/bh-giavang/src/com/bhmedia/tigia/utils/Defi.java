@@ -32,7 +32,7 @@ public class Defi {
 		public static final String API_GIA_VANG="http://pay.bhmedia.vn/vn/market/gia-vang/api/?date=";
 		public static final String TI_GIA="http://pay.bhmedia.vn/vn/ty-gia-ngoai-te/api?date=";
 		public static final String KITCO="http://www.kitco.com/images/live/gold.gif";
-		
+		public static final String BIEUDO="http://pay.bhmedia.vn/vn/market/gia-vang/api/?";
 		
 	}
 	

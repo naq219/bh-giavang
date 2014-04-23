@@ -2,6 +2,7 @@ package com.bhmedia.tigia.tintuc;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -69,13 +70,7 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 	boolean isLoading = true;
 
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState) { // Bundle
-																// savedInstanceState
-																// phai lay duoc
-																// du lieu truoc
-																// do de set
-																// lai, thay vi
-																// load lại
+	public void onActivityCreated(Bundle savedInstanceState) { 
 		super.onActivityCreated(savedInstanceState);
 
 		listViewNews.setOnScrollListener(new OnScrollListener() {
@@ -97,10 +92,11 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 						numpage = numpage + 1;
 						String url = urlHead + numpage + urlTail;
 						urlList.add(url);
-						NewsAsyntask asyntask = new NewsAsyntask(getModel(), 1, urlList,
+						NewsAsyntask asyntask = new NewsAsyntask(getModel(), TASKTYPE_LOADMORE, urlList,
 								getActivity());
 						getModel().exeTask(null, asyntask);
 						showToast("load more");
+						isLoading=true;
 					}
 				}
 
@@ -139,7 +135,7 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 				urlListWeb.add(objectNewsList.get(i).get(ObjectNews.URL_WEB));
 			}
 			oldSizeUrlList = objectNewsList.size();
-			newsAdapter.SetItems(objectNewsList);
+			newsAdapter.Adds((List<ObjectNews>) list);
 			newsAdapter.notifyDataSetChanged();
 			break;
 			

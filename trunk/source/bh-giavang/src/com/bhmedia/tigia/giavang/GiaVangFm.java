@@ -142,7 +142,8 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 						int vlChoose = (Integer) value;
 						switch (vlChoose) {
 						case 0:// bieu do trong nuoc
-
+							HomeActivity.getInstance().pushFragments(TabId.GIAVANG, new BieuDoTrongNuoc(), true	, null);
+							
 							break;
 
 						case 1:// bieu do the gioi
