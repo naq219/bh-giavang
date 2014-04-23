@@ -24,8 +24,8 @@ import com.bhmedia.tigia.utils.Defi;
 import com.telpoo.frame.utils.Utils;
 
 @SuppressLint({ "NewApi", "ValidFragment" })
-public class FragmentWebview extends MyFragment {
-	
+public class FragmentWebview extends MyFragment implements NgViewPageFragmentLife {
+	//
 	WebView ngWebView;
 	ProgressDialog progressDialog;
 	String data;
@@ -36,6 +36,8 @@ public class FragmentWebview extends MyFragment {
 	public static final int NORMAL = 100;
 	public static final int LARGER = 150;
 	public static final int LARGEST = 200;
+	boolean isHB = Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+	//
 	public Handler handler = new Handler(new Callback() {
 		
 		@Override
@@ -49,6 +51,7 @@ public class FragmentWebview extends MyFragment {
 			return false;
 		}
 	});
+	
 	
 	
 	public FragmentWebview() {
@@ -77,78 +80,127 @@ public class FragmentWebview extends MyFragment {
 		return rootView;
 	}
 	
-
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-		//showToast(Utils.getStringSPR(Defi.spr.TEXT_ZOOM, getActivity()));
-		progressDialog = new ProgressDialog(getActivity());
-		if( !progressDialog.isShowing() )
-		{
-			progressDialog.setTitle("Loading...");
-			progressDialog.show();
-		}	
+	public void onPauseFragment() {
+		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void onResumeFragment() {
+		// TODO Auto-generated method stub
+		Log.d("teststatus", "dang resume "+ html);		
+		
+		if(isHB)
+		{
+			String size = Utils.getStringSPR(Defi.spr.TEXT_ZOOM, getActivity());
+			int msize = 0;
+			try {
+				msize = Integer.parseInt(size);
+				Log.d("test size", "msize : " +msize +"");
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+			ngWebView.getSettings().setTextZoom(msize);
+			Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, ""+(msize), getActivity());
+		}
+		else
+		{
+			String size = Utils.getStringSPR(Defi.spr.TEXT_ZOOM, getActivity());
+			int msize = 0;
+			try {
+				msize = Integer.parseInt(size);
+				Log.d("test size", "msize : " +msize +"");
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			setTextSize(msize);
+		}
+		
+	}	
 	
 	@Override
 	public void onResume() {
 		super.onResume();		
+		Log.d("teststatus", "dang resume "+ html);
 		
-		String size = Utils.getStringSPR(Defi.spr.TEXT_ZOOM, getActivity());
-		int msize = 0;
-		try {
-			msize = Integer.parseInt(size);
-			Log.d("test size", "msize : " +msize +"");
+		
+		
+		ngWebView.setWebViewClient(new WebViewClient());
+		if(isHB)
+		{
+			String size = Utils.getStringSPR(Defi.spr.TEXT_ZOOM, getActivity());
+			int msize = 0;
+			try {
+				msize = Integer.parseInt(size);
+				Log.d("test size", "msize : " +msize +"");
 
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-		
-		ngWebView.setWebChromeClient(new WebChromeClient(){
-			@Override
-			public void onProgressChanged(WebView view, int newProgress) {
-				// TODO Auto-generated method stub
-				super.onProgressChanged(view, newProgress);
-				if( newProgress > 80 && progressDialog.isShowing() )
-					progressDialog.dismiss();					
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-		});
-		setTextSize(msize);
+			
+			ngWebView.getSettings().setTextZoom(msize);
+			Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, ""+(msize), getActivity());
+		}
+		else
+		{
+			String size = Utils.getStringSPR(Defi.spr.TEXT_ZOOM, getActivity());
+			int msize = 0;
+			try {
+				msize = Integer.parseInt(size);
+				Log.d("test size", "msize : " +msize +"");
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			setTextSize(msize);
+		}
 		ngWebView.loadUrl(html);	
 	}	
+	
+	// settextsize
 	private void setTextSize(int size) {
-		boolean isHB = Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+		
 		String nsize = Utils.getStringSPR(Defi.spr.TEXT_ZOOM, getActivity());
 		int msize = 0;
 		try {
 			msize = Integer.parseInt(nsize);
 			Log.d("test size", "msize : " +msize +"");
-
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		Log.d("text size", msize+"");
 
 		if (isHB) {
-			if( size > 0 )
+			if( size > 0 )//zoom in
 			{
-				int temp = msize + msize /2;
-				if( temp < 200 )
-					ngWebView.getSettings().setTextZoom(msize + msize/2);
+				int temp = msize + 25;
+				if( temp <= 200 )
+				{
+					ngWebView.getSettings().setTextZoom(temp);
+					Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, ""+(temp), getActivity());
+				}
 				else
+				{
 					showToast("Max size");
+				}
 			}
 			else
-				if( size < 0)
+				if( size < 0)//zoom out
 				{
-					int temp = msize - msize /2;
+					int temp = msize - 25;
 				
-					if( temp > 50  )
-						ngWebView.getSettings().setTextZoom(msize - msize/2);
+					if( temp >= 50  )
+					{
+						ngWebView.getSettings().setTextZoom(temp);
+						Utils.saveStringSPR(Defi.spr.TEXT_ZOOM, ""+(temp), getActivity());
+					}
 					else
+					{
 						showToast("Min size");
+					}
 				}
 		} else {
 //			if (size < 25)
@@ -236,5 +288,6 @@ public class FragmentWebview extends MyFragment {
 			
 		}
 	}
+	
 
 }
