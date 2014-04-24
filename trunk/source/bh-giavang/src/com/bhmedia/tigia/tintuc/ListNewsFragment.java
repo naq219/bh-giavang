@@ -22,6 +22,7 @@ import com.bhmedia.tigia.MyFragment;
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.task.TaskType;
 import com.telpoo.frame.model.TaskParams;
+import com.telpoo.frame.net.BaseNetSupportBeta;
 
 public class ListNewsFragment extends MyFragment implements OnItemClickListener,TaskType {
 
@@ -36,41 +37,51 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 	public int oldSizeUrlList;
 	String urlHead = "http://app.vietbao.vn/v2.0/vbcat/";
 	String urlTail = "/giavang-tygia.rss";
+	String CHECK_LOG = "CHECK_LOG";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		
-		View rootView = inflater.inflate(R.layout.tintuc, container, false);
-		// find id
-		listViewNews = (ListView) rootView.findViewById(R.id.lv);
-		objectNewsList = new ArrayList<ObjectNews>();
-		urlList = new ArrayList<String>();
-		urlListWeb = new ArrayList<String>();
-		numpage = 0;
-		String url = urlHead + numpage + urlTail;
-		urlList.add(url);
-		
-		TaskParams taskParams =new TaskParams();
-		int[] intParams={numpage};
-		taskParams.setIntParams(intParams);
-		NewsAsyntask asyntask = new NewsAsyntask(getModel(), NEWS_ASYNCTASK, urlList,
-				getActivity());
-		getModel().exeTask(taskParams, asyntask);
-		// turn on progressdialog
-		showProgressDialog(getActivity());
 		//
-		// list view
-		//
-		newsAdapter = new NewsAdapter(getActivity(), R.layout.item_tintuc_list,
-				objectNewsList);
-		listViewNews.setAdapter(newsAdapter);
+		View rootView = inflater.inflate(R.layout.tintuc, container, false);	
+			// find id
+		boolean checkNet = BaseNetSupportBeta.isNetworkAvailable(getActivity());
 		
-		listViewNews.setOnItemClickListener(this);
+			listViewNews = (ListView) rootView.findViewById(R.id.lv);
+			objectNewsList = new ArrayList<ObjectNews>();
+			urlList = new ArrayList<String>();
+			urlListWeb = new ArrayList<String>();
+			if( checkNet )
+			{
+			numpage = 0;
+			String url = urlHead + numpage + urlTail;
+			urlList.add(url);
+			
+			TaskParams taskParams =new TaskParams();
+			int[] intParams={numpage};
+			taskParams.setIntParams(intParams);
+			NewsAsyntask asyntask = new NewsAsyntask(getModel(), NEWS_ASYNCTASK, urlList,
+					getActivity());
+			getModel().exeTask(taskParams, asyntask);
+			// turn on progressdialog
+			showProgressDialog(getActivity());
+			//
+			// list view
+			//
+			newsAdapter = new NewsAdapter(getActivity(), R.layout.item_tintuc_list,
+					objectNewsList);
+			listViewNews.setAdapter(newsAdapter);
+			
+			listViewNews.setOnItemClickListener(this);
 
-		// dang ra la ko code xu ly trong nay,, ở day chi khai bao cac view thoi
-		//
+			// dang ra la ko code xu ly trong nay,, ở day chi khai bao cac view thoi
+			//
+			
+		}
+		else
+		{
+			showToast("No connection Network");
+		}
 		return rootView;
 	}
 
@@ -85,6 +96,7 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 																// lai, thay vi
 																// load lại
 		super.onActivityCreated(savedInstanceState);
+		
 
 		listViewNews.setOnScrollListener(new OnScrollListener() {
 
@@ -220,6 +232,7 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 			long id) {
 		// TODO Auto-generated method stub
 		switchFragment(new FragmentWebViewManager(urlListWeb, position));
+		
 		
 	}
 	ArrayList<String> getAllUrlList()
