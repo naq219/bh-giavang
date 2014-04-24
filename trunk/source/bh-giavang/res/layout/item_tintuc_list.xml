@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:singleLine="true"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
 
