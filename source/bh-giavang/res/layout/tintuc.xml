@@ -2,14 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:id="@+id/root"
-    android:orientation="vertical"
-    style="@style/form_ff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"    
+    android:background="@drawable/bgh586"
      >
+     <TextView
+          style="@style/text_top"
+          android:layout_height="@dimen/top_heigh"
+          android:background="@drawable/thanhtren"
+          android:text="Tin tức"
+         />
 
     <ListView
         android:id="@+id/lv"
         style="@style/form_ff"
-        android:background="@android:color/black" >
+        android:cacheColorHint="#00000000"
+        >
     </ListView>
 </LinearLayout>
 
