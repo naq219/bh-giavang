@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.RelativeLayout;
 
+import com.bhmedia.tigia.db.DbSupport;
+import com.bhmedia.tigia.db.TableDb;
 import com.bhmedia.tigia.listener.ITop;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.telpoo.frame.net.BaseNetSupportBeta;
@@ -28,9 +30,15 @@ public class HomeActivity extends TabActivity {
 		rootadView = (RelativeLayout) findViewById(R.id.rootadView);
 		ImageLoader.getInstance().init(FileSupport.imageLoaderCf(0, HomeActivity.this));
 		setupAds();
-
+		setupDb();
 		setupTracking();
 
+	}
+
+	private void setupDb() {
+		DbSupport.init(TableDb.tables, TableDb.keys, HomeActivity.this, TableDb.pathDbName, 2);
+		
+		
 	}
 
 	private void setupAds() {

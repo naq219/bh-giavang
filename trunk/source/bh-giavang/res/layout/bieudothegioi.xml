@@ -23,44 +23,43 @@
         style="@style/form_fw"
         android:background="@drawable/bg_tab2"
         android:orientation="horizontal"
-        android:weightSum="100" >
+        android:weightSum="4" >
 
-        <View
+        <ImageView
+            android:id="@+id/motthang"
             android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="5" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="1"
+            android:src="@drawable/motthang" />
 
-        <TextView
-            android:id="@+id/tv1"
-            style="@style/spinnertv"
+        <ImageView
+            android:id="@+id/haithang"
             android:layout_width="0dp"
-            android:layout_margin="7dp"
-            android:layout_weight="45"
-            android:background="@drawable/texbox2"
-            android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="1"
+            android:src="@drawable/haithang" />
 
-        <TextView
-            style="@style/text"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:text="/"
-            android:textSize="27sp" />
-
-        <TextView
-            android:id="@+id/tv2"
-            style="@style/spinnertv"
+        <ImageView
+            android:id="@+id/sauthang"
             android:layout_width="0dp"
-            android:layout_margin="7dp"
-            android:layout_weight="45"
-            android:background="@drawable/texbox2"
-            android:singleLine="true" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="1"
+            android:src="@drawable/sauthang2" />
 
-        <View
+        <ImageView
+            android:id="@+id/motnam"
             android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="5" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="1"
+            android:src="@drawable/motnam2" />
     </LinearLayout>
 
     <WebView

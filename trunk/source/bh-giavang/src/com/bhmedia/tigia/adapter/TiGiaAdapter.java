@@ -19,9 +19,9 @@ public class TiGiaAdapter extends AmazingAdapter {
 	List<Pair<String, List<BaseObject>>> all;
 	Activity ct;
 
-	public TiGiaAdapter(Activity ct, ArrayList<BaseObject> ojs) {
+	public TiGiaAdapter(Activity ct, ArrayList<BaseObject> ojs,int type) {
 		this.ct = ct;
-		this.all = DataLvTiGia.getAllData(ojs);
+		this.all = DataLvTiGia.getAllData(ojs,type);
 	}
 
 	@Override

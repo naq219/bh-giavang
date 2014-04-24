@@ -15,6 +15,7 @@
         android:orientation="horizontal"
         android:paddingBottom="10dp"
         android:paddingLeft="5dp"
+        android:id="@+id/lvitem"
         android:paddingRight="5dp"
         android:paddingTop="10dp"
         android:weightSum="100" >

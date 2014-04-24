@@ -25,4 +25,10 @@
 <string name="dulieukhonghople">Dữ liệu không hợp lệ</string>
 <string name="share_twitter_content">Xem ứng dụng tỉ giá tại đây</string>
 <string name="bieudotrongnuoc">Biểu đồ trong nước</string>
+<string name="khongcodulieu">Không có dữ liệu</string>
+<string name="title_dialog_offline">Không có kết nối internet, bạn có muốn xem dữ liệu gần đây nhất không?</string>
+<string name="lichchieuphimrap">Lịch chiếu phim rạp</string>
+<string name="lichphatsong">Lịch phát sóng</string>
+<string name="thoitiet">Thời tiết</string>
+<string name="xoso">Xổ số</string>
 </resources>

@@ -1,12 +1,15 @@
 package com.bhmedia.tigia;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.bhmedia.tigia.db.DbSupport;
+import com.bhmedia.tigia.db.TableDb;
 import com.bhmedia.tigia.object.BieuDoOj;
 import com.bhmedia.tigia.object.GiaVangOj;
 import com.bhmedia.tigia.object.TiGiaOj;
@@ -19,7 +22,16 @@ public class NetSupport {
 	public static ArrayList<BaseObject> getGiaVang(String date) throws JSONException {
 		String urlGiaVang = getUrlGiaVang(date);
 		String res = BaseNetSupportBeta.getInstance().method_GET(urlGiaVang);
+		//save db
+		BaseObject oj=new BaseObject();
+		oj.set(TableDb.keytable[0], Calendar.getInstance().getTimeInMillis()+"");
+		oj.set(TableDb.keytable[1], ""+res);
+		DbSupport.saveGiaVangOffline(oj);
+		
+		return parseGiaVang(res);
+	}
 
+	public static ArrayList<BaseObject> parseGiaVang(String res) throws JSONException {
 		JSONObject root = new JSONObject(res);
 		JSONObject apiJoj = root.getJSONObject("api"); // danh sach cac khu vuc
 		Iterator<?> keyLocation = apiJoj.keys();
@@ -102,6 +114,7 @@ public class NetSupport {
 		}
 
 		return arrData;
+		
 	}
 
 	private static String getUrlGiaVang(String date) {

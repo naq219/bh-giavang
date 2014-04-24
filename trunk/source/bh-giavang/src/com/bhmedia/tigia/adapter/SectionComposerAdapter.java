@@ -3,26 +3,29 @@ package com.bhmedia.tigia.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.util.Pair;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.object.GiaVangOj;
+import com.bhmedia.tigia.utils.Defi.whereIdelegate;
 import com.foound.widget.AmazingAdapter;
-
+import com.telpoo.frame.delegate.Idelegate;
 import com.telpoo.frame.object.BaseObject;
 
 public class SectionComposerAdapter extends AmazingAdapter {
 	List<Pair<String, List<BaseObject>>> all;
 	Activity ct;
+	Idelegate idelegate;
 
-	public SectionComposerAdapter(Activity ct, ArrayList<BaseObject> ojs) {
+	public SectionComposerAdapter(Activity ct, ArrayList<BaseObject> ojs, int type, Idelegate idelegate) {
 		this.ct = ct;
-		this.all = DataLv.getAllData(ojs);
+		this.all = DataLv.getAllData(ojs,type);
+		this.idelegate=idelegate;
 	}
 
 	@Override
@@ -75,11 +78,23 @@ public class SectionComposerAdapter extends AmazingAdapter {
 		TextView gold_name = (TextView) res.findViewById(R.id.gold_name);
 		TextView buy = (TextView) res.findViewById(R.id.buy);
 		TextView sale = (TextView) res.findViewById(R.id.sale);
-
-		BaseObject composer = getItem(position);
+		
+		View layoutl= res.findViewById(R.id.lvitem);
+		
+		
+		final BaseObject composer = getItem(position);
 		gold_name.setText(composer.get(GiaVangOj.GOLD_NAME));
 		buy.setText(composer.get(GiaVangOj.BUY));
 		sale.setText(composer.get(GiaVangOj.SALE));
+		
+		/*layoutl.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View paramView) {
+				idelegate.callBack(composer, whereIdelegate.LV_ITEM_CLICK);
+				
+			}
+		});*/
 
 		return res;
 	}

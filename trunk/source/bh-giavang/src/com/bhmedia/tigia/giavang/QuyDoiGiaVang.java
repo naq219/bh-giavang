@@ -124,6 +124,7 @@ public class QuyDoiGiaVang extends MyFragment implements Idelegate {
 		double ban = 0;
 		if (ed.getText().toString().length() > 0) {
 			try {
+				
 				edText = Double.parseDouble(ed.getText().toString());
 				mua = Double.parseDouble(curOj.get(GiaVangOj.BUY));
 				ban = Double.parseDouble(curOj.get(GiaVangOj.SALE));
@@ -141,8 +142,16 @@ public class QuyDoiGiaVang extends MyFragment implements Idelegate {
 
 			} catch (Exception e) {
 				Mlog.E(e.toString());
+				buy.setText(getString(R.string.dulieukhonghople));
+				sale.setText(getString(R.string.dulieukhonghople));
+				
 			}
 
+		}
+		
+		else {
+			buy.setText("");
+			sale.setText("");
 		}
 	}
 

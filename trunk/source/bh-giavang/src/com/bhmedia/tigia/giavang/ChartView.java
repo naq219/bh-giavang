@@ -17,21 +17,21 @@ import com.telpoo.frame.utils.Mlog;
 
 public class ChartView extends View {
 	Paint paintBan = new Paint();
-	Paint paintMua ;
-	Paint paintLine=new Paint();
+	Paint paintMua;
+	Paint paintLine = new Paint();
 	Canvas canvas;
 	float width;
 	float height;
 	int eventX1;
-	//int eventY1;
+	// int eventY1;
 	Idelegate idelegate;
 	int numCol = 1;
 	Float[] arrMua;
 	Float[] arrBan;
-	float maxMua=0;
-	float maxBan=0;
-	float minMua=-1;
-	float minBan=-1;
+	float maxMua = 0;
+	float maxBan = 0;
+	float minMua = -1;
+	float minBan = -1;
 	ArrayList<BaseObject> ojs = new ArrayList<BaseObject>();
 	float widCol;
 
@@ -39,35 +39,27 @@ public class ChartView extends View {
 		super(context, attrs);
 		paintBan.setStrokeWidth(1f);
 		paintBan.setColor(Color.parseColor("#9d014e"));
-		
+
 		paintLine.setStrokeWidth(1f);
-		paintLine.setColor(Color.BLACK);
+		paintLine.setColor(Color.parseColor("#50000000"));
 		canvas = new Canvas();
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
-		// TODO Auto-generated method stub
 		super.onDraw(canvas);
 
-		// canvas.drawLine(10, 10, 10, 60, paint);
-		// canvas.drawLine(11, 11, 11, 70, paint);
-		
-		if(arrBan==null||arrMua==null) return; // chua co du lieu
-		
-		
-		//float startX=0;
+		if (arrBan == null || arrMua == null)
+			return; // chua co du lieu
+
 		for (int i = 0; i < arrBan.length; i++) {
-			
-			canvas.drawLine(i*widCol, height-arrBan[i], i*widCol, height, paintBan);
-			canvas.drawLine(i*widCol, height-arrMua[i], i*widCol, height, paintMua);
-			
-			//startX=startX+widCol;
-			
+
+			canvas.drawLine(i * widCol, height - arrBan[i], i * widCol, height, paintBan);
+			canvas.drawLine(i * widCol, height - arrMua[i], i * widCol, height, paintMua);
+
 		}
-		
-		
-		canvas.drawLine(eventX1, 0, eventX1 , height, paintLine);
+
+		canvas.drawLine(eventX1, 0, eventX1, height, paintLine);
 
 	}
 
@@ -75,13 +67,11 @@ public class ChartView extends View {
 	public boolean onTouchEvent(MotionEvent event) {
 
 		eventX1 = (int) event.getX();
-		//eventY1 = (int) event.getY();
-		
-		int getPosition= (int) (eventX1/widCol);
-		Mlog.T("getPosition  "+getPosition);
-		if(getPosition>=0&&getPosition<ojs.size())
-		idelegate.callBack(ojs.get(getPosition), 1);
-		
+		int getPosition = (int) (eventX1 / widCol);
+		Mlog.T("getPosition  " + getPosition);
+		if (getPosition >= 0 && getPosition < ojs.size())
+			idelegate.callBack(ojs.get(getPosition), 1);
+
 		invalidate();
 
 		return true;
@@ -93,54 +83,57 @@ public class ChartView extends View {
 	}
 
 	public void setData(ArrayList<BaseObject> ojs) {
-		
-		eventX1= (int) (width/2);
+
+		eventX1 = (int) (width / 2);
 		this.ojs = ojs;
-		if(ojs==null||ojs.size()==0)
+		if (ojs == null || ojs.size() == 0)
 			return;
-			
-			//reset thong so
-			numCol = ojs.size();
-			arrBan=new Float[numCol];
-			arrMua=new Float[numCol];
-			 maxMua=0;
-			 maxBan=0;
-			 minMua=-1;
-			 minBan=-1;
-			
-		
-		for (int i = 0; i < ojs.size(); i++) { // gan du lieu that 
+
+		// reset thong so
+		numCol = ojs.size();
+		arrBan = new Float[numCol];
+		arrMua = new Float[numCol];
+		maxMua = 0;
+		maxBan = 0;
+		minMua = -1;
+		minBan = -1;
+
+		for (int i = 0; i < ojs.size(); i++) { // gan du lieu that
 			try {
-				arrBan[i]= Float.parseFloat(ojs.get(i).get(BieuDoOj.SALE))-20;
-				arrMua[i]= Float.parseFloat(ojs.get(i).get(BieuDoOj.BUY))-20;
-				if(minBan<0)minBan=arrBan[i];
-				if(minMua<0)minMua=arrMua[i];
-				
-				if(arrBan[i]>maxBan)maxBan=arrBan[i];
-				if(arrMua[i]>maxMua)maxMua=arrMua[i];
-				
-				if(arrBan[i]<minBan)minBan=arrBan[i];
-				if(arrMua[i]<minMua)minMua=arrMua[i];
-				
+				arrBan[i] = Float.parseFloat(ojs.get(i).get(BieuDoOj.SALE)) - 20;
+				arrMua[i] = Float.parseFloat(ojs.get(i).get(BieuDoOj.BUY)) - 20;
+				if (minBan < 0)
+					minBan = arrBan[i];
+				if (minMua < 0)
+					minMua = arrMua[i];
+
+				if (arrBan[i] > maxBan)
+					maxBan = arrBan[i];
+				if (arrMua[i] > maxMua)
+					maxMua = arrMua[i];
+
+				if (arrBan[i] < minBan)
+					minBan = arrBan[i];
+				if (arrMua[i] < minMua)
+					minMua = arrMua[i];
+
 			} catch (Exception e) {
-				
+
 				Mlog.E("CharView -setData ");
 			}
 		}
-		
-		float inchPerval= height/maxBan;
-		float inchPervalMua= (height*0.7f)/maxBan;
-		
+
+		float inchPerval = height / maxBan;
+		float inchPervalMua = (height * 0.7f) / maxBan;
+
 		for (int i = 0; i < arrBan.length; i++) { // chuyen sang du lieu pixcel
-			
-			
-			arrBan[i]=arrBan[i]*inchPerval;
-			arrMua[i]=arrMua[i]*inchPervalMua;
+
+			arrBan[i] = arrBan[i] * inchPerval;
+			arrMua[i] = arrMua[i] * inchPervalMua;
 		}
-		
-		
+
 		setPaintWidth();
-		
+
 		invalidate();
 	}
 
@@ -177,15 +170,15 @@ public class ChartView extends View {
 
 		invalidate();
 
-		setMeasuredDimension((int)width, (int)height);
+		setMeasuredDimension((int) width, (int) height);
 	}
 
 	private void setPaintWidth() {
-		widCol = (width / numCol)+1;
+		widCol = (width / numCol) + 1;
 		paintLine.setStrokeWidth(widCol);
 		paintBan.setStrokeWidth(widCol);
-		
-		paintMua=new Paint(paintBan);
+
+		paintMua = new Paint(paintBan);
 		paintMua.setColor(Color.parseColor("#c34f09"));
 	}
 

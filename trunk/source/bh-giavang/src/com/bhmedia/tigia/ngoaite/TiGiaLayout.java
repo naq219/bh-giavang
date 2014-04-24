@@ -18,7 +18,7 @@ import com.foound.widget.AmazingListView;
 
 public class TiGiaLayout extends MyFragment {
 	ExpandableListView elv;
-	ImageView btn_reload, btnShare, btnMaSo, btnMua, btnBan;
+	ImageView btn_reload, btnShare, btnMaSo, btnMua, btnBan,btnTranfer;
 	TextView tv_title, tv_date;
 
 	AmazingListView lsComposer;
@@ -39,7 +39,7 @@ public class TiGiaLayout extends MyFragment {
 		btnBan = (ImageView) v.findViewById(R.id.btnBan);
 		lsComposer= (AmazingListView) v.findViewById(R.id.lsComposer);
 		tv_date= (TextView) v.findViewById(R.id.tv_date);
-		
+		btnTranfer= (ImageView) v.findViewById(R.id.btnTranfer);
 		((TextView)v.findViewById(R.id.tv_title)).setText(R.string.ngoaite);
 	}
 	
@@ -47,5 +47,12 @@ public class TiGiaLayout extends MyFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		
+	}
+	
+	protected void loadBg() {
+		btnMaSo.setImageResource(R.drawable.maso2);
+		btnMua.setImageResource(R.drawable.mua2);
+		btnBan.setImageResource(R.drawable.ban2);
+		btnTranfer.setImageResource(R.drawable.ck2);
 	}
 }

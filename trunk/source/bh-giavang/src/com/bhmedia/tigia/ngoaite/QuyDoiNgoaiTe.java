@@ -92,23 +92,25 @@ public class QuyDoiNgoaiTe extends MyFragment implements Idelegate, OnClickListe
 		double buyto = curOjs.get(sellToPosition).getDouble(TiGiaOj.SELL);
 		double vledFrom;
 		double vledTo;
-
+		String txt="";
 		try {
 			if (where == 3) {
-				if (edFrom.getText().toString().length() != 0)
+				if (edFrom.getText().toString().trim().length() != 0)
 					where = 0;
-				else if (edTo.getText().toString().length() != 0)
+				else if (edTo.getText().toString().trim().length() != 0)
 					where = 1;
 			}
 
 			if (where == 0) {
-				vledFrom = Double.parseDouble(edFrom.getText().toString());
+				txt=getEdText(edFrom);
+				vledFrom = Double.parseDouble(txt);
 				vledTo = buyFrom * vledFrom / buyto;
 				edTo.setText(Utils1.double2String(vledTo));
 			}
 
 			if (where == 1) {
-				vledTo = Double.parseDouble(edTo.getText().toString());
+				txt=getEdText(edTo);
+				vledTo = Double.parseDouble(txt);
 				vledFrom = buyto * vledTo / buyFrom;
 				edFrom.setText(Utils1.double2String(vledFrom));
 			}
@@ -116,10 +118,25 @@ public class QuyDoiNgoaiTe extends MyFragment implements Idelegate, OnClickListe
 			Mlog.E("" + e.toString());
 			if(where==0){
 				edTo.setText(R.string.dulieukhonghople);
+				if(txt.length()==0) {
+					edFrom.setText("");
+				}
 			}
-			else if(where==1)edFrom.setText(R.string.dulieukhonghople);
+			else if(where==1){
+				edFrom.setText(R.string.dulieukhonghople);
+				if(txt.length()==0) {
+					edFrom.setText("");
+				}
+			}
+			
+			
 		}
 
+	}
+
+	private String getEdText(EditText edFrom2) {
+		String a=edFrom.getText().toString().trim();
+		 return a;
 	}
 
 	@Override
