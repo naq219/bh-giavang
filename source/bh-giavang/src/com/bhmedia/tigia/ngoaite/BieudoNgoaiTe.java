@@ -28,7 +28,7 @@ public class BieudoNgoaiTe extends WvFm {
 	String curTv1key, curTv2key, curTv1, curTv2;
 
 	public BieudoNgoaiTe() {
-		super("http://google.com", "Biểu đồ ngoại tệ", R.layout.bieudongoaite);
+		super("http://", "Biểu đồ ngoại tệ", R.layout.bieudongoaite);
 	}
 
 	@Override

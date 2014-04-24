@@ -140,4 +140,10 @@ public class MyDialog {
 
 	}
 
+	public static void dialogAskOffline(Context context, Idelegate idelegate, int where) {
+
+		Dialog dl=DialogUtils.confirm(context, null, context.getString(R.string.title_dialog_offline), idelegate, where);
+		dl.show();
+	}
+
 }

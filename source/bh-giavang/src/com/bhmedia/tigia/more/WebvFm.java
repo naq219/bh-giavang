@@ -15,6 +15,7 @@ import com.bhmedia.tigia.HomeActivity;
 import com.bhmedia.tigia.MyFragment;
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.utils.Defi;
+import com.telpoo.frame.utils.ViewUtils;
 
 @SuppressLint("ValidFragment")
 public class WebvFm extends MyFragment {
@@ -46,15 +47,18 @@ public class WebvFm extends MyFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
-		wv.loadUrl(url);
-		wv.setWebViewClient(new WebViewClient(){
-			@Override
-			public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-				super.onReceivedError(view, errorCode, description, failingUrl);
-				
-				wv.loadUrl(failingUrl);
-			}
-		});
+//		wv.loadUrl(url);
+//		wv.setWebViewClient(new WebViewClient(){
+//			@Override
+//			public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+//				super.onReceivedError(view, errorCode, description, failingUrl);
+//				
+//				wv.loadUrl(failingUrl);
+//			}
+//		});
+		
+		String data="<html><head><style>img{width:100%%}</style></head><body><div><img src='"+url+"'/></div></body></html>";
+		ViewUtils.loadDataWv(wv, data);
 
 		((TextView) getView().findViewById(R.id.tv_title)).setText(title);
 		btn_top.setOnClickListener(new OnClickListener() {

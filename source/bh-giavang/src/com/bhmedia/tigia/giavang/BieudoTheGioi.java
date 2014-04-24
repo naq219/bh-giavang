@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.more.WvFm;
+import com.telpoo.frame.utils.ViewUtils;
 
 @SuppressLint("ValidFragment")
 public class BieudoTheGioi extends WvFm implements OnClickListener {
@@ -38,6 +39,8 @@ public class BieudoTheGioi extends WvFm implements OnClickListener {
 		haithang.setOnClickListener(this);
 		sauthang.setOnClickListener(this);
 		motnam.setOnClickListener(this);
+		
+		loadWv("http://goldprice.org/charts/history/gold_30_day_o_usd.png");
 	}
 
 	@Override
@@ -73,8 +76,15 @@ public class BieudoTheGioi extends WvFm implements OnClickListener {
 			break;
 		}
 
-		wv.loadUrl(url);
+	
+		
+		loadWv(url);
+	}
 
+	private void loadWv(String url) {
+		String data="<html><head><style>img{width:100%%}</style></head><body><div><img src='"+url+"'/></div></body></html>";
+		ViewUtils.loadDataWv(wv, data);
+		
 	}
 
 	private void loadBg() {

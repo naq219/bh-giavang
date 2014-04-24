@@ -9,6 +9,8 @@ import android.content.Context;
 
 import com.bhmedia.tigia.NetSupport;
 import com.bhmedia.tigia.R;
+import com.bhmedia.tigia.db.DbSupport;
+import com.bhmedia.tigia.db.TableDb;
 import com.bhmedia.tigia.utils.Defi;
 import com.telpoo.frame.model.BaseTask;
 import com.telpoo.frame.model.TaskListener;
@@ -30,13 +32,16 @@ public class TaskNetWork extends BaseTask implements TaskType {
 	@Override
 	protected Boolean doInBackground(TaskParams... params) {
 
-		if (!BaseNetSupportBeta.isNetworkAvailable(context)) {
-			msg = context.getString(R.string.network_not_avaiable);
-			return TASK_FAILED;
-
-		}
+		
 		switch (taskType) {
 		case TASK_GET_GIAVANG:
+			
+			if (!BaseNetSupportBeta.isNetworkAvailable(context)) {
+				msg = context.getString(R.string.network_not_avaiable);
+				return TASK_FAILED;
+
+			}
+			
 			String date = (String) dataFromModel.get(0);
 			ArrayList<BaseObject> datares = null;
 			try {
@@ -50,7 +55,48 @@ public class TaskNetWork extends BaseTask implements TaskType {
 			dataReturn = datares;
 			return TASK_DONE;
 
+		case TASK_GIAVANG_OFFLINE:
+
+			ArrayList<BaseObject> datares3 = DbSupport.getGiaVangOffline();
+			if (datares3.size() == 0) {
+
+				msg = "Chưa có dữ liệu gần đây";
+				return TASK_FAILED;
+			}
+
+			ArrayList<BaseObject> dataGVOffline = null;
+
+			try {
+				dataGVOffline = NetSupport.parseGiaVang(datares3.get(0).get(TableDb.keytable[1]));
+			} catch (JSONException e) {
+				Mlog.E(e.toString());
+				msg = context.getString(R.string.errconnect);
+				return TASK_FAILED;
+			}
+
+			dataReturn = dataGVOffline;
+			return TASK_DONE;
+
+		case TASK_TIGIA_OFFLINE:
+
+			ArrayList<BaseObject> datares2 = DbSupport.getTiGiaOffline();
+			if (datares2.size() == 0) {
+
+				msg = "Chưa có dữ liệu gần đây";
+				return TASK_FAILED;
+			}
+
+			dataReturn = datares2;
+			return TASK_DONE;
+
 		case TASK_GET_TIGIA:
+			
+			if (!BaseNetSupportBeta.isNetworkAvailable(context)) {
+				msg = context.getString(R.string.network_not_avaiable);
+				return TASK_FAILED;
+
+			}
+			
 			String date1 = (String) dataFromModel.get(0);
 			ArrayList<BaseObject> datares1 = null;
 			try {
@@ -64,6 +110,13 @@ public class TaskNetWork extends BaseTask implements TaskType {
 			return TASK_DONE;
 
 		case TASK_BIEUDO:
+			
+			if (!BaseNetSupportBeta.isNetworkAvailable(context)) {
+				msg = context.getString(R.string.network_not_avaiable);
+				return TASK_FAILED;
+
+			}
+			
 			int type = (Integer) dataFromModel.get(0);
 
 			Calendar cal = Calendar.getInstance();
@@ -71,7 +124,6 @@ public class TaskNetWork extends BaseTask implements TaskType {
 			cal.add(Calendar.MONTH, -type);
 
 			String fromDate = TimeUtils.cal2String(cal, Defi.FORMAT_DATE);
-			
 
 			try {
 				ArrayList<BaseObject> ojsBd = NetSupport.getBieuDo(fromDate, toDate);
