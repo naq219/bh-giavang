@@ -134,6 +134,7 @@ public class MyDialog {
 		} catch (Exception e) {
 			e.toString();
 		}
+		
 
 		dialog.show();
 		dialog.setCanceledOnTouchOutside(true);
