@@ -15,6 +15,7 @@ import com.bhmedia.tigia.HomeActivity;
 import com.bhmedia.tigia.MyFragment;
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.utils.Defi;
+import com.telpoo.frame.net.NetUtils;
 import com.telpoo.frame.utils.ViewUtils;
 
 @SuppressLint("ValidFragment")
@@ -56,6 +57,10 @@ public class WebvFm extends MyFragment {
 //				wv.loadUrl(failingUrl);
 //			}
 //		});
+		
+		if(!NetUtils.isNetworkAvailable(getActivity())){
+			showToast(getContext().getString(R.string.no_network));
+		}
 		
 		String data="<html><head><style>img{width:100%%}</style></head><body><div><img src='"+url+"'/></div></body></html>";
 		ViewUtils.loadDataWv(wv, data);

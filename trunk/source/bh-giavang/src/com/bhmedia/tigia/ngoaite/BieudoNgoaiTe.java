@@ -10,6 +10,7 @@ import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.more.WvFm;
 import com.bhmedia.tigia.utils.Utils1;
 import com.telpoo.frame.delegate.Idelegate;
+import com.telpoo.frame.net.NetUtils;
 import com.telpoo.frame.utils.ViewUtils;
 
 @SuppressLint("ValidFragment")
@@ -42,7 +43,9 @@ public class BieudoNgoaiTe extends WvFm {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
+		
+		
+		
 		code_loc = new String[code.length];
 		for (int i = 0; i < code.length; i++) {
 			code_loc[i] = code[i] + " - " + loc[i];
@@ -107,6 +110,10 @@ public class BieudoNgoaiTe extends WvFm {
 		String data = "<html><head><style>img{width:100%%}</style></head><body><div><img src='" + img1 + "'/></div>" + des1 + "<div><img src='" + img2 + "'/></div>" + des2
 				+ "<div><img src='" + img3 + "'/></div>" + des3 + "<div><img src='" + img4 + "'/></div>" + des4 + "</body></html>";
 
+		if(!NetUtils.isNetworkAvailable(getActivity())){
+			showToast(getContext().getString(R.string.no_network));
+		}
+		
 		ViewUtils.loadDataWv(wv, data);
 
 	}

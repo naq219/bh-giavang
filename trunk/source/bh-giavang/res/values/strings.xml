@@ -31,4 +31,5 @@
 <string name="lichphatsong">Lịch phát sóng</string>
 <string name="thoitiet">Thời tiết</string>
 <string name="xoso">Xổ số</string>
+<string name="no_network">Không có kết nối internet!</string>
 </resources>

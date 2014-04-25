@@ -6,7 +6,6 @@ import android.widget.RelativeLayout;
 
 import com.bhmedia.tigia.db.DbSupport;
 import com.bhmedia.tigia.db.TableDb;
-import com.bhmedia.tigia.listener.ITop;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.telpoo.frame.net.BaseNetSupportBeta;
 import com.telpoo.frame.net.NetConfig;
