@@ -24,7 +24,8 @@ import com.telpoo.frame.object.BaseObject;
 public class BieuDoTrongNuoc extends MyFragment implements OnClickListener {
 	ImageView motthang, haithang, sauthang, motnam;
 	ChartView chartView;
-	TextView ban,mua,time,theo;
+	TextView ban, mua, time, theo;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.bieudotrongnuoc, container, false);
@@ -39,45 +40,45 @@ public class BieuDoTrongNuoc extends MyFragment implements OnClickListener {
 		haithang = (ImageView) v.findViewById(R.id.haithang);
 		sauthang = (ImageView) v.findViewById(R.id.sauthang);
 		motnam = (ImageView) v.findViewById(R.id.motnam);
-		chartView=(ChartView) v.findViewById(R.id.charView);
-		ban= (TextView) v.findViewById(R.id.ban);
-		mua= (TextView) v.findViewById(R.id.mua);
-		time= (TextView) v.findViewById(R.id.time);
-		theo= (TextView) v.findViewById(R.id.theo);
-		
+		chartView = (ChartView) v.findViewById(R.id.charView);
+		ban = (TextView) v.findViewById(R.id.ban);
+		mua = (TextView) v.findViewById(R.id.mua);
+		time = (TextView) v.findViewById(R.id.time);
+		theo = (TextView) v.findViewById(R.id.theo);
+
 	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		
+
 		getView().findViewById(R.id.btn_top).setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				HomeActivity.getInstance().popFragments();
-				
+
 			}
 		});
-		((TextView)getView().findViewById(R.id.tv_title)).setText(R.string.bieudotrongnuoc);
+		((TextView) getView().findViewById(R.id.tv_title)).setText(R.string.bieudotrongnuoc);
 		motthang.setOnClickListener(this);
 		haithang.setOnClickListener(this);
 		sauthang.setOnClickListener(this);
 		motnam.setOnClickListener(this);
-		
+
 		chartView.setListtener(new Idelegate() {
-			
+
 			@Override
 			public void callBack(Object value, int where) {
-				
-				BaseObject oj =(BaseObject) value;
-				ban.setText("Bán: "+oj.get(BieuDoOj.SALE));
-				mua.setText("Mua: "+oj.get(BieuDoOj.BUY));
-				time.setText(""+oj.get(BieuDoOj.CREATED));
-				
+
+				BaseObject oj = (BaseObject) value;
+				ban.setText("Bán: " + oj.get(BieuDoOj.SALE));
+				mua.setText("Mua: " + oj.get(BieuDoOj.BUY));
+				time.setText("" + oj.get(BieuDoOj.CREATED));
+
 			}
 		});
-		
+
 		motthang.setImageResource(R.drawable.motthang);
 		ArrayList<Integer> dataSend1 = new ArrayList<Integer>();
 		dataSend1.add(1);
@@ -117,7 +118,6 @@ public class BieuDoTrongNuoc extends MyFragment implements OnClickListener {
 			dataSend.add(12);
 			break;
 
-			
 		default:
 			break;
 		}
@@ -134,10 +134,9 @@ public class BieuDoTrongNuoc extends MyFragment implements OnClickListener {
 		switch (taskType) {
 		case TaskType.TASK_BIEUDO:
 			closeProgressDialog();
-			
+
 			updateUI(list);
-			
-			
+
 			break;
 
 		default:
@@ -147,7 +146,7 @@ public class BieuDoTrongNuoc extends MyFragment implements OnClickListener {
 	}
 
 	private void updateUI(ArrayList<?> list) {
-	ArrayList<BaseObject> ojs=(ArrayList<BaseObject>) list;
+		ArrayList<BaseObject> ojs = (ArrayList<BaseObject>) list;
 		chartView.setData(ojs);
 	}
 

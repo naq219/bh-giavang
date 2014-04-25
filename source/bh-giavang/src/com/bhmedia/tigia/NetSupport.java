@@ -32,11 +32,12 @@ public class NetSupport {
 	}
 
 	public static ArrayList<BaseObject> parseGiaVang(String res) throws JSONException {
+		ArrayList<BaseObject> arrData = new ArrayList<BaseObject>();
+		if(res==null) return arrData;
 		JSONObject root = new JSONObject(res);
 		JSONObject apiJoj = root.getJSONObject("api"); // danh sach cac khu vuc
 		Iterator<?> keyLocation = apiJoj.keys();
-		ArrayList<BaseObject> arrData = new ArrayList<BaseObject>();
-
+		
 		while (keyLocation.hasNext()) {
 			String key = (String) keyLocation.next();
 
@@ -127,7 +128,8 @@ public class NetSupport {
 		String res = BaseNetSupportBeta.getInstance().method_GET(url);
 
 		ArrayList<BaseObject> ojs = new ArrayList<BaseObject>();
-
+		
+		if(res==null) return ojs;
 		JSONArray rootJar = new JSONArray(res);
 		for (int i = 0; i < rootJar.length(); i++) {
 			JSONObject joj = rootJar.getJSONObject(i);
@@ -165,6 +167,7 @@ public class NetSupport {
 	public static ArrayList<BaseObject> getBieuDo(String fromDate, String toDate) throws JSONException {
 		String res = BaseNetSupportBeta.getInstance().method_GET(getUrlBieuDo(fromDate, toDate));
 		ArrayList<BaseObject> ojs = new ArrayList<BaseObject>();
+		if(res==null) return ojs;
 		JSONArray array = new JSONArray(res);
 
 		for (int i = 0; i < array.length(); i++) {
