@@ -45,9 +45,9 @@ public class NewsAdapter extends ArrayAdapter<ObjectNews> {
 		}
 		// imageloader tellpoo support
 
-		String murl = objects.get(position).get(ObjectNews.URL_IMAGE);
+		String nUrl = objects.get(position).get(ObjectNews.URL_IMAGE);
 
-		ImageLoader.getInstance().displayImage(murl, viewHolder.imageView);
+		ImageLoader.getInstance().displayImage(nUrl, viewHolder.imageView);
 
 		//
 		viewHolder.titleTextView.setText(objects.get(position).get(ObjectNews.TITTLE));
@@ -69,6 +69,11 @@ public class NewsAdapter extends ArrayAdapter<ObjectNews> {
 
 		Adds(items);
 
+	}
+	public void ChangeArrayList(List<ObjectNews> items)
+	{
+		clear();
+		objects = items;
 	}
 
 	public void Adds(List<ObjectNews> items) {

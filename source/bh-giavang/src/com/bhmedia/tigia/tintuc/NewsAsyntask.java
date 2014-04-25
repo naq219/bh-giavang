@@ -87,6 +87,65 @@ public class NewsAsyntask extends BaseTask implements TaskType{
 			}		
 		}	
 		//
+		//-----------------refesh load---------------------
+		//
+		case TASKTYPE_PULLTOREFESH:
+		{
+			ArrayList<ObjectNews> arrayList = new ArrayList<ObjectNews>();
+			Document document = null;
+			//int page= params[0].getIntParams()[0];
+			String url = (String) dataFromModel.get(0);
+			String html = BaseNetSupportBeta.getInstance().method_GET(url);
+			if( html.equals("") || (html == null ))
+			{
+				msg = "Mất kết nối";
+				return TASK_FAILED;
+			}
+			else
+			{
+				document = Jsoup.parse(html);
+				Element elementsItemList = document.select("array").get(0);
+				Elements dictElements = elementsItemList.select("dict");
+				for(Element item : dictElements)
+				{
+					String urlWeb = "", imgLink = "", title ="", info = "", time = "" ;
+					//get 
+					Elements StringS = item.select("String");
+					//
+					//--time
+					time = StringS.get(0).text();
+					//--title
+					title = getInfo(StringS.get(1).text());
+					//--thumb
+					imgLink = StringS.get(2).text();
+					if( imgLink.equals("") || imgLink == null)
+					{
+						imgLink = "";
+					}
+					//Log.d("test", "img : " +imgLink);
+					//--urlweb mobile
+					urlWeb = StringS.get(4).text();
+					
+					//--urlweb tablet
+					//urlWebTab = StringS.get(5).text();
+					//
+					ObjectNews objectNews = new ObjectNews();
+					//set values
+					objectNews.set(ObjectNews.URL_WEB, urlWeb);
+					objectNews.set(ObjectNews.URL_IMAGE, imgLink);
+					objectNews.set(ObjectNews.TITTLE, title);
+					objectNews.set(ObjectNews.TIME, time);
+					objectNews.set(ObjectNews.INFO, info);
+					//
+					arrayList.add(objectNews);					
+				}
+				//return 
+				dataReturn = arrayList;
+				return TASK_DONE;
+			}		
+		}
+			
+		//
 		//------------load more------------
 		//
 		case TASKTYPE_LOADMORE:

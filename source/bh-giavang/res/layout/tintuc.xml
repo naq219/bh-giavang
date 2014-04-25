@@ -14,11 +14,11 @@
           android:text="Tin tức"
          />
 
-    <ListView
+    <com.markupartist.android.widget.PullToRefreshListView
         android:id="@+id/lv"
-        style="@style/form_ff"
+        style="@style/form_ff"        
         android:cacheColorHint="#00000000"
         >
-    </ListView>
+    </com.markupartist.android.widget.PullToRefreshListView>
 </LinearLayout>
 

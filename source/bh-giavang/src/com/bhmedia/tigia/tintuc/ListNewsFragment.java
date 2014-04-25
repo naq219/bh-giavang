@@ -2,8 +2,10 @@ package com.bhmedia.tigia.tintuc;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,16 +23,17 @@ import android.widget.ListView;
 import com.bhmedia.tigia.MyFragment;
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.task.TaskType;
+import com.markupartist.android.widget.PullToRefreshListView;
+import com.markupartist.android.widget.PullToRefreshListView.OnRefreshListener;
 import com.telpoo.frame.model.TaskParams;
 import com.telpoo.frame.net.BaseNetSupportBeta;
 
-public class ListNewsFragment extends MyFragment implements OnItemClickListener,TaskType {
-
+public class ListNewsFragment extends MyFragment implements OnItemClickListener,TaskType{
 	// ListView listViewNews;
 	ArrayList<ObjectNews> objectNewsList;
 
 	NewsAdapter newsAdapter;
-	ListView listViewNews;
+	PullToRefreshListView listViewNews;
 	ArrayList<String> urlList;
 	ArrayList<String> urlListWeb;
 	public  int numpage, numitem ;
@@ -38,50 +41,47 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 	String urlHead = "http://app.vietbao.vn/v2.0/vbcat/";
 	String urlTail = "/giavang-tygia.rss";
 	String CHECK_LOG = "CHECK_LOG";
-
+	//
+	//create view
+	//
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		//
 		View rootView = inflater.inflate(R.layout.tintuc, container, false);	
 			// find id
-		boolean checkNet = BaseNetSupportBeta.isNetworkAvailable(getActivity());
-		
-			listViewNews = (ListView) rootView.findViewById(R.id.lv);
-			objectNewsList = new ArrayList<ObjectNews>();
-			urlList = new ArrayList<String>();
-			urlListWeb = new ArrayList<String>();
+		boolean checkNet = BaseNetSupportBeta.isNetworkAvailable(getActivity());		
+			listViewNews = (PullToRefreshListView) rootView.findViewById(R.id.lv);		
 			if( checkNet )
+			{	
+				if( objectNewsList == null || objectNewsList.size() == 0 )
+				{
+					//listViewNews.
+					objectNewsList = new ArrayList<ObjectNews>();
+					urlList = new ArrayList<String>();
+					urlListWeb = new ArrayList<String>();
+			
+					numpage = 0;
+					String url = urlHead + numpage + urlTail;
+					urlList.add(url);					
+					NewsAsyntask asyntask = new NewsAsyntask(getModel(), NEWS_ASYNCTASK, urlList,
+							getActivity());
+					getModel().exeTask(null, asyntask);
+					// turn on progressdialog
+					showProgressDialog(getActivity());
+					
+				}
+					newsAdapter = new NewsAdapter(getActivity(), R.layout.item_tintuc_list,
+							objectNewsList);
+					listViewNews.setAdapter(newsAdapter);
+					
+					listViewNews.setOnItemClickListener(this);
+							
+			}
+			else
 			{
-			numpage = 0;
-			String url = urlHead + numpage + urlTail;
-			urlList.add(url);
-			
-			TaskParams taskParams =new TaskParams();
-			int[] intParams={numpage};
-			taskParams.setIntParams(intParams);
-			NewsAsyntask asyntask = new NewsAsyntask(getModel(), NEWS_ASYNCTASK, urlList,
-					getActivity());
-			getModel().exeTask(taskParams, asyntask);
-			// turn on progressdialog
-			showProgressDialog(getActivity());
-			//
-			// list view
-			//
-			newsAdapter = new NewsAdapter(getActivity(), R.layout.item_tintuc_list,
-					objectNewsList);
-			listViewNews.setAdapter(newsAdapter);
-			
-			listViewNews.setOnItemClickListener(this);
-
-			// dang ra la ko code xu ly trong nay,, ở day chi khai bao cac view thoi
-			//
-			
-		}
-		else
-		{
-			showToast("No connection Network");
-		}
+				showToast("No connection Network");
+			}
 		return rootView;
 	}
 
@@ -112,24 +112,16 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 
 				if (totalItemCount - visibleItemCount < firstVisibleItem + 4) {
 					// load more :D
-					if (!isLoading) {
+					if ( !isLoading ) {
 						// thuc hien loadmore
 						numpage= numpage+15; // = numpage + 1;
 						String url = urlHead + numpage + urlTail;
 						Log.d("testurl"," url:   "+ url);
-						urlList.set(0, url);//get(0) = url;
-						//urlList.add(url);
-						
-//						int[] intParams={numpage};
-//						TaskParams taskParam1s=new TaskParams();
-//						
-//						taskParam1s.setStringParams(stringParams);;
-						
+						urlList.set(0, url);//get(0) = url;						
 						NewsAsyntask asyntask = new NewsAsyntask(getModel(), TASKTYPE_LOADMORE, urlList,
 								getActivity());    // khai bao tasktype ro rang. task chay ngam co the co ow tab khac, rat nguy hiem nu ko khai bao
 						getModel().exeTask(null, asyntask);
-						// show toast for user
-						showToast("load more");
+						// show toast for user						
 						
 						isLoading= true; 
 					}
@@ -137,9 +129,34 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 
 			}
 		});
+		listViewNews.setOnRefreshListener(new OnRefreshListener() {
+			
+			@Override
+			public void onRefresh() {
+				// TODO Auto-generated method stub
+				if ( !isLoading ) {
+					// thuc hien pullload
+					objectNewsList = new ArrayList<ObjectNews>();
+					urlList = new ArrayList<String>();
+					urlListWeb = new ArrayList<String>();
+			
+					numpage = 0;
+					String url = urlHead + numpage + urlTail;
+					urlList.add(url);					
+					NewsAsyntask asyntask = new NewsAsyntask(getModel(), NEWS_ASYNCTASK, urlList,
+							getActivity());
+					getModel().exeTask(null, asyntask);					
+					
+					isLoading= true; 
+				}
+			}
+		});
 
 	}
+	
+	
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onSuccess(int taskType, ArrayList<?> list, String msg) {
 		// TODO Auto-generated method stub
@@ -151,14 +168,23 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 			objectNewsList = (ArrayList<ObjectNews>) list;
 			
 			// haha ga qua ^^
+			
 			for (int i = 0; i < objectNewsList.size(); i++) {
 				urlListWeb.add(objectNewsList.get(i).get(ObjectNews.URL_WEB));
+				Log.d("test size state ", ""+i);
+				
 			}
 			//add size 
 			oldSizeUrlList = objectNewsList.size();
+			for (int i = 0; i < urlListWeb.size()-1; i++) {
+				
+				Log.d("test url ", ""+urlListWeb.get(i));
+				
+			}
 			newsAdapter.SetItems(objectNewsList);
 			newsAdapter.notifyDataSetChanged();
 			closeProgressDialog();
+			listViewNews.onRefreshComplete();
 			Log.d("test size 1 ", ""+newsAdapter.getCount());
 			break;
 //			
@@ -169,26 +195,20 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 			// them vao listview
 			for(int i =0; i < list.size(); i++)
 			{
-				if(objectNewsList.contains(list.get(i)))
-				{
-					Log.d("test state ", ""+i);
-					//objectNewsList.add(list.get(i))
-					continue;
-				}
+				
 				objectNewsList.add((ObjectNews) list.get(i));
 			}
 			//objectNewsList.addAll((Collection<? extends ObjectNews>) list);
+			
 			for (int i = oldSizeUrlList ; i < objectNewsList.size(); i++) {
 				urlListWeb.add(objectNewsList.get(i).get(ObjectNews.URL_WEB));
 			}
-			oldSizeUrlList = objectNewsList.size();
-			
+			oldSizeUrlList = objectNewsList.size();			
 			newsAdapter.Adds((List<ObjectNews>) list);  // them item vao chu ko phai set moi , 
 			newsAdapter.notifyDataSetChanged();
 			Log.d("test size", ""+newsAdapter.getCount());
 			isLoading=false;
 			break;
-			
 		default:
 			break;
 		}
@@ -204,40 +224,38 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 			break;
 		case TASKTYPE_LOADMORE:
 			isLoading=false;
+			showToast("Loading more failded");
+			break;
+		case TASKTYPE_PULLTOREFESH:
+			isLoading=false;
+			showToast("Loading refresh failded");
 			break;
 		default:
 			break;
 		}
 		showToast("Loading failded");
-	}
-
-	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-		Log.d("test", "destroy lsitview");
-	}
+	}	
 
 	public void switchFragment(Fragment fragment) {
 		FragmentManager fragmentManager = getActivity()
 				.getSupportFragmentManager();
 		fragmentManager.beginTransaction()
 				.replace(R.id.realtabcontent, fragment).addToBackStack(null)
-				.commit();
-		// fragmentManager.beginTransaction().replace(arg0, arg1, arg2);
+				.commit();		
 	}
 	
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 		// TODO Auto-generated method stub
-		switchFragment(new FragmentWebViewManager(urlListWeb, position));
-		
+		switchFragment(new FragmentWebViewManager(urlListWeb, position-1));		
 		
 	}
 	ArrayList<String> getAllUrlList()
 	{
 		return urlListWeb;
 	}
+
+	
 
 }
