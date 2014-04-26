@@ -7,8 +7,7 @@ public interface TaskType {
 	//task for tin tuc
 	//------------------	
 	public static int NEWS_ASYNCTASK = 2;
-	public static int TASKTYPE_LOADMORE = 3;
-	public static int TASKTYPE_PULLTOREFESH = 5;
+	public static int TASKTYPE_LOADMORE = 3;	
 	//-----------------
 	//task for bieu do
 	public static int TASK_BIEUDO = 4;
