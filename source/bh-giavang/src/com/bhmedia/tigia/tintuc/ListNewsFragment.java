@@ -216,11 +216,7 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 		case TASKTYPE_LOADMORE:
 			isLoading=false;
 			showToast("Loading more failded");
-			break;
-		case TASKTYPE_PULLTOREFESH:
-			isLoading=false;
-			showToast("Loading refresh failded");
-			break;
+			break;		
 		default:
 			break;
 		}
