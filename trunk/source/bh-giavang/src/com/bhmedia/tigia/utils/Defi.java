@@ -1,5 +1,7 @@
 package com.bhmedia.tigia.utils;
 
+import com.bhmedia.tigia.HomeActivity;
+
 public class Defi {
 
 	
@@ -9,8 +11,8 @@ public class Defi {
 	public static final String jb = "app_test";
 	public static final String USER_TYPE = "free";
 	public static final String FORMAT_DATE = "dd-MM-yyyy";
-	
-	public static final String GOOGLE_ANALYTIC_ID = "UA-48254014-3";
+	public static final String FORMAT_DATE_TV_DATE = "yyyy-MM-dd";
+	public static final String GOOGLE_ANALYTIC_ID = "UA-48254014-4";
 	
 
 

@@ -11,6 +11,7 @@ import com.bhmedia.tigia.HomeActivity;
 import com.bhmedia.tigia.MyFragment;
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.utils.TabId;
+import com.telpoo.bhlib.BHUtils;
 import com.telpoo.bhlib.object.ShareFbOj;
 import com.telpoo.bhlib.share.BHShareUtils;
 import com.telpoo.bhlib.share.facebook.ShareFacebook;
@@ -73,7 +74,7 @@ public class MoreFm extends MyFragment implements OnClickListener {
 			break;
 
 		case R.id.gopy:
-			BHShareUtils.emailSupport(getActivity(), null, "", "");
+			BHShareUtils.emailSupport(getActivity(),MoreFm.this, null, "Ứng dụng 'Giá Vàng Pro' - Góp ý", "Ý kiến đóng góp của bạn về ứng dụng");
 			break;
 
 		case R.id.danhgia:
@@ -91,16 +92,20 @@ public class MoreFm extends MyFragment implements OnClickListener {
 			FileSupport.saveBitmap(FileSupport.drawableToBitmap(getResources().getDrawable(R.drawable.ic_launcher)), "imgShare", FileSupport.getCatcheDir(getActivity()).getPath());
 
 			Intent intentFb = new Intent(getActivity(), ShareFacebook.class);
+			  BaseObject ojShare = new BaseObject();
+              ojShare.set(ShareFbOj.CAPTION, "BHMedia");
+              ojShare.set(ShareFbOj.DESCRIPTION, "Ứng dụng giá vàng pro");
+              ojShare.set(ShareFbOj.LINK, BHUtils.linkGooglePlay(getActivity()));
+              ojShare.set(ShareFbOj.NAME, "Giá Vàng Pro");
+              ojShare.set(ShareFbOj.PATH, FileSupport.getCatcheDir(getActivity()).getPath() + "/imgShare");
+              intentFb.putExtra("oj-share", ojShare);
+              startActivityForResult(intentFb, 122);
 
-			BaseObject ojShare = new BaseObject();
-			ojShare.set(ShareFbOj.CAPTION, "caption");
-			ojShare.set(ShareFbOj.DESCRIPTION, "DESCRIPTION");
-			ojShare.set(ShareFbOj.LINK, "https://play.google.com/store/apps/details?id=vn.com.cmc.vas");
-			ojShare.set(ShareFbOj.NAME, "NAME");
-			ojShare.set(ShareFbOj.PATH, FileSupport.getCatcheDir(getActivity()).getPath() + "/imgShare");
-			intentFb.putExtra("oj-share", ojShare);
-			startActivityForResult(intentFb, 122);
+			break;
 
+		case R.id.email:
+			BHShareUtils.sentEmail(getActivity(), "", "", getContext().getString(R.string.ungdunggiavangpro_chiase), "Chia sẻ ứng dụng hay: "+BHUtils.linkGooglePlay(getActivity()));
+			
 			break;
 
 		default:
@@ -108,13 +113,13 @@ public class MoreFm extends MyFragment implements OnClickListener {
 		}
 
 	}
-	
+
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		
-		if(requestCode==122){
-			String a= data.getStringExtra("value");
+
+		if (requestCode == 122) {
+			String a = data.getStringExtra("value");
 			showToast(a);
 		}
 	}

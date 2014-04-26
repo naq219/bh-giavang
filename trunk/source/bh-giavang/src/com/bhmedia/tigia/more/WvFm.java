@@ -33,6 +33,8 @@ public class WvFm extends MyFragment {
 		this.url = url;
 		this.title = title;
 		this.resource=resource;
+		
+		trackScreen(title);
 	}
 	
 	@Override
@@ -48,6 +50,7 @@ public class WvFm extends MyFragment {
 		super.onViewCreated(view, savedInstanceState);
 
 		wv = (WebView) view.findViewById(R.id.wv);
+		wv.getSettings().setJavaScriptEnabled(true);
 		btn_close = (ImageView) view.findViewById(R.id.btn_top);
 
 		
@@ -56,6 +59,9 @@ public class WvFm extends MyFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+		
+		
+		
 		((TextView) getView().findViewById(R.id.tv_title)).setText(title);
 		wv.loadUrl(url);
 		wv.setWebViewClient(new WebViewClient() {
@@ -76,6 +82,8 @@ public class WvFm extends MyFragment {
 			public void onPageFinished(WebView view, String url) {
 				super.onPageFinished(view, url);
 				closeProgressDialog();
+				view.loadUrl("javascript:var divs = document.getElementsByTagName('div');  divs[divs.length-3].style.display = 'none';");
+				
 			}
 		});
 

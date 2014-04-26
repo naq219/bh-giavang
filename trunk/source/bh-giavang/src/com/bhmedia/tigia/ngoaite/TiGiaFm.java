@@ -12,6 +12,8 @@ import com.bhmedia.tigia.HomeActivity;
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.adapter.DataLvTiGia;
 import com.bhmedia.tigia.adapter.TiGiaAdapter;
+import com.bhmedia.tigia.object.GiaVangOj;
+import com.bhmedia.tigia.object.TiGiaOj;
 import com.bhmedia.tigia.task.TaskNetWork;
 import com.bhmedia.tigia.task.TaskType;
 import com.bhmedia.tigia.utils.Defi;
@@ -43,6 +45,11 @@ public class TiGiaFm extends TiGiaLayout implements OnClickListener, TaskType, I
 		curcal = Calendar.getInstance();
 		
 		if(SaveDataFragment.arrTiGia!=null){
+			
+		//	String date= SaveDataFragment.arrTiGia.get(0).get(TiGiaOj.);
+			tv_date.setText(""+SaveDataFragment.dateTiGia);
+			
+			
 			adapter = new TiGiaAdapter(getActivity(), SaveDataFragment.arrTiGia,type);
 			LayoutInflater inflater = LayoutInflater.from(getActivity());
 			View v = inflater.inflate(R.layout.item_composer_header, lsComposer, false);
@@ -146,7 +153,7 @@ public class TiGiaFm extends TiGiaLayout implements OnClickListener, TaskType, I
 				return;
 			}
 
-			tv_date.setText(getString(R.string.c_p_nh_t_ng_y_) + TimeUtils.cal2String(curcal, Defi.FORMAT_DATE));
+			tv_date.setText(getString(R.string.c_p_nh_t_ng_y_) + TimeUtils.cal2String(curcal, Defi.FORMAT_DATE_TV_DATE));
 
 			curLvData =ojres; //DataLvTiGia.fixPosition(ojres);
 			SaveDataFragment.arrTiGia=ojres;
@@ -217,6 +224,10 @@ public class TiGiaFm extends TiGiaLayout implements OnClickListener, TaskType, I
 
 		case WhereIdelegate.DIALOGUTILS_DATEPICKER:
 			curcal = (Calendar) value;
+			if(curcal.getTimeInMillis()>Calendar.getInstance().getTimeInMillis()){
+				showToast(getContext().getString(R.string.khongduocnhapquangayhientai));
+			}
+			else
 			Utils1.runTaskTiGia(curcal, getModel(), getActivity(), this);
 
 			break;
@@ -224,6 +235,12 @@ public class TiGiaFm extends TiGiaLayout implements OnClickListener, TaskType, I
 			break;
 		}
 
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		SaveDataFragment.dateTiGia=tv_date.getText().toString();
 	}
 
 }

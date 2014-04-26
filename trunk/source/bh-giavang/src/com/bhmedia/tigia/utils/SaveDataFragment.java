@@ -8,4 +8,5 @@ public class SaveDataFragment {
 	
 	public static ArrayList<BaseObject> arrGiaVang=null;
 	public static ArrayList<BaseObject> arrTiGia=null;
+	public static String dateTiGia=null;
 }
