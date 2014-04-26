@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_id">240356972804786</string>
+    <string name="app_id">822684847745147</string>
     <string name="app_name">Giá Vàng</string>
     <string name="gia_ca_thi_truong">Giá cả thị trường</string>
     <string name="bethua">&lt;</string>
@@ -26,10 +26,12 @@
 <string name="share_twitter_content">Xem ứng dụng tỉ giá tại đây</string>
 <string name="bieudotrongnuoc">Biểu đồ trong nước</string>
 <string name="khongcodulieu">Không có dữ liệu</string>
-<string name="title_dialog_offline">Không có kết nối internet, bạn có muốn xem dữ liệu gần đây nhất không?</string>
+<string name="title_dialog_offline">Không có kết nối mạng, hãy xem dữ liệu gần đây nhất</string>
 <string name="lichchieuphimrap">Lịch chiếu phim rạp</string>
 <string name="lichphatsong">Lịch phát sóng</string>
 <string name="thoitiet">Thời tiết</string>
 <string name="xoso">Xổ số</string>
 <string name="no_network">Không có kết nối internet!</string>
+<string name="ungdunggiavangpro_chiase">Ứng dụng \'Giá Vàng Pro\' - Chia sẻ</string>
+<string name="khongduocnhapquangayhientai">Không được nhập quá ngày hiện tại</string>
 </resources>

@@ -54,6 +54,7 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 			}
 		});
 
+		
 		curcal = Calendar.getInstance();
 		
 
@@ -62,6 +63,10 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 		btnBan.setOnClickListener(this);
 		
 		if(SaveDataFragment.arrGiaVang!=null){
+			
+			String date= SaveDataFragment.arrGiaVang.get(0).get(GiaVangOj.CREATED);
+			tv_date.setText(getString(R.string.c_p_nh_t_ng_y_) + (date.length()>10?date.substring(0, 11):date));
+			
 			adapter = new SectionComposerAdapter(getActivity(), SaveDataFragment.arrGiaVang, type, this);
 			LayoutInflater inflater = LayoutInflater.from(getActivity());
 			View v = inflater.inflate(R.layout.item_composer_header, lsComposer, false);
@@ -142,6 +147,7 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 		super.onSuccess(taskType, list, msg);
 
 		switch (taskType) {
+		
 		case TASK_GIAVANG_OFFLINE:
 		case TASK_GET_GIAVANG:
 
@@ -153,7 +159,7 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 				return;
 			}
 
-			tv_date.setText(getString(R.string.c_p_nh_t_ng_y_) + TimeUtils.cal2String(curcal, Defi.FORMAT_DATE));
+			tv_date.setText(getString(R.string.c_p_nh_t_ng_y_) + TimeUtils.cal2String(curcal, Defi.FORMAT_DATE_TV_DATE));
 			curLvData = ojres;
 			SaveDataFragment.arrGiaVang=ojres;
 			// curLvData = DataLv.fixPosition(ojres, type);
@@ -187,7 +193,7 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 							TaskNetWork netWork = new TaskNetWork(getModel(), TASK_GIAVANG_OFFLINE, null, getActivity());
 							getModel().exeTask(null, netWork);
 						}
-						else HomeActivity.getInstance().finish();
+						//else HomeActivity.getInstance().finish();
 
 					}
 				}, 1);
@@ -243,13 +249,19 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 							break;
 						}
 
+						
 					}
 				}, getActivity(), 2);
 
+			
 			break;
 
 		case WhereIdelegate.DIALOGUTILS_DATEPICKER:
 			curcal = (Calendar) value;
+			if(curcal.getTimeInMillis()>Calendar.getInstance().getTimeInMillis()){
+				showToast(getContext().getString(R.string.khongduocnhapquangayhientai));
+			}
+			else
 			Utils1.runTaskGiaVang(curcal, getModel(), getActivity(), this);
 			// tv_date.setText(getString(R.string.c_p_nh_t_ng_y_) +
 			// TimeUtils.cal2String(cal, Defi.FORMAT_DATE));
