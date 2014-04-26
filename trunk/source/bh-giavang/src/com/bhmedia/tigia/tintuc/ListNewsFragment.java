@@ -1,31 +1,24 @@
 package com.bhmedia.tigia.tintuc;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
-
-import android.app.ListActivity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
-
 import com.bhmedia.tigia.MyFragment;
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.task.TaskType;
 import com.markupartist.android.widget.PullToRefreshListView;
 import com.markupartist.android.widget.PullToRefreshListView.OnRefreshListener;
-import com.telpoo.frame.model.TaskParams;
 import com.telpoo.frame.net.BaseNetSupportBeta;
 
 public class ListNewsFragment extends MyFragment implements OnItemClickListener,TaskType{
@@ -41,6 +34,7 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 	String urlHead = "http://app.vietbao.vn/v2.0/vbcat/";
 	String urlTail = "/giavang-tygia.rss";
 	String CHECK_LOG = "CHECK_LOG";
+	View ngFooterListView;
 	//
 	//create view
 	//
@@ -88,13 +82,7 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 	boolean isLoading = true;
 
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState) { // Bundle
-																// savedInstanceState
-																// phai lay duoc
-																// du lieu truoc
-																// do de set
-																// lai, thay vi
-																// load lại
+	public void onActivityCreated(Bundle savedInstanceState) { 
 		super.onActivityCreated(savedInstanceState);
 		
 
@@ -113,6 +101,8 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 				if (totalItemCount - visibleItemCount < firstVisibleItem + 4) {
 					// load more :D
 					if ( !isLoading ) {
+						ngFooterListView = ((LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.tintuc_loadmore, null);
+						listViewNews.addFooterView(ngFooterListView);	
 						// thuc hien loadmore
 						numpage= numpage+15; // = numpage + 1;
 						String url = urlHead + numpage + urlTail;
@@ -122,7 +112,7 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 								getActivity());    // khai bao tasktype ro rang. task chay ngam co the co ow tab khac, rat nguy hiem nu ko khai bao
 						getModel().exeTask(null, asyntask);
 						// show toast for user						
-						
+						//LayoutInflater layoutInflater = getActivity(
 						isLoading= true; 
 					}
 				}
@@ -146,7 +136,7 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 					NewsAsyntask asyntask = new NewsAsyntask(getModel(), NEWS_ASYNCTASK, urlList,
 							getActivity());
 					getModel().exeTask(null, asyntask);					
-					
+									
 					isLoading= true; 
 				}
 			}
@@ -165,10 +155,8 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 		switch (taskType) {
 		case NEWS_ASYNCTASK:
 			isLoading=false;
-			objectNewsList = (ArrayList<ObjectNews>) list;
-			
-			// haha ga qua ^^
-			
+			objectNewsList = (ArrayList<ObjectNews>) list;			
+			// haha ga qua ^^			
 			for (int i = 0; i < objectNewsList.size(); i++) {
 				urlListWeb.add(objectNewsList.get(i).get(ObjectNews.URL_WEB));
 				Log.d("test size state ", ""+i);
@@ -204,9 +192,12 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 				urlListWeb.add(objectNewsList.get(i).get(ObjectNews.URL_WEB));
 			}
 			oldSizeUrlList = objectNewsList.size();			
-			newsAdapter.Adds((List<ObjectNews>) list);  // them item vao chu ko phai set moi , 
+			newsAdapter.Adds((List<ObjectNews>) list);
+			//remove footer
+			listViewNews.removeFooterView(ngFooterListView);// them item vao chu ko phai set moi , 
 			newsAdapter.notifyDataSetChanged();
 			Log.d("test size", ""+newsAdapter.getCount());
+			
 			isLoading=false;
 			break;
 		default:
@@ -255,7 +246,8 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 	{
 		return urlListWeb;
 	}
-
-	
+	//
+	// i miss you
+	//
 
 }
