@@ -18,6 +18,7 @@
         android:id="@+id/lv"
         style="@style/form_ff"        
         android:cacheColorHint="#00000000"
+        android:dividerHeight="4dp"
         >
     </com.markupartist.android.widget.PullToRefreshListView>
 </LinearLayout>

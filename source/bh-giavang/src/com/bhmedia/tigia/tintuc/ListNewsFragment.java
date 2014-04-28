@@ -182,8 +182,7 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 			
 			// them vao listview
 			for(int i =0; i < list.size(); i++)
-			{
-				
+			{				
 				objectNewsList.add((ObjectNews) list.get(i));
 			}
 			//objectNewsList.addAll((Collection<? extends ObjectNews>) list);
