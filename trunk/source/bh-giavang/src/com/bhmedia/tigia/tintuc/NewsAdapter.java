@@ -1,9 +1,12 @@
 package com.bhmedia.tigia.tintuc;
 
 import java.util.List;
+
 import com.bhmedia.tigia.R;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.telpoo.frame.utils.FileSupport;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +20,7 @@ public class NewsAdapter extends ArrayAdapter<ObjectNews> {
 	Context context;
 	int layoutID;
 	List<ObjectNews> objects;
+	DisplayImageOptions displayImageOptions;
 
 	public NewsAdapter(Context context, int layoutID, List<ObjectNews> objects) {
 		super(context, layoutID, objects);
@@ -24,6 +28,13 @@ public class NewsAdapter extends ArrayAdapter<ObjectNews> {
 		this.context = context;
 		this.layoutID = layoutID;
 		this.objects = objects;
+		/// 
+		//sua code image null se replace la ic_lacncher
+		this.displayImageOptions = new DisplayImageOptions.Builder().showImageForEmptyUri(R.drawable.ic_launcher)
+															//.showStubImage(R.drawable.ic_launcher)
+															//.resetViewBeforeLoading(true)
+															.cacheOnDisc(true)
+															.build();
 	}
 
 	@Override
@@ -47,7 +58,8 @@ public class NewsAdapter extends ArrayAdapter<ObjectNews> {
 
 		String nUrl = objects.get(position).get(ObjectNews.URL_IMAGE);
 
-		ImageLoader.getInstance().displayImage(nUrl, viewHolder.imageView);
+		ImageLoader.getInstance().displayImage(nUrl, viewHolder.imageView, displayImageOptions);
+		//displayImage(nUrl, viewHolder.imageView);
 
 		//
 		viewHolder.titleTextView.setText(objects.get(position).get(ObjectNews.TITTLE));
