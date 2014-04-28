@@ -87,6 +87,7 @@ public class DataLvTiGia {
 			key = TiGiaOj.TRANSFER;
 		if (type == 0 || type == 10)
 			key = TiGiaOj.BANKID;
+		
 
 		for (int i = 0; i < cojs.size() - 1; i++) {
 

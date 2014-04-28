@@ -74,7 +74,7 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 			}
 			else
 			{
-				showToast("No connection Network");
+				showToast(getString(R.string.network_not_avaiable));
 			}
 		return rootView;
 	}
@@ -210,16 +210,16 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 		super.onFail(taskType, msg);
 		switch (taskType) {
 		case NEWS_ASYNCTASK: // kieu j the nay @@ :D
-			showToast("Loading failded");
+			showToast(getString(R.string.connect_error));
 			break;
 		case TASKTYPE_LOADMORE:
 			isLoading=false;
-			showToast("Loading more failded");
+			showToast(getString(R.string.connect_error));
 			break;		
 		default:
 			break;
 		}
-		showToast("Loading failded");
+		showToast(getString(R.string.connect_error));
 	}	
 
 	public void switchFragment(Fragment fragment) {

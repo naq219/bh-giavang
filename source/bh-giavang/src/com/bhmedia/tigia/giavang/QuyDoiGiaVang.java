@@ -35,9 +35,10 @@ public class QuyDoiGiaVang extends MyFragment implements Idelegate {
 	private int curDovaluePosition = 0;
 	EditText ed;
 	BaseObject curOj = new BaseObject();
-
-	public QuyDoiGiaVang(HashMap<String, ArrayList<BaseObject>> map) {
+	String date;
+	public QuyDoiGiaVang(HashMap<String, ArrayList<BaseObject>> map,String date) {
 		this.map = map;
+		this.date=date;
 	}
 
 	@Override
@@ -161,7 +162,7 @@ public class QuyDoiGiaVang extends MyFragment implements Idelegate {
 		case Defi.whereIdelegate.UTILS1_SPINNERHEAD:
 			curOj = (BaseObject) value;
 
-			created.setText(getString(R.string.c_p_nh_t_ng_y_) + curOj.get(GiaVangOj.CREATED).substring(0, 10));
+			created.setText(date);
 			update();
 			break;
 

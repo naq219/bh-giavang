@@ -24,9 +24,11 @@ public class WvFm extends MyFragment {
 	String url;
 	String title;
 	Integer resource;
+	int countLoadErr=0;
 	public WvFm(String url, String title) {
 		this.url = url;
 		this.title = title;
+		countLoadErr=0;
 	}
 
 	public WvFm(String url, String title,int resource) {
@@ -68,7 +70,8 @@ public class WvFm extends MyFragment {
 			@Override
 			public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
 				super.onReceivedError(view, errorCode, description, failingUrl);
-
+				countLoadErr++;
+				if(countLoadErr<4)
 				wv.loadUrl(failingUrl);
 			}
 

@@ -101,8 +101,8 @@ public class BieuDoTrongNuoc extends MyFragment implements OnClickListener {
 
 		case R.id.haithang:
 			loadBg();
-			haithang.setImageResource(R.drawable.haithang3);
-			dataSend.add(2);
+			haithang.setImageResource(R.drawable.haithang2);
+			dataSend.add(3);
 			break;
 
 		case R.id.sauthang:

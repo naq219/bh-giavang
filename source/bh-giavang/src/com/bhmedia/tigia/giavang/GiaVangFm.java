@@ -26,6 +26,7 @@ import com.bhmedia.tigia.utils.TabId;
 import com.bhmedia.tigia.utils.Utils1;
 import com.telpoo.frame.delegate.Idelegate;
 import com.telpoo.frame.delegate.WhereIdelegate;
+import com.telpoo.frame.net.BaseNetSupportBeta;
 import com.telpoo.frame.object.BaseObject;
 import com.telpoo.frame.utils.DialogUtils;
 import com.telpoo.frame.utils.Mlog;
@@ -35,6 +36,7 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 	ArrayList<BaseObject> curLvData = new ArrayList<BaseObject>();
 	Calendar curcal;
 	int type = 0;
+	
 	private boolean firstGoto = true;;
 
 	@Override
@@ -54,26 +56,29 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 			}
 		});
 
-		
 		curcal = Calendar.getInstance();
 		
-
 		btnMaSo.setOnClickListener(this);
 		btnMua.setOnClickListener(this);
 		btnBan.setOnClickListener(this);
-		
-		if(SaveDataFragment.arrGiaVang!=null){
+
+		if (SaveDataFragment.arrGiaVang != null) {
+
+			String date = SaveDataFragment.arrGiaVang.get(0).get(GiaVangOj.CREATED);
 			
-			String date= SaveDataFragment.arrGiaVang.get(0).get(GiaVangOj.CREATED);
-			tv_date.setText(getString(R.string.c_p_nh_t_ng_y_) + (date.length()>10?date.substring(0, 11):date));
-			
+			if(curcal!=null){
+				tv_date.setText(getString(R.string.c_p_nh_t_ng_y_) +TimeUtils.cal2String(curcal, Defi.FORMAT_DATE));
+			}
+			else
+			tv_date.setText(getString(R.string.c_p_nh_t_ng_y_) + (date.length() > 10 ? date.substring(0, 11) : date));
+
 			adapter = new SectionComposerAdapter(getActivity(), SaveDataFragment.arrGiaVang, type, this);
 			LayoutInflater inflater = LayoutInflater.from(getActivity());
 			View v = inflater.inflate(R.layout.item_composer_header, lsComposer, false);
 			lsComposer.setPinnedHeaderView(v);
 			lsComposer.setAdapter(adapter);
-		}
-		else Utils1.runTaskGiaVang(Calendar.getInstance(), getModel(), getActivity(), this);
+		} else
+			Utils1.runTaskGiaVang(Calendar.getInstance(), getModel(), getActivity(), this);
 
 	}
 
@@ -83,6 +88,12 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 		switch (v.getId()) {
 		case R.id.btn_reload:
 			curcal = Calendar.getInstance();
+			
+			if(!BaseNetSupportBeta.isNetworkAvailable(getActivity())){
+				showToastMessage(R.string.network_not_avaiable);
+				return;
+			}
+			
 			Utils1.runTaskGiaVang(Calendar.getInstance(), getModel(), getActivity(), this);
 			// tv_date.setText(R.string.c_p_nh_t_ng_y_ +
 			// TimeUtils.cal2String(Calendar.getInstance(), Defi.FORMAT_DATE));
@@ -147,7 +158,7 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 		super.onSuccess(taskType, list, msg);
 
 		switch (taskType) {
-		
+
 		case TASK_GIAVANG_OFFLINE:
 		case TASK_GET_GIAVANG:
 
@@ -159,9 +170,9 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 				return;
 			}
 
-			tv_date.setText(getString(R.string.c_p_nh_t_ng_y_) + TimeUtils.cal2String(curcal, Defi.FORMAT_DATE_TV_DATE));
+			tv_date.setText(getString(R.string.c_p_nh_t_ng_y_) + TimeUtils.cal2String(curcal, Defi.FORMAT_DATE));
 			curLvData = ojres;
-			SaveDataFragment.arrGiaVang=ojres;
+			SaveDataFragment.arrGiaVang = ojres;
 			// curLvData = DataLv.fixPosition(ojres, type);
 			adapter = new SectionComposerAdapter(getActivity(), ojres, type, this);
 			LayoutInflater inflater = LayoutInflater.from(getActivity());
@@ -193,8 +204,9 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 							TaskNetWork netWork = new TaskNetWork(getModel(), TASK_GIAVANG_OFFLINE, null, getActivity());
 							getModel().exeTask(null, netWork);
 						}
-						//else HomeActivity.getInstance().finish();
+						// else HomeActivity.getInstance().finish();
 
+						
 					}
 				}, 1);
 			} else
@@ -214,16 +226,25 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 			int vlChoose = (Integer) value;
 
 			if (vlChoose == 1) // chon ngay
-				DialogUtils.datePicker(getActivity(), this);
+			{
+				
+				if (!BaseNetSupportBeta.isNetworkAvailable(getActivity()))
+					showToast(getString(R.string.no_network));
+				else
+					DialogUtils.datePicker(getActivity(), this);
+			}
 
 			if (vlChoose == 0)// quy doi gia vang
 				if (curLvData != null && curLvData.size() > 0)
-					HomeActivity.getInstance().pushFragments(TabId.GIAVANG, new QuyDoiGiaVang(DataLv.grouping(curLvData, type)), true, null);
+					HomeActivity.getInstance().pushFragments(TabId.GIAVANG, new QuyDoiGiaVang(DataLv.grouping(curLvData, type),tv_date.getText().toString()), true, null);
 				else
 					showToast(getContext().getString(R.string.chuacodulieu));
 
 			if (vlChoose == 2)// bieu do
-
+			{
+				if (!BaseNetSupportBeta.isNetworkAvailable(getActivity()))
+					showToast(getString(R.string.no_network));
+				else
 				MyDialog.dialogChoose(new Idelegate() {
 
 					@Override
@@ -249,23 +270,19 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 							break;
 						}
 
-						
 					}
 				}, getActivity(), 2);
+			}
 
-			
 			break;
 
 		case WhereIdelegate.DIALOGUTILS_DATEPICKER:
 			curcal = (Calendar) value;
-			if(curcal.getTimeInMillis()>Calendar.getInstance().getTimeInMillis()){
+			if (curcal.getTimeInMillis() > Calendar.getInstance().getTimeInMillis()) {
 				showToast(getContext().getString(R.string.khongduocnhapquangayhientai));
-			}
-			else
-			Utils1.runTaskGiaVang(curcal, getModel(), getActivity(), this);
-			// tv_date.setText(getString(R.string.c_p_nh_t_ng_y_) +
-			// TimeUtils.cal2String(cal, Defi.FORMAT_DATE));
-
+			} else
+				Utils1.runTaskGiaVang(curcal, getModel(), getActivity(), this);
+			
 			break;
 
 		case whereIdelegate.LV_ITEM_CLICK:

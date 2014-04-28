@@ -86,7 +86,17 @@ public class TaskNetWork extends BaseTask implements TaskType {
 				return TASK_FAILED;
 			}
 
-			dataReturn = datares2;
+			ArrayList<BaseObject> dataTgOffline = null;
+
+			try {
+				dataTgOffline = NetSupport.parseTiga(datares2.get(0).get(TableDb.keytable[1]));
+			} catch (JSONException e) {
+				Mlog.E(e.toString());
+				msg = context.getString(R.string.errconnect);
+				return TASK_FAILED;
+			}
+
+			dataReturn = dataTgOffline;
 			return TASK_DONE;
 
 		case TASK_GET_TIGIA:

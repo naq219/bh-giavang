@@ -15,6 +15,7 @@ import com.telpoo.bhlib.BHUtils;
 import com.telpoo.bhlib.object.ShareFbOj;
 import com.telpoo.bhlib.share.BHShareUtils;
 import com.telpoo.bhlib.share.facebook.ShareFacebook;
+import com.telpoo.frame.net.BaseNetSupportBeta;
 import com.telpoo.frame.object.BaseObject;
 import com.telpoo.frame.utils.FileSupport;
 
@@ -82,12 +83,23 @@ public class MoreFm extends MyFragment implements OnClickListener {
 			break;
 
 		case R.id.twitter:
+			
+			if(!BaseNetSupportBeta.isNetworkAvailable(getActivity())){
+				showToastMessage(R.string.network_not_avaiable);
+				return;
+			}
+			
 			FileSupport.saveBitmap(FileSupport.drawableToBitmap(getResources().getDrawable(R.drawable.ic_launcher)), "imgShare", FileSupport.getCatcheDir(getActivity()).getPath());
 
 			BHShareUtils.shareTwitter(getActivity(), getContext().getString(R.string.share_twitter_content), FileSupport.getCatcheDir(getActivity()).getPath() + "/imgShare");
 			break;
 
 		case R.id.facebook:
+			
+			if(!BaseNetSupportBeta.isNetworkAvailable(getActivity())){
+				showToastMessage(R.string.network_not_avaiable);
+				return;
+			}
 
 			FileSupport.saveBitmap(FileSupport.drawableToBitmap(getResources().getDrawable(R.drawable.ic_launcher)), "imgShare", FileSupport.getCatcheDir(getActivity()).getPath());
 
@@ -119,8 +131,11 @@ public class MoreFm extends MyFragment implements OnClickListener {
 		super.onActivityResult(requestCode, resultCode, data);
 
 		if (requestCode == 122) {
-			String a = data.getStringExtra("value");
-			showToast(a);
+			if(data!=null){
+				
+				String a = data.getStringExtra("value");
+				showToast(a);
+			}
 		}
 	}
 }
