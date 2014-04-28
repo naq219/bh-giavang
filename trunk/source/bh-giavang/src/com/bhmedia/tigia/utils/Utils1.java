@@ -15,12 +15,15 @@ import android.net.Uri;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.object.GiaVangOj;
 import com.bhmedia.tigia.task.TaskNetWork;
 import com.bhmedia.tigia.task.TaskType;
 import com.telpoo.frame.delegate.Idelegate;
 import com.telpoo.frame.model.BaseModel;
+import com.telpoo.frame.net.BaseNetSupportBeta;
 import com.telpoo.frame.object.BaseObject;
 import com.telpoo.frame.ui.BaseFragment;
 import com.telpoo.frame.utils.TimeUtils;
@@ -54,6 +57,8 @@ public class Utils1 {
 	}
 
 	public static void runTaskGiaVang(Calendar cal, BaseModel taskListener, Activity context, BaseFragment fm) {
+		
+		
 		String date = TimeUtils.cal2String(cal, Defi.FORMAT_DATE);
 		fm.showProgressDialog(context);
 		ArrayList<String> list = new ArrayList<String>();
@@ -63,6 +68,8 @@ public class Utils1 {
 	}
 
 	public static void runTaskTiGia(Calendar cal, BaseModel taskListener, Activity context, BaseFragment fm) {
+		
+		
 		String date = TimeUtils.cal2String(cal, Defi.FORMAT_DATE);
 		fm.showProgressDialog(context);
 		ArrayList<String> list = new ArrayList<String>();

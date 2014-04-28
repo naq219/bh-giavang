@@ -57,7 +57,7 @@ public class BieudoTheGioi extends WvFm implements OnClickListener {
 
 		case R.id.haithang:
 			loadBg();
-			haithang.setImageResource(R.drawable.haithang3);
+			haithang.setImageResource(R.drawable.haithang2);
 			url = "http://goldprice.org/charts/history/gold_60_day_o_usd.png";
 			break;
 
@@ -95,7 +95,7 @@ public class BieudoTheGioi extends WvFm implements OnClickListener {
 
 	private void loadBg() {
 		motthang.setImageResource(R.drawable.motthang2);
-		haithang.setImageResource(R.drawable.haithang);
+		haithang.setImageResource(R.drawable.haithang2);
 		sauthang.setImageResource(R.drawable.sauthang2);
 		motnam.setImageResource(R.drawable.motnam2);
 

@@ -23,6 +23,7 @@ import com.bhmedia.tigia.utils.TabId;
 import com.bhmedia.tigia.utils.Utils1;
 import com.telpoo.frame.delegate.Idelegate;
 import com.telpoo.frame.delegate.WhereIdelegate;
+import com.telpoo.frame.net.BaseNetSupportBeta;
 import com.telpoo.frame.object.BaseObject;
 import com.telpoo.frame.utils.DialogUtils;
 import com.telpoo.frame.utils.TimeUtils;
@@ -67,6 +68,11 @@ public class TiGiaFm extends TiGiaLayout implements OnClickListener, TaskType, I
 
 		switch (v.getId()) {
 		case R.id.btn_reload:
+
+			if(!BaseNetSupportBeta.isNetworkAvailable(getActivity())){
+				showToastMessage(R.string.network_not_avaiable);
+				return;
+			}
 			curcal = Calendar.getInstance();
 			Utils1.runTaskTiGia(Calendar.getInstance(), getModel(), getActivity(), this);
 
@@ -153,7 +159,7 @@ public class TiGiaFm extends TiGiaLayout implements OnClickListener, TaskType, I
 				return;
 			}
 
-			tv_date.setText(getString(R.string.c_p_nh_t_ng_y_) + TimeUtils.cal2String(curcal, Defi.FORMAT_DATE_TV_DATE));
+			tv_date.setText(getString(R.string.c_p_nh_t_ng_y_) + TimeUtils.cal2String(curcal, Defi.FORMAT_DATE));
 
 			curLvData =ojres; //DataLvTiGia.fixPosition(ojres);
 			SaveDataFragment.arrTiGia=ojres;
@@ -185,7 +191,7 @@ public class TiGiaFm extends TiGiaLayout implements OnClickListener, TaskType, I
 					public void callBack(Object value, int where) {
 						boolean vl=(Boolean) value;
 						if(vl){
-							TaskNetWork netWork=new TaskNetWork(getModel(), TASK_GET_TIGIA, null, getActivity());
+							TaskNetWork netWork=new TaskNetWork(getModel(), TASK_TIGIA_OFFLINE, null, getActivity());
 							getModel().exeTask(null, netWork);
 						}
 						else HomeActivity.getInstance().finish();
@@ -209,16 +215,25 @@ public class TiGiaFm extends TiGiaLayout implements OnClickListener, TaskType, I
 			int vlChoose = (Integer) value;
 
 			if (vlChoose == 1) // chon ngay
+			{
+				if(!BaseNetSupportBeta.isNetworkAvailable(getActivity()))
+					showToast(getString(R.string.no_network));
+				else
 				DialogUtils.datePicker(getActivity(), this);
 
+			}
 			if (vlChoose == 0)// quy doi ngoai te
 				if (curLvData != null && curLvData.size() > 0)
 					HomeActivity.getInstance().pushFragments(TabId.Ti_GIA, new QuyDoiNgoaiTe(DataLvTiGia.grouping(curLvData,type), tv_date.getText().toString()), true, null);
 				else
 					showToast(getContext().getString(R.string.chuacodulieu));
 
-			if (vlChoose == 2)
+			if (vlChoose == 2){
+				if(!BaseNetSupportBeta.isNetworkAvailable(getActivity()))
+					showToast(getString(R.string.no_network));
+				else
 				HomeActivity.getInstance().pushFragments(TabId.Ti_GIA, new BieudoNgoaiTe(), true, null);
+			}
 
 			break;
 

@@ -71,12 +71,22 @@ public class QuyDoiNgoaiTe extends MyFragment implements Idelegate, OnClickListe
 		curOjs.add(oj);
 		
 		dataChildName = new String[curOjs.size()];
-		for (int i = 0; i < curOjs.size(); i++) {
-			dataChildName[i] = curOjs.get(i).get(TiGiaOj.NAME)+"("+curOjs.get(i).get(TiGiaOj.CODE)+")";
-		}
-
+		
 		sellFromPosition = 0;
 		sellToPosition = 0;
+		
+		for (int i = 0; i < curOjs.size(); i++) {
+			dataChildName[i] = curOjs.get(i).get(TiGiaOj.NAME)+"("+curOjs.get(i).get(TiGiaOj.CODE)+")";
+			if("USD".equalsIgnoreCase(curOjs.get(i).get(TiGiaOj.CODE)))
+				sellFromPosition=i;
+			if("VND".equalsIgnoreCase(curOjs.get(i).get(TiGiaOj.CODE)))
+				sellToPosition=i;
+			
+			
+			
+		}
+
+		
 
 		tvfrom.setText(curOjs.get(sellFromPosition).get(TiGiaOj.NAME));
 		tvTo.setText(curOjs.get(sellToPosition).get(TiGiaOj.NAME));
@@ -88,6 +98,8 @@ public class QuyDoiNgoaiTe extends MyFragment implements Idelegate, OnClickListe
 	boolean isClickTo = false;
 
 	private void updateData(int where) {
+		
+		Mlog.T("updateData -where="+where);
 		double buyFrom = curOjs.get(sellFromPosition).getDouble(TiGiaOj.SELL);
 		double buyto = curOjs.get(sellToPosition).getDouble(TiGiaOj.SELL);
 		double vledFrom;
@@ -119,13 +131,13 @@ public class QuyDoiNgoaiTe extends MyFragment implements Idelegate, OnClickListe
 			if(where==0){
 				edTo.setText(R.string.dulieukhonghople);
 				if(txt.length()==0) {
-					edFrom.setText("");
+					edFrom.getText().clear();
 				}
 			}
 			else if(where==1){
 				edFrom.setText(R.string.dulieukhonghople);
 				if(txt.length()==0) {
-					edFrom.setText("");
+					edFrom.getText().clear();
 				}
 			}
 			
@@ -135,7 +147,7 @@ public class QuyDoiNgoaiTe extends MyFragment implements Idelegate, OnClickListe
 	}
 
 	private String getEdText(EditText edFrom2) {
-		String a=edFrom.getText().toString().trim();
+		String a=edFrom2.getText().toString().trim();
 		 return a;
 	}
 
@@ -237,7 +249,10 @@ public class QuyDoiNgoaiTe extends MyFragment implements Idelegate, OnClickListe
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
 				if (isClickFrom)
+				{
+					
 					updateData(0);
+				}
 
 			}
 

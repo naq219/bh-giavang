@@ -126,8 +126,19 @@ public class NetSupport {
 		String url = getUrlTiGia(date);
 
 		String res = BaseNetSupportBeta.getInstance().method_GET(url);
+		// luu db
+		BaseObject oj1=new BaseObject();
+		oj1.set(TableDb.keytable[0], Calendar.getInstance().getTimeInMillis()+"");
+		oj1.set(TableDb.keytable[1], ""+res);
+		DbSupport.saveTiGiaOffline(oj1);
+		
+		return parseTiga(res);
+	
 
-		ArrayList<BaseObject> ojs = new ArrayList<BaseObject>();
+	}
+
+	public static ArrayList<BaseObject> parseTiga(String res) throws JSONException {
+	ArrayList<BaseObject> ojs = new ArrayList<BaseObject>();
 		
 		if(res==null) return ojs;
 		JSONArray rootJar = new JSONArray(res);
@@ -157,7 +168,6 @@ public class NetSupport {
 
 		}
 		return ojs;
-
 	}
 
 	private static String getUrlTiGia(String date) {

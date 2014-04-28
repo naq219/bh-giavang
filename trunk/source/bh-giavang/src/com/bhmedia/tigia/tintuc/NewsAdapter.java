@@ -20,7 +20,7 @@ public class NewsAdapter extends ArrayAdapter<ObjectNews> {
 	Context context;
 	int layoutID;
 	List<ObjectNews> objects;
-	DisplayImageOptions displayImageOptions;
+	//DisplayImageOptions displayImageOptions;
 
 	public NewsAdapter(Context context, int layoutID, List<ObjectNews> objects) {
 		super(context, layoutID, objects);
@@ -30,11 +30,11 @@ public class NewsAdapter extends ArrayAdapter<ObjectNews> {
 		this.objects = objects;
 		/// 
 		//sua code image null se replace la ic_lacncher
-		this.displayImageOptions = new DisplayImageOptions.Builder().showImageForEmptyUri(R.drawable.ic_launcher)
-															//.showStubImage(R.drawable.ic_launcher)
-															//.resetViewBeforeLoading(true)
-															.cacheOnDisc(true)
-															.build();
+//		this.displayImageOptions = new DisplayImageOptions.Builder().showImageForEmptyUri(R.drawable.ic_launcher)
+//															//.showStubImage(R.drawable.ic_launcher)
+//															//.resetViewBeforeLoading(true)
+//															.cacheOnDisc(true)
+//															.build();
 	}
 
 	@Override
@@ -57,8 +57,15 @@ public class NewsAdapter extends ArrayAdapter<ObjectNews> {
 		// imageloader tellpoo support
 
 		String nUrl = objects.get(position).get(ObjectNews.URL_IMAGE);
+		if(nUrl==null||nUrl.length()==0){
+			nUrl="http://i.imgur.com/9w6XMcD.png";
 
-		ImageLoader.getInstance().displayImage(nUrl, viewHolder.imageView, displayImageOptions);
+			
+			//viewHolder.imageView.setImageResource(R.drawable.ic_launcher);
+		}
+		
+		ImageLoader.getInstance().displayImage(nUrl, viewHolder.imageView);
+		//ImageLoader.getInstance().displayImage(nUrl, viewHolder.imageView, displayImageOptions);
 		//displayImage(nUrl, viewHolder.imageView);
 
 		//
