@@ -95,7 +95,7 @@ public class BieudoTheGioi extends WvFm implements OnClickListener {
 
 	private void loadBg() {
 		motthang.setImageResource(R.drawable.motthang2);
-		haithang.setImageResource(R.drawable.haithang2);
+		haithang.setImageResource(R.drawable.haithang);
 		sauthang.setImageResource(R.drawable.sauthang2);
 		motnam.setImageResource(R.drawable.motnam2);
 

@@ -35,7 +35,7 @@ public class QuyDoiNgoaiTe extends MyFragment implements Idelegate, OnClickListe
 
 	EditText edFrom, edTo;
 	BaseObject curOj = new BaseObject();
-	String date="";
+	String date = "";
 	String[] dataBankName; // ten ngan hang
 	String[] dataBankKey; // key ngan hang cho hashmap
 	String dataBankCurKey = "";
@@ -47,46 +47,42 @@ public class QuyDoiNgoaiTe extends MyFragment implements Idelegate, OnClickListe
 	ArrayList<String> dataFrom = new ArrayList<String>();
 	ArrayList<String> dataTo = new ArrayList<String>();
 
-	public QuyDoiNgoaiTe(HashMap<String, ArrayList<BaseObject>> map,String date) {
+	public QuyDoiNgoaiTe(HashMap<String, ArrayList<BaseObject>> map, String date) {
 		this.map = map;
-		this.date=date;
+		this.date = date;
 	}
 
 	private void updateSpinner() {
 		curOjs = map.get(dataBankCurKey);
-		
-		BaseObject mb=curOjs.get(0);
-		BaseObject oj =new BaseObject();
-		
+
+		BaseObject mb = curOjs.get(0);
+		BaseObject oj = new BaseObject();
+
 		for (String key : TiGiaOj.keys) {
 			oj.set(key, mb.get(key));
 		}
-		
+
 		oj.set(TiGiaOj.CODE, "VND");
 		oj.set(TiGiaOj.NAME, "VietNamDong");
 		oj.set(TiGiaOj.BUY, "1");
 		oj.set(TiGiaOj.SELL, "1");
 		oj.set(TiGiaOj.TRANSFER, "1");
-		
+
 		curOjs.add(oj);
-		
+
 		dataChildName = new String[curOjs.size()];
-		
+
 		sellFromPosition = 0;
 		sellToPosition = 0;
-		
-		for (int i = 0; i < curOjs.size(); i++) {
-			dataChildName[i] = curOjs.get(i).get(TiGiaOj.NAME)+"("+curOjs.get(i).get(TiGiaOj.CODE)+")";
-			if("USD".equalsIgnoreCase(curOjs.get(i).get(TiGiaOj.CODE)))
-				sellFromPosition=i;
-			if("VND".equalsIgnoreCase(curOjs.get(i).get(TiGiaOj.CODE)))
-				sellToPosition=i;
-			
-			
-			
-		}
 
-		
+		for (int i = 0; i < curOjs.size(); i++) {
+			dataChildName[i] = curOjs.get(i).get(TiGiaOj.NAME) + "(" + curOjs.get(i).get(TiGiaOj.CODE) + ")";
+			if ("USD".equalsIgnoreCase(curOjs.get(i).get(TiGiaOj.CODE)))
+				sellFromPosition = i;
+			if ("VND".equalsIgnoreCase(curOjs.get(i).get(TiGiaOj.CODE)))
+				sellToPosition = i;
+
+		}
 
 		tvfrom.setText(curOjs.get(sellFromPosition).get(TiGiaOj.NAME));
 		tvTo.setText(curOjs.get(sellToPosition).get(TiGiaOj.NAME));
@@ -98,13 +94,13 @@ public class QuyDoiNgoaiTe extends MyFragment implements Idelegate, OnClickListe
 	boolean isClickTo = false;
 
 	private void updateData(int where) {
-		
-		Mlog.T("updateData -where="+where);
+
+		Mlog.T("updateData -where=" + where);
 		double buyFrom = curOjs.get(sellFromPosition).getDouble(TiGiaOj.SELL);
 		double buyto = curOjs.get(sellToPosition).getDouble(TiGiaOj.SELL);
 		double vledFrom;
 		double vledTo;
-		String txt="";
+		String txt = "";
 		try {
 			if (where == 3) {
 				if (edFrom.getText().toString().trim().length() != 0)
@@ -114,41 +110,40 @@ public class QuyDoiNgoaiTe extends MyFragment implements Idelegate, OnClickListe
 			}
 
 			if (where == 0) {
-				txt=getEdText(edFrom);
+				txt = getEdText(edFrom);
 				vledFrom = Double.parseDouble(txt);
 				vledTo = buyFrom * vledFrom / buyto;
 				edTo.setText(Utils1.double2String(vledTo));
 			}
 
 			if (where == 1) {
-				txt=getEdText(edTo);
+				txt = getEdText(edTo);
 				vledTo = Double.parseDouble(txt);
 				vledFrom = buyto * vledTo / buyFrom;
 				edFrom.setText(Utils1.double2String(vledFrom));
 			}
 		} catch (Exception e) {
 			Mlog.E("" + e.toString());
-			if(where==0){
+			if (where == 0) {
 				edTo.setText(R.string.dulieukhonghople);
-				if(txt.length()==0) {
+				if (txt.length() == 0) {
 					edFrom.getText().clear();
 				}
-			}
-			else if(where==1){
+			} else if (where == 1) {
 				edFrom.setText(R.string.dulieukhonghople);
-				if(txt.length()==0) {
+				if (txt.length() == 0) {
 					edFrom.getText().clear();
 				}
 			}
-			
-			
+
 		}
 
 	}
 
+
 	private String getEdText(EditText edFrom2) {
-		String a=edFrom2.getText().toString().trim();
-		 return a;
+		String a = edFrom2.getText().toString().trim();
+		return a.replace(",", "");
 	}
 
 	@Override
@@ -185,9 +180,9 @@ public class QuyDoiNgoaiTe extends MyFragment implements Idelegate, OnClickListe
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		
+
 		created.setText(date);
-		
+
 		Set<String> titles = map.keySet();
 		dataBankKey = titles.toArray(new String[0]);
 		dataBankName = new String[titles.size()];
@@ -215,27 +210,26 @@ public class QuyDoiNgoaiTe extends MyFragment implements Idelegate, OnClickListe
 				case R.id.edFrom:
 					isClickFrom = true;
 					isClickTo = false;
-					
-					if(edFrom.getText().toString().equalsIgnoreCase(getString(R.string.dulieukhonghople)))
+
+					if (edFrom.getText().toString().equalsIgnoreCase(getString(R.string.dulieukhonghople)))
 						edFrom.setText("");
 					break;
 
 				case R.id.edTo:
 					isClickFrom = false;
 					isClickTo = true;
-					if(edTo.getText().toString().equalsIgnoreCase(getString(R.string.dulieukhonghople)))
+					if (edTo.getText().toString().equalsIgnoreCase(getString(R.string.dulieukhonghople)))
 						edTo.setText("");
 					break;
-
 
 				default:
 					break;
 				}
-				
+
 				return false;
 			}
 		};
-		
+
 		edFrom.setOnTouchListener(listener);
 		edTo.setOnTouchListener(listener);
 		// edFrom.setOnClickListener(this);
@@ -248,9 +242,8 @@ public class QuyDoiNgoaiTe extends MyFragment implements Idelegate, OnClickListe
 
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-				if (isClickFrom)
-				{
-					
+				if (isClickFrom) {
+
 					updateData(0);
 				}
 

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.object.GiaVangOj;
 import com.bhmedia.tigia.utils.Defi.whereIdelegate;
+import com.bhmedia.tigia.utils.Utils1;
 import com.foound.widget.AmazingAdapter;
 import com.telpoo.frame.delegate.Idelegate;
 import com.telpoo.frame.object.BaseObject;
@@ -84,17 +85,11 @@ public class SectionComposerAdapter extends AmazingAdapter {
 		
 		final BaseObject composer = getItem(position);
 		gold_name.setText(composer.get(GiaVangOj.GOLD_NAME));
-		buy.setText(composer.get(GiaVangOj.BUY));
-		sale.setText(composer.get(GiaVangOj.SALE));
 		
-		/*layoutl.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View paramView) {
-				idelegate.callBack(composer, whereIdelegate.LV_ITEM_CLICK);
-				
-			}
-		});*/
+		buy.setText(Utils1.double2String(composer.get(GiaVangOj.BUY)));
+		sale.setText(Utils1.double2String(composer.get(GiaVangOj.SALE)));
+		
+	
 
 		return res;
 	}

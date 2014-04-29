@@ -83,7 +83,9 @@ public class ChartView extends View {
 	}
 
 	public void setData(ArrayList<BaseObject> ojs) {
-
+		
+		idelegate.callBack(ojs.get(ojs.size()/2), 1);
+		
 		eventX1 = (int) (width / 2);
 		this.ojs = ojs;
 		if (ojs == null || ojs.size() == 0)

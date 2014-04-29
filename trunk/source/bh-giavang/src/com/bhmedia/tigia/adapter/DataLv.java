@@ -21,14 +21,34 @@ public class DataLv {
 	public static List<Pair<String, List<BaseObject>>> getAllData(ArrayList<BaseObject> ojs, int type) {
 		List<Pair<String, List<BaseObject>>> res = new ArrayList<Pair<String, List<BaseObject>>>();
 		HashMap<String, ArrayList<BaseObject>> mapedData = grouping(ojs, type);
+		
+		Set<String> k = mapedData.keySet();
+		String[] k1 = k.toArray(new String[0]);
+		
+		for (int v = 0; v < k1.length-1; v++) {
+			for (int l = v; l < k1.length; l++) {
+				if(Integer.parseInt(k1[v])>Integer.parseInt(k1[l]))
+				{
+					String temp= k1[v];
+					k1[v]=k1[l];
+					k1[l]=temp;
+				}
+			}
+		}
+		HashMap<String, ArrayList<BaseObject>> mapedDataN=new HashMap<String, ArrayList<BaseObject>>();
+		
+		for (String string : k1) {
+			mapedDataN.put(string, mapedData.get(string));
+		}
+		
 		for (int i = 0; i < mapedData.size(); i++) {
-			res.add(getOneSection(i, mapedData));
+			res.add(getOneSection(i,k1, mapedData));
 		}
 
 		return res;
 	}
 
-	public static List<BaseObject> getFlattenedData(HashMap<String, ArrayList<BaseObject>> mapedData) {
+	/*public static List<BaseObject> getFlattenedData(HashMap<String, ArrayList<BaseObject>> mapedData) {
 		List<BaseObject> res = new ArrayList<BaseObject>();
 
 		for (int i = 0; i < mapedData.size(); i++) {
@@ -36,9 +56,9 @@ public class DataLv {
 		}
 
 		return res;
-	}
+	}*/
 
-	public static Pair<Boolean, List<BaseObject>> getRows(int page, HashMap<String, ArrayList<BaseObject>> mapedData) {
+	/*public static Pair<Boolean, List<BaseObject>> getRows(int page, HashMap<String, ArrayList<BaseObject>> mapedData) {
 		List<BaseObject> flattenedData = getFlattenedData(mapedData);
 		if (page == 1) {
 			return new Pair<Boolean, List<BaseObject>>(true, flattenedData.subList(0, 5));
@@ -46,13 +66,14 @@ public class DataLv {
 			SystemClock.sleep(2000); // simulate loading
 			return new Pair<Boolean, List<BaseObject>>(page * 5 < flattenedData.size(), flattenedData.subList((page - 1) * 5, Math.min(page * 5, flattenedData.size())));
 		}
-	}
+	}*/
 
-	public static Pair<String, List<BaseObject>> getOneSection(int index, HashMap<String, ArrayList<BaseObject>> mapedData) {
-		Set<String> titles = mapedData.keySet();
+	public static Pair<String, List<BaseObject>> getOneSection(int index,String[] k1, HashMap<String, ArrayList<BaseObject>> mapedData) {
+		/*Set<String> titles = mapedData.keySet();
 		String[] mtitle = titles.toArray(new String[0]);
-		String key = mtitle[index];
-
+		String key = mtitle[index];*/
+		
+		String key=k1[index];
 		ArrayList<BaseObject> ojs = mapedData.get(key);
 		String headerString = "";
 		if (ojs.size() > 0) {
@@ -73,6 +94,8 @@ public class DataLv {
 			}
 			map.get(key).add(person);
 		}
+		
+		
 
 		/*
 		Set<String> key1 = map.keySet();
@@ -126,40 +149,44 @@ public class DataLv {
 
 	}
 
-	private static ArrayList<BaseObject> sortFloat(ArrayList<BaseObject> ojRes, int type) {
+	private static ArrayList<BaseObject> sortFloat(ArrayList<BaseObject> ojRes, final int type) {
 		ArrayList<BaseObject> cojs=ojRes;
-		String key="";
-		if(type==1||type==11) key= GiaVangOj.BUY;
-		if(type==2||type==22) key= GiaVangOj.SALE;
-		if(type==0||type==10) key= GiaVangOj.LOCATION;
+	
+
 		
-		
-		try {
-			for (int i = 0; i < cojs.size()-1; i++) {
-				float a = cojs.get(i).getFloat(key);
+		Comparator<BaseObject> comparator=new Comparator<BaseObject>() {
+			
+			@Override
+			public int compare(BaseObject oj1, BaseObject oj2) {
+				String key="";
+				if(type==1||type==11) key= GiaVangOj.BUY;
+				if(type==2||type==22) key= GiaVangOj.SALE;
+				if(type==0||type==10) key= GiaVangOj.ID;
 				
-
-				for (int j = i + 1; j < cojs.size(); j++) {
-					float b = cojs.get(j).getFloat(key);
-					
-					if (type >= 10 && a < b) { // sap xep tang
-						BaseObject oj = cojs.get(i);
-						cojs.set(i, cojs.get(j));
-						cojs.set(j, oj);
-					}
-
-					if (type < 10 && a > b) { // sap xep giam
-						BaseObject oj = cojs.get(i);
-						cojs.set(i, cojs.get(j));
-						cojs.set(j, oj);
-					}
-
+				
+				float b,a = 0;
+				try {
+					a = oj1.getFloat(key);
+					b = oj2.getFloat(key);
+				} catch (Exception e) {
+					b = Float.MIN_VALUE;
 				}
-
+				
+				if(type < 10){
+					
+					if (a < b) return -1;
+					if (a > b) return 1;
+					return 0;
+				}
+				else{
+					if (a > b) return -1;
+					if (a < b) return 1;
+					return 0;
+				}
+				
 			}
-		} catch (Exception e) {
-			Mlog.E("sortFloat - "+e);
-		}
+		};
+		Collections.sort(cojs, comparator);
 		
 		return cojs;
 

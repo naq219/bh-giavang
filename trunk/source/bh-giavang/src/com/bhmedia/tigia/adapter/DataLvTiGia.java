@@ -1,6 +1,9 @@
 package com.bhmedia.tigia.adapter;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +15,7 @@ import com.bhmedia.tigia.object.GiaVangOj;
 import com.bhmedia.tigia.object.TiGiaOj;
 import com.bhmedia.tigia.object.TiGiaOj;
 import com.telpoo.frame.object.BaseObject;
+import com.telpoo.frame.utils.FileSupport;
 import com.telpoo.frame.utils.Mlog;
 
 public class DataLvTiGia {
@@ -76,51 +80,93 @@ public class DataLvTiGia {
 
 	}
 
-	private static ArrayList<BaseObject> sortFloat(ArrayList<BaseObject> ojRes, int type) {
+	private static ArrayList<BaseObject> sortFloat(ArrayList<BaseObject> ojRes, final int type) {
 		ArrayList<BaseObject> cojs = ojRes;
-		String key = "";
-		if (type == 1 || type == 11)
-			key = TiGiaOj.BUY;
-		if (type == 2 || type == 22)
-			key = TiGiaOj.SELL;
-		if (type == 3 || type == 33)
-			key = TiGiaOj.TRANSFER;
-		if (type == 0 || type == 10)
-			key = TiGiaOj.BANKID;
+
 		
 
-		for (int i = 0; i < cojs.size() - 1; i++) {
+//		for (int i = 0; i < cojs.size() - 1; i++) {
+//
+//			float a;
+//			try {
+//				a = cojs.get(i).getFloat(key);
+//			} catch (Exception e) {
+//				a = Float.MIN_VALUE;
+//				
+//				Mlog.E("sortFloat="+e.toString());
+//				
+//				
+//			}
+//
+//			for (int j = i + 1; j < cojs.size(); j++) {
+//				float b;
+//				try {
+//					b = cojs.get(j).getFloat(key);
+//				} catch (Exception e) {
+//					b = Float.MIN_VALUE;
+//				}
+//
+//				if (type >= 10 && a < b) { // sap xep tang
+//					BaseObject oj = cojs.get(i);
+//					cojs.set(i, cojs.get(j));
+//					cojs.set(j, oj);
+//				}
+//
+//				if (type < 10 && a > b) { // sap xep giam
+//					BaseObject oj = cojs.get(i);
+//					cojs.set(i, cojs.get(j));
+//					cojs.set(j, oj);
+//				}
+//				
+//				for (BaseObject baseObject : cojs) {
+//					Mlog.T(key+"      "+baseObject.get(key));
+//				}
+//
+//			}
+//
+//		}
+		
+		Comparator<BaseObject> ms=new Comparator<BaseObject>() {
 
-			float a;
-			try {
-				a = cojs.get(i).getFloat(key);
-			} catch (Exception e) {
-				a = Float.MIN_VALUE;
-			}
-
-			for (int j = i + 1; j < cojs.size(); j++) {
-				float b;
+			@Override
+			public int compare(BaseObject oj1, BaseObject oj2) {
+				String key = "";
+				if (type == 1 || type == 11)
+					key = TiGiaOj.BUY;
+				if (type == 2 || type == 22)
+					key = TiGiaOj.SELL;
+				if (type == 3 || type == 33)
+					key = TiGiaOj.TRANSFER;
+				if (type == 0 || type == 10)
+					key = TiGiaOj.BANKID;
+				
+				
+				
+				float b,a = 0;
 				try {
-					b = cojs.get(j).getFloat(key);
+					a = oj1.getFloat(key);
+					b = oj2.getFloat(key);
 				} catch (Exception e) {
 					b = Float.MIN_VALUE;
 				}
-
-				if (type >= 10 && a < b) { // sap xep tang
-					BaseObject oj = cojs.get(i);
-					cojs.set(i, cojs.get(j));
-					cojs.set(j, oj);
+				
+				if(type < 10){
+					
+					if (a < b) return -1;
+					if (a > b) return 1;
+					return 0;
 				}
-
-				if (type < 10 && a > b) { // sap xep giam
-					BaseObject oj = cojs.get(i);
-					cojs.set(i, cojs.get(j));
-					cojs.set(j, oj);
+				else{
+					if (a > b) return -1;
+					if (a < b) return 1;
+					return 0;
 				}
-
+				
+				
 			}
-
-		}
+		};
+		Collections.sort(cojs, ms);
+		
 
 		return cojs;
 
