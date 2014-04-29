@@ -2,6 +2,7 @@ package com.bhmedia.tigia.tintuc;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,11 +15,14 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+
 import com.bhmedia.tigia.MyFragment;
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.task.TaskType;
 import com.markupartist.android.widget.PullToRefreshListView;
 import com.markupartist.android.widget.PullToRefreshListView.OnRefreshListener;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.telpoo.frame.net.BaseNetSupportBeta;
 
 public class ListNewsFragment extends MyFragment implements OnItemClickListener,TaskType{
@@ -35,6 +39,7 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 	String urlTail = "/giavang-tygia.rss";
 	String CHECK_LOG = "CHECK_LOG";
 	View ngFooterListView;
+	DisplayImageOptions displayImageOptions;
 	//
 	//create view
 	//
@@ -65,8 +70,16 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 					showProgressDialog(getActivity());
 					
 				}
+				displayImageOptions =  new DisplayImageOptions.Builder().showImageForEmptyUri(R.drawable.ic_launcher)
+						
+						.showImageOnFail(R.drawable.ic_launcher)
+						
+						.cacheInMemory(true)
+						//.displayer(new RoundedBitmapDisplayer(20))
+						.cacheOnDisc(true)
+						.build();
 					newsAdapter = new NewsAdapter(getActivity(), R.layout.item_tintuc_list,
-							objectNewsList);
+							objectNewsList, displayImageOptions);
 					listViewNews.setAdapter(newsAdapter);
 					
 					listViewNews.setOnItemClickListener(this);
