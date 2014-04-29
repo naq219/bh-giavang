@@ -2,6 +2,8 @@ package com.bhmedia.tigia.tintuc;
 
 import java.util.List;
 
+import org.jsoup.select.Evaluator.IsFirstChild;
+
 import com.bhmedia.tigia.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -20,21 +22,19 @@ public class NewsAdapter extends ArrayAdapter<ObjectNews> {
 	Context context;
 	int layoutID;
 	List<ObjectNews> objects;
-	//DisplayImageOptions displayImageOptions;
+	// displayImageOptions;
+	DisplayImageOptions displayImageOptions;
 
-	public NewsAdapter(Context context, int layoutID, List<ObjectNews> objects) {
+	public NewsAdapter(Context context, int layoutID, List<ObjectNews> objects, DisplayImageOptions displayImageOptions) {
 		super(context, layoutID, objects);
 		// TODO Auto-generated constructor stub
 		this.context = context;
 		this.layoutID = layoutID;
 		this.objects = objects;
+		this.displayImageOptions = displayImageOptions;
 		/// 
 		//sua code image null se replace la ic_lacncher
-//		this.displayImageOptions = new DisplayImageOptions.Builder().showImageForEmptyUri(R.drawable.ic_launcher)
-//															//.showStubImage(R.drawable.ic_launcher)
-//															//.resetViewBeforeLoading(true)
-//															.cacheOnDisc(true)
-//															.build();
+		
 	}
 
 	@Override
@@ -57,15 +57,7 @@ public class NewsAdapter extends ArrayAdapter<ObjectNews> {
 		// imageloader tellpoo support
 
 		String nUrl = objects.get(position).get(ObjectNews.URL_IMAGE);
-		if(nUrl==null||nUrl.length()==0){
-			nUrl="http://i.imgur.com/9w6XMcD.png";
-
-			
-			//viewHolder.imageView.setImageResource(R.drawable.ic_launcher);
-		}
-		
-		ImageLoader.getInstance().displayImage(nUrl, viewHolder.imageView);
-		//ImageLoader.getInstance().displayImage(nUrl, viewHolder.imageView, displayImageOptions);
+		ImageLoader.getInstance().displayImage(nUrl, viewHolder.imageView, displayImageOptions);
 		//displayImage(nUrl, viewHolder.imageView);
 
 		//

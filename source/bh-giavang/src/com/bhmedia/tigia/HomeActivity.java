@@ -14,7 +14,7 @@ import com.google.analytics.tracking.android.GoogleAnalytics;
 import com.google.analytics.tracking.android.MapBuilder;
 import com.google.analytics.tracking.android.Tracker;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.telpoo.bhlib.BHAnalytics;
+//import com.telpoo.bhlib.BHAnalytics;
 import com.telpoo.bhlib.ads.BHGA;
 import com.telpoo.frame.net.BaseNetSupportBeta;
 import com.telpoo.frame.net.NetConfig;
@@ -77,7 +77,7 @@ public class HomeActivity extends TabActivity {
 
 	private void setupTracking() {
 		setTrackingId(Defi.GOOGLE_ANALYTIC_ID);
-		BHAnalytics.postDimension(Defi.GOOGLE_ANALYTIC_ID, Defi.USER_TYPE, HomeActivity.this);
+		//BHAnalytics.postDimension(Defi.GOOGLE_ANALYTIC_ID, Defi.USER_TYPE, HomeActivity.this);
 		
 //		Tracker mTracker = GoogleAnalytics.getInstance(HomeActivity.this).getTracker(Defi.GOOGLE_ANALYTIC_ID);
 //		int type = DeviceSupport.getNetworkInfo(HomeActivity.this);
