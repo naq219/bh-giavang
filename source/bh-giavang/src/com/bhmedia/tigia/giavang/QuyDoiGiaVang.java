@@ -36,9 +36,10 @@ public class QuyDoiGiaVang extends MyFragment implements Idelegate {
 	EditText ed;
 	BaseObject curOj = new BaseObject();
 	String date;
-	public QuyDoiGiaVang(HashMap<String, ArrayList<BaseObject>> map,String date) {
+
+	public QuyDoiGiaVang(HashMap<String, ArrayList<BaseObject>> map, String date) {
 		this.map = map;
-		this.date=date;
+		this.date = date;
 	}
 
 	@Override
@@ -95,28 +96,28 @@ public class QuyDoiGiaVang extends MyFragment implements Idelegate {
 
 			}
 		});
-		
+
 		ed.addTextChangedListener(new TextWatcher() {
-			
+
 			@Override
 			public void onTextChanged(CharSequence paramCharSequence, int paramInt1, int paramInt2, int paramInt3) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void beforeTextChanged(CharSequence paramCharSequence, int paramInt1, int paramInt2, int paramInt3) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void afterTextChanged(Editable paramEditable) {
 				update();
-				
+
 			}
 		});
-		
+
 	}
 
 	protected void update() {
@@ -125,31 +126,31 @@ public class QuyDoiGiaVang extends MyFragment implements Idelegate {
 		double ban = 0;
 		if (ed.getText().toString().length() > 0) {
 			try {
-				
+
 				edText = Double.parseDouble(ed.getText().toString());
 				mua = Double.parseDouble(curOj.get(GiaVangOj.BUY));
 				ban = Double.parseDouble(curOj.get(GiaVangOj.SALE));
 				double muavl = mua * edText * keydoValue[curDovaluePosition] * 1000000d;
 				double banvl = ban * edText * keydoValue[curDovaluePosition] * 1000000d;
 
-				NumberFormat f = NumberFormat.getInstance();
-				f.setGroupingUsed(false);
+//				NumberFormat f = NumberFormat.getInstance();
+//				f.setGroupingUsed(false);
+//
+//				String strVal = f.format(muavl);
+//				String strban = f.format(banvl);
 
-				String strVal = f.format(muavl);
-				String strban = f.format(banvl);
-
-				buy.setText("Mua: " + strVal + " VNĐ");
-				sale.setText(getString(R.string.ban_) + strban + " VNĐ");
+				buy.setText("Mua: " + Utils1.double2String(muavl) + " VNĐ");
+				sale.setText(getString(R.string.ban_) + Utils1.double2String(banvl) + " VNĐ");
 
 			} catch (Exception e) {
 				Mlog.E(e.toString());
 				buy.setText(getString(R.string.dulieukhonghople));
 				sale.setText(getString(R.string.dulieukhonghople));
-				
+
 			}
 
 		}
-		
+
 		else {
 			buy.setText("");
 			sale.setText("");

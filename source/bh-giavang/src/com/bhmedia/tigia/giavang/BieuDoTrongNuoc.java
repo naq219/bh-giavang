@@ -72,10 +72,7 @@ public class BieuDoTrongNuoc extends MyFragment implements OnClickListener {
 			public void callBack(Object value, int where) {
 
 				BaseObject oj = (BaseObject) value;
-				ban.setText("Bán: " + oj.get(BieuDoOj.SALE));
-				mua.setText("Mua: " + oj.get(BieuDoOj.BUY));
-				time.setText("" + oj.get(BieuDoOj.CREATED));
-
+				update(oj);
 			}
 		});
 
@@ -85,6 +82,14 @@ public class BieuDoTrongNuoc extends MyFragment implements OnClickListener {
 		TaskNetWork netWork1 = new TaskNetWork(getModel(), TaskType.TASK_BIEUDO, dataSend1, getActivity());
 		getModel().exeTask(null, netWork1);
 		showProgressDialog(getActivity());
+	}
+
+	protected void update(BaseObject oj) {
+		ban.setText("Bán: " + oj.get(BieuDoOj.SALE));
+		mua.setText("Mua: " + oj.get(BieuDoOj.BUY));
+		time.setText("" + oj.get(BieuDoOj.CREATED));
+		
+		
 	}
 
 	@Override
@@ -101,7 +106,7 @@ public class BieuDoTrongNuoc extends MyFragment implements OnClickListener {
 
 		case R.id.haithang:
 			loadBg();
-			haithang.setImageResource(R.drawable.haithang2);
+			haithang.setImageResource(R.drawable.bathang);
 			dataSend.add(3);
 			break;
 
@@ -166,7 +171,7 @@ public class BieuDoTrongNuoc extends MyFragment implements OnClickListener {
 
 	private void loadBg() {
 		motthang.setImageResource(R.drawable.motthang2);
-		haithang.setImageResource(R.drawable.haithang);
+		haithang.setImageResource(R.drawable.bathang2);
 		sauthang.setImageResource(R.drawable.sauthang2);
 		motnam.setImageResource(R.drawable.motnam2);
 

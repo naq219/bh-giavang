@@ -1,9 +1,13 @@
 package com.bhmedia.tigia.utils;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import android.app.Activity;
@@ -57,8 +61,7 @@ public class Utils1 {
 	}
 
 	public static void runTaskGiaVang(Calendar cal, BaseModel taskListener, Activity context, BaseFragment fm) {
-		
-		
+
 		String date = TimeUtils.cal2String(cal, Defi.FORMAT_DATE);
 		fm.showProgressDialog(context);
 		ArrayList<String> list = new ArrayList<String>();
@@ -68,8 +71,7 @@ public class Utils1 {
 	}
 
 	public static void runTaskTiGia(Calendar cal, BaseModel taskListener, Activity context, BaseFragment fm) {
-		
-		
+
 		String date = TimeUtils.cal2String(cal, Defi.FORMAT_DATE);
 		fm.showProgressDialog(context);
 		ArrayList<String> list = new ArrayList<String>();
@@ -189,14 +191,34 @@ public class Utils1 {
 		AlertDialog alert = builder.create();
 		alert.show();
 	}
-	
-	
-	
-	public static String double2String(double vl){
-		NumberFormat f = NumberFormat.getInstance();
-		f.setGroupingUsed(false);
 
-		return f.format(vl);
+	public static String double2String(double vl) {
+	
+		Locale locale = new Locale("vi_VN");
+	//	NumberFormat f = NumberFormat.getCurrencyInstance(locale);
+		NumberFormat f =new DecimalFormat("#,###,###,###.##");
+		String a = f.format(vl);
+//		a = a.substring(0, a.length() - 1);
+//		if (a.indexOf(",00") ==a.length()-4) {
+//			a = a.substring(0, a.indexOf(",00"));
+//		}
+		return a;
+		//return vl+"";
+
+	}
+
+	public static String double2String(String vl) {
+
+		try {
+			Double mvl = Double.parseDouble(vl);
+			String a = double2String(mvl);
+			
+
+			return a;
+		} catch (Exception e) {
+			return vl;
+		}
+
 	}
 
 }

@@ -64,6 +64,7 @@
 
         <TextView
             android:id="@+id/tvTo"
+            android:clickable="false"
             style="@style/spinnertv"
             android:layout_width="fill_parent"
             android:layout_marginLeft="10dp"
@@ -89,6 +90,7 @@
 
             <EditText
                 android:id="@+id/edTo"
+                android:editable="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/textView1"

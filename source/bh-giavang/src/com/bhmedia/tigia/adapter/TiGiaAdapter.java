@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.object.TiGiaOj;
+import com.bhmedia.tigia.utils.Utils1;
 import com.foound.widget.AmazingAdapter;
 import com.telpoo.frame.object.BaseObject;
 
@@ -87,7 +88,8 @@ public class TiGiaAdapter extends AmazingAdapter {
 	
 	private String checkNull(String value){
 		if("0".equalsIgnoreCase(value)||"".equalsIgnoreCase(value)) return "-";
-		return value;
+		return Utils1.double2String(value);
+		
 	}
 
 	@Override
