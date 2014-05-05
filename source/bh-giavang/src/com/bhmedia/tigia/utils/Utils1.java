@@ -101,7 +101,7 @@ public class Utils1 {
 
 		}
 
-		curKey = mkeys[0];
+		curKey = mkeys[1];
 		ojs = map.get(curKey);
 		final ArrayList<String> goldNames = new ArrayList<String>();
 		for (BaseObject baseObject : ojs) {
@@ -129,7 +129,7 @@ public class Utils1 {
 			}
 		});
 
-		location_name.setText(mtitle[0]);
+		location_name.setText(mtitle[1]);
 		gold_name.setText(ojCur.get(GiaVangOj.GOLD_NAME));
 		idelegate.callBack(ojCur, Defi.whereIdelegate.UTILS1_SPINNERHEAD);
 

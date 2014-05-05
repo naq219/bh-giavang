@@ -1,6 +1,5 @@
 package com.bhmedia.tigia.giavang;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -121,6 +120,7 @@ public class QuyDoiGiaVang extends MyFragment implements Idelegate {
 	}
 
 	protected void update() {
+		
 		double edText = 0;
 		double mua = 0;
 		double ban = 0;
