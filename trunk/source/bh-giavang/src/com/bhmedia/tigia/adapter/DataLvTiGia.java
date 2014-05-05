@@ -137,8 +137,22 @@ public class DataLvTiGia {
 					key = TiGiaOj.SELL;
 				if (type == 3 || type == 33)
 					key = TiGiaOj.TRANSFER;
-				if (type == 0 || type == 10)
-					key = TiGiaOj.BANKID;
+				if (type == 0 || type == 10){
+					
+					key = TiGiaOj.CODE;
+					String a1=oj1.get(key);
+					String a2=oj2.get(key);
+					if(type==0){
+						
+						int ss=a1.compareTo(a2);
+						return ss;
+					}
+					else {
+						int ss=a2.compareTo(a1);
+						return ss;
+					}
+					
+					}
 				
 				
 				

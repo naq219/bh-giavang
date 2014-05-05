@@ -12,7 +12,7 @@ import android.os.Environment;
  */
 public class TableDb {
 	public static String[] keytable={"time","value"};
-	public static String pathDbName="/sdcard/+tigia.sqlite";
+	public static String pathDbName="tigia.sqlite";
 	public static String[] tables = { "giavang","tigia"};
 	public static String[][] keys = {keytable,keytable};
 	public static String GIAVANG=tables[0];

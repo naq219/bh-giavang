@@ -3,7 +3,6 @@ package com.bhmedia.tigia.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.util.Pair;
 import android.view.View;

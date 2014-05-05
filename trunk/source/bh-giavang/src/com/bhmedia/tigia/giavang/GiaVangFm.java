@@ -2,8 +2,10 @@ package com.bhmedia.tigia.giavang;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -63,7 +65,7 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 		btnBan.setOnClickListener(this);
 
 		if (SaveDataFragment.arrGiaVang != null) {
-
+			curLvData=SaveDataFragment.arrGiaVang;
 			String date = SaveDataFragment.arrGiaVang.get(0).get(GiaVangOj.CREATED);
 			
 			if(curcal!=null){
@@ -147,8 +149,10 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 
 	private void updateSort() {
 		// curLvData = DataLv.fixPosition(curLvData, type);
-
-		adapter = new SectionComposerAdapter(getActivity(), curLvData, type, this);
+		
+		ArrayList<BaseObject> temp = new ArrayList<BaseObject>();
+		temp.addAll(curLvData);
+		adapter = new SectionComposerAdapter(getActivity(), temp, type, this);
 		adapter.notifyDataSetChanged();
 		lsComposer.setAdapter(adapter);
 	}
@@ -171,6 +175,7 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 			}
 
 			tv_date.setText(getString(R.string.c_p_nh_t_ng_y_) + TimeUtils.cal2String(curcal, Defi.FORMAT_DATE));
+			
 			curLvData = ojres;
 			SaveDataFragment.arrGiaVang = ojres;
 			// curLvData = DataLv.fixPosition(ojres, type);
@@ -235,8 +240,14 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 			}
 
 			if (vlChoose == 0)// quy doi gia vang
-				if (curLvData != null && curLvData.size() > 0)
-					HomeActivity.getInstance().pushFragments(TabId.GIAVANG, new QuyDoiGiaVang(DataLv.grouping(curLvData, type),tv_date.getText().toString()), true, null);
+				if (curLvData != null && curLvData.size() > 0){
+					List<Pair<String, List<BaseObject>>> temp1 = DataLv.getAllData(curLvData, type);
+					ArrayList<BaseObject> temp2=new ArrayList<BaseObject>();
+					for (Pair<String, List<BaseObject>> pair : temp1) {
+						temp2.addAll(pair.second);
+					}
+					HomeActivity.getInstance().pushFragments(TabId.GIAVANG, new QuyDoiGiaVang(DataLv.grouping(temp2, type),tv_date.getText().toString()), true, null);
+				}
 				else
 					showToast(getContext().getString(R.string.chuacodulieu));
 
@@ -299,6 +310,12 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 		btnMua.setImageResource(R.drawable.mua2);
 		btnBan.setImageResource(R.drawable.ban2);
 
+	}
+	
+	@Override
+	public void onStop() {
+		super.onStop();
+		///SaveDataFragment.arrGiaVang=null;
 	}
 
 }

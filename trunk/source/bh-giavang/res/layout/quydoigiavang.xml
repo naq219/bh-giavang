@@ -53,7 +53,7 @@
             android:layout_toLeftOf="@+id/luong"
             android:digits="0123456789."
             android:inputType="numberDecimal"
-            android:text="1" />
+            android:text="10" />
     </RelativeLayout>
 
     <TextView
