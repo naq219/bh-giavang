@@ -1,5 +1,6 @@
 package com.bhmedia.tigia.utils;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -15,6 +16,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap.CompressFormat;
 import android.net.Uri;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,6 +27,13 @@ import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.object.GiaVangOj;
 import com.bhmedia.tigia.task.TaskNetWork;
 import com.bhmedia.tigia.task.TaskType;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
+import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
+import com.nostra13.universalimageloader.utils.StorageUtils;
 import com.telpoo.frame.delegate.Idelegate;
 import com.telpoo.frame.model.BaseModel;
 import com.telpoo.frame.net.BaseNetSupportBeta;
@@ -101,7 +110,7 @@ public class Utils1 {
 
 		}
 
-		curKey = mkeys[1];
+		curKey = mkeys[3];
 		ojs = map.get(curKey);
 		final ArrayList<String> goldNames = new ArrayList<String>();
 		for (BaseObject baseObject : ojs) {
@@ -129,7 +138,7 @@ public class Utils1 {
 			}
 		});
 
-		location_name.setText(mtitle[1]);
+		location_name.setText(mtitle[3]);
 		gold_name.setText(ojCur.get(GiaVangOj.GOLD_NAME));
 		idelegate.callBack(ojCur, Defi.whereIdelegate.UTILS1_SPINNERHEAD);
 
@@ -218,6 +227,41 @@ public class Utils1 {
 		} catch (Exception e) {
 			return vl;
 		}
+
+	}
+	
+	public static ImageLoaderConfiguration imageLoaderCf(int chance, Context context) {
+		DisplayImageOptions defaultOptions = null;
+		switch (chance) {
+		case 0: // if no photo
+			defaultOptions = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisc(true).showImageOnFail(R.drawable.ic_launcher)
+			.build();
+
+			break;
+
+		case 1:// no catche
+			defaultOptions = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisc(true).showImageOnFail(R.drawable.ic_launcher)
+
+			.build();
+
+			break;
+
+		}
+
+		File cacheDir = StorageUtils.getCacheDirectory(context);
+
+		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
+				.memoryCacheExtraOptions(480, 480)
+				// width, height
+				.discCacheExtraOptions(480, 480, CompressFormat.JPEG, 75, null)
+				// .discCacheExtraOptions(480, 800, CompressFormat.JPEG, 75) //
+				// width, height, compress format, quality
+				.threadPoolSize(5).threadPriority(Thread.MIN_PRIORITY + 2).denyCacheImageMultipleSizesInMemory().memoryCache(new UsingFreqLimitedMemoryCache(2 * 1024 * 1024))
+				// 2 Mb
+				.discCache(new UnlimitedDiscCache(cacheDir)).discCacheFileNameGenerator(new HashCodeFileNameGenerator()).imageDownloader(new BaseImageDownloader(context))
+				.defaultDisplayImageOptions(defaultOptions).build();
+
+		return config;
 
 	}
 

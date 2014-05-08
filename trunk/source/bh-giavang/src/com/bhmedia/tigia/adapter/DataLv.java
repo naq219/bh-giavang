@@ -138,7 +138,7 @@ public class DataLv {
 
 					@Override
 					public int compare(BaseObject oj1, BaseObject oj2) {
-
+fixPosition
 						return oj1.get(GiaVangOj.SALE).compareTo(oj2.get(GiaVangOj.SALE));
 					}
 				});
@@ -204,7 +204,7 @@ public class DataLv {
 		
 	/*	Set<String> keys = map.keySet();
 		for (String string : keys) {
-			ArrayList<BaseObject> ojscon = map.get(string);
+			ArrayList<BaseObject> ojscon = map.get(string);fixPosition
 			ojs1.addAll(ojscon);
 		}*/
 
