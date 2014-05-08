@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import com.bhmedia.tigia.db.DbSupport;
 import com.bhmedia.tigia.db.TableDb;
 import com.bhmedia.tigia.utils.Defi;
+import com.bhmedia.tigia.utils.Utils1;
 import com.google.analytics.tracking.android.Fields;
 import com.google.analytics.tracking.android.GoogleAnalytics;
 import com.google.analytics.tracking.android.MapBuilder;
@@ -40,7 +41,7 @@ public class HomeActivity extends TabActivity {
 		BaseNetSupportBeta.getInstance().init(netConfig);
 
 		rootadView = (RelativeLayout) findViewById(R.id.rootadView);
-		ImageLoader.getInstance().init(FileSupport.imageLoaderCf(0, HomeActivity.this));
+		ImageLoader.getInstance().init(Utils1.imageLoaderCf(0, HomeActivity.this));
 		setupAds();
 		setupDb();
 		setupTracking();

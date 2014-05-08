@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_id">822684847745147</string>
-    <string name="app_name">Giá Vàng</string>
+    <string name="app_name">Giá Vàng Pro</string>
     <string name="gia_ca_thi_truong">Giá cả thị trường</string>
     <string name="bethua">&lt;</string>
     <string name="chuacodulieu">Chưa có dữ liệu!</string>

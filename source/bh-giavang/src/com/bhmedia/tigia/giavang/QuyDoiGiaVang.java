@@ -30,7 +30,7 @@ public class QuyDoiGiaVang extends MyFragment implements Idelegate {
 	TextView created, location_name, gold_name, luong, buy, sale;
 	HashMap<String, ArrayList<BaseObject>> map;
 	private String[] keydo;
-	private double[] keydoValue = { 1, 10, 26.455d, 26455d, 0.755986667d };
+	private double[] keydoValue = { 1, 0.1d, 26.666666667d, 26666.666666667d, 0.829426048d };
 	private int curDovaluePosition = 0;
 	EditText ed;
 	BaseObject curOj = new BaseObject();
@@ -118,7 +118,8 @@ public class QuyDoiGiaVang extends MyFragment implements Idelegate {
 		});
 
 	}
-
+	
+	
 	protected void update() {
 		
 		double edText = 0;
@@ -150,7 +151,8 @@ public class QuyDoiGiaVang extends MyFragment implements Idelegate {
 			}
 
 		}
-
+		
+		 
 		else {
 			buy.setText("");
 			sale.setText("");
@@ -162,7 +164,6 @@ public class QuyDoiGiaVang extends MyFragment implements Idelegate {
 		switch (where) {
 		case Defi.whereIdelegate.UTILS1_SPINNERHEAD:
 			curOj = (BaseObject) value;
-
 			created.setText(date);
 			update();
 			break;
