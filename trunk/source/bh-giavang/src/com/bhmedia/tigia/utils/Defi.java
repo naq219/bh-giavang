@@ -3,10 +3,11 @@ package com.bhmedia.tigia.utils;
 import com.bhmedia.tigia.HomeActivity;
 
 public class Defi {
-
 	
-	public static final String appname = "Ti_Gia_Android";
-	public static final String appcat = "education";
+	public static final int APP_TYPE=0; //0 free 
+	
+	public static final String appname = "Ti_Gia_Free_Android";
+	public static final String appcat = "business";
 	public static final String adposition = "bottom";
 	public static final String jb = "app_test";
 	public static final String USER_TYPE = "free";

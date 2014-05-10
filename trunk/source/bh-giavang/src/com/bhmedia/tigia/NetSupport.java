@@ -114,8 +114,15 @@ public class NetSupport {
 		}
 
 		// danh sach cac ngan hang the gioi
-		JSONObject apiGroupJoj = root.getJSONObject("api_group");
-
+			
+			Object tem = root.get("api_group");
+			JSONObject apiGroupJoj;
+			
+			
+			if(tem instanceof JSONObject)
+		 apiGroupJoj = root.getJSONObject("api_group");
+			else apiGroupJoj =new JSONObject();
+		
 		Iterator<?> keyLocation1 = apiGroupJoj.keys();
 		ArrayList<BaseObject> arrData1 = new ArrayList<BaseObject>();
 
@@ -269,11 +276,42 @@ public class NetSupport {
 		for (int i = 0; i < rootJar.length(); i++) {
 			JSONObject joj = rootJar.getJSONObject(i);
 
-			JSONObject dataJoj = joj.getJSONObject("data");
+			JSONObject dataJoj ;
+			Object tem = joj.get("data");
+			if(tem instanceof JSONObject)
+			 dataJoj = joj.getJSONObject("data");
+			else dataJoj=new JSONObject();
 			Iterator<?> keydata = dataJoj.keys();
-
+			
+			List<String> rkey=new ArrayList<String>();
 			while (keydata.hasNext()) {
-				String key = (String) keydata.next();
+				String key1 = (String) keydata.next();
+				rkey.add(key1);
+			}
+			
+			Comparator<String> comp=new Comparator<String>() {
+				
+				@Override
+				public int compare(String lhs, String rhs) {
+					try {
+						int a=Integer.parseInt(lhs);
+						int b=Integer.parseInt(rhs);
+						if(a<b) return -1;
+						if(a>b) return 1;
+						return 0;
+					} catch (Exception e) {
+						return 0;
+					}
+				}
+			};
+			Collections.sort(rkey, comp);
+			
+			
+
+			for (int j = 0; j < rkey.size(); j++) 
+				
+			 {
+				String key = rkey.get(j);
 
 				JSONObject ojEnd = dataJoj.getJSONObject(key);
 

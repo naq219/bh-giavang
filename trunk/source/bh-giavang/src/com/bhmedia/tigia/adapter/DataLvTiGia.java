@@ -1,7 +1,6 @@
 package com.bhmedia.tigia.adapter;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -11,17 +10,16 @@ import java.util.Set;
 import android.os.SystemClock;
 import android.util.Pair;
 
-import com.bhmedia.tigia.object.GiaVangOj;
-import com.bhmedia.tigia.object.TiGiaOj;
 import com.bhmedia.tigia.object.TiGiaOj;
 import com.telpoo.frame.object.BaseObject;
-import com.telpoo.frame.utils.FileSupport;
 import com.telpoo.frame.utils.Mlog;
 
 public class DataLvTiGia {
 	public static final String TAG = DataLvTiGia.class.getSimpleName();
 
 	public static List<Pair<String, List<BaseObject>>> getAllData(ArrayList<BaseObject> ojs, int type) {
+		Mlog.T("type="+type);
+		
 		List<Pair<String, List<BaseObject>>> res = new ArrayList<Pair<String, List<BaseObject>>>();
 		HashMap<String, ArrayList<BaseObject>> mapedData = grouping(ojs, type);
 		for (int i = 0; i < mapedData.size(); i++) {
@@ -179,6 +177,8 @@ public class DataLvTiGia {
 				
 			}
 		};
+		
+		if(type!=5)
 		Collections.sort(cojs, ms);
 		
 

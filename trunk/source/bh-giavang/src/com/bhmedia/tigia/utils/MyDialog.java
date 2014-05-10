@@ -1,18 +1,26 @@
 package com.bhmedia.tigia.utils;
 
+import java.util.Calendar;
+
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
+import android.os.Build.VERSION;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.bhmedia.tigia.R;
 import com.bhmedia.tigia.R.integer;
 import com.bhmedia.tigia.object.GiaVangOj;
 import com.telpoo.frame.delegate.Idelegate;
+import com.telpoo.frame.delegate.WhereIdelegate;
 import com.telpoo.frame.object.BaseObject;
 import com.telpoo.frame.utils.DialogUtils;
 
@@ -134,7 +142,6 @@ public class MyDialog {
 		} catch (Exception e) {
 			e.toString();
 		}
-		
 
 		dialog.show();
 		dialog.setCanceledOnTouchOutside(true);
@@ -143,8 +150,50 @@ public class MyDialog {
 
 	public static void dialogAskOffline(Context context, Idelegate idelegate, int where) {
 
-		Dialog dl=DialogUtils.confirm(context, R.layout.dialog_confirm, context.getString(R.string.title_dialog_offline), idelegate, where);
+		Dialog dl = DialogUtils.confirm(context, R.layout.dialog_confirm, context.getString(R.string.title_dialog_offline), idelegate, where);
 		dl.show();
 	}
 
+	@SuppressLint("NewApi")
+	public static Dialog datePicker(Context context, final Idelegate idelegate,int type) {
+
+		OnDateSetListener callBack = new OnDateSetListener() {
+
+			@Override
+			public void onDateSet(DatePicker arg0, int year, int monofyear, int dayofmonth) {
+				Calendar c = Calendar.getInstance();
+
+				c.set(year, monofyear, dayofmonth);
+				idelegate.callBack(c, WhereIdelegate.DIALOGUTILS_DATEPICKER);
+
+			}
+		};
+
+		DatePickerDialog dialog = new DatePickerDialog(context, callBack, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar
+				.getInstance().get(Calendar.DAY_OF_MONTH));
+		
+		if(VERSION.SDK_INT>=11){
+			dialog.getDatePicker().setMaxDate(Calendar.getInstance().getTimeInMillis());
+			
+			Calendar cal = Calendar.getInstance();
+			
+			if(type==0)// gia vang
+			{
+				cal.set(Calendar.DAY_OF_MONTH, 30);
+				cal.set(Calendar.MONTH, 2);
+				cal.set(Calendar.YEAR, 2011);
+				
+			}
+			else{
+				cal.set(Calendar.DAY_OF_MONTH, 17);
+				cal.set(Calendar.MONTH, 10);
+				cal.set(Calendar.YEAR, 2006);
+			}
+			dialog.getDatePicker().setMinDate(cal.getTimeInMillis());
+		}
+		
+
+		dialog.show();
+		return dialog;
+	}
 }

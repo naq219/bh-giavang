@@ -236,7 +236,7 @@ public class GiaVangFm extends GiaVangLayout implements OnClickListener, TaskTyp
 				if (!BaseNetSupportBeta.isNetworkAvailable(getActivity()))
 					showToast(getString(R.string.no_network));
 				else
-					DialogUtils.datePicker(getActivity(), this);
+					MyDialog.datePicker(getActivity(), this,0);
 			}
 
 			if (vlChoose == 0)// quy doi gia vang
