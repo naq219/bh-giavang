@@ -1,7 +1,5 @@
 package com.bhmedia.tigia;
 
-import android.net.ConnectivityManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.RelativeLayout;
@@ -10,20 +8,14 @@ import com.bhmedia.tigia.db.DbSupport;
 import com.bhmedia.tigia.db.TableDb;
 import com.bhmedia.tigia.utils.Defi;
 import com.bhmedia.tigia.utils.Utils1;
-import com.google.analytics.tracking.android.Fields;
-import com.google.analytics.tracking.android.GoogleAnalytics;
-import com.google.analytics.tracking.android.MapBuilder;
-import com.google.analytics.tracking.android.Tracker;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.telpoo.bhlib.BHAnalytics;
-//import com.telpoo.bhlib.BHAnalytics;
-import com.telpoo.bhlib.ads.BHGA;
+import com.telpoo.bhlib.ads.BHAds;
 import com.telpoo.frame.net.BaseNetSupportBeta;
 import com.telpoo.frame.net.NetConfig;
 import com.telpoo.frame.utils.ApplicationUtils;
-import com.telpoo.frame.utils.DeviceSupport;
-import com.telpoo.frame.utils.FileSupport;
-import com.telpoo.frame.utils.RootSupport;
+
+//import com.telpoo.bhlib.BHAnalytics;
 
 public class HomeActivity extends TabActivity {
 	Handler handler;
@@ -55,9 +47,8 @@ public class HomeActivity extends TabActivity {
 	}
 
 	private void setupAds() {
-		// BHAds.getInstance().init(HomeActivity.this, rootadView, Defi.appname,
-		// Defi.appcat, Defi.adposition, Defi.adUnitId);
-		// BHAds.getInstance().onCreate();
+		BHAds.getInstance().init(HomeActivity.this, rootadView, Defi.appname, Defi.appcat, Defi.adposition);
+		BHAds.getInstance().onCreate();
 
 	}
 
@@ -73,28 +64,34 @@ public class HomeActivity extends TabActivity {
 
 	@Override
 	protected void onDestroy() {
-		// BHAds.getInstance().onDestroy();
+		 BHAds.getInstance().onDestroy();
 		super.onDestroy();
 	}
 
 	private void setupTracking() {
 		setTrackingId(Defi.GOOGLE_ANALYTIC_ID);
 		BHAnalytics.postDimension(Defi.GOOGLE_ANALYTIC_ID, Defi.USER_TYPE, HomeActivity.this);
-		
-//		Tracker mTracker = GoogleAnalytics.getInstance(HomeActivity.this).getTracker(Defi.GOOGLE_ANALYTIC_ID);
-//		int type = DeviceSupport.getNetworkInfo(HomeActivity.this);
-//		String ns = "";
-//		if (type == ConnectivityManager.TYPE_WIFI)
-//			ns = "wifi";
-//		if (type == ConnectivityManager.TYPE_MOBILE)
-//			ns = "3g";
-//		mTracker.set(Fields.customDimension(BHGA.Dimension.CARRIER), DeviceSupport.getCarrier(getBaseContext()));
-//		mTracker.set(Fields.customDimension(BHGA.Dimension.EM), "" + DeviceSupport.getMacAdd(getBaseContext()));
-//		mTracker.set(Fields.customDimension(BHGA.Dimension.JB), "" + RootSupport.isDeviceRooted());
-//		mTracker.set(Fields.customDimension(BHGA.Dimension.NS), ns);
-//		mTracker.set(Fields.customDimension(BHGA.Dimension.PLATFORM), "" + Build.VERSION.RELEASE);
-//		mTracker.set(Fields.customDimension(BHGA.Dimension.USER_TYPE), Defi.USER_TYPE);
-//		mTracker.send(MapBuilder.createAppView().build());
+
+		// Tracker mTracker =
+		// GoogleAnalytics.getInstance(HomeActivity.this).getTracker(Defi.GOOGLE_ANALYTIC_ID);
+		// int type = DeviceSupport.getNetworkInfo(HomeActivity.this);
+		// String ns = "";
+		// if (type == ConnectivityManager.TYPE_WIFI)
+		// ns = "wifi";
+		// if (type == ConnectivityManager.TYPE_MOBILE)
+		// ns = "3g";
+		// mTracker.set(Fields.customDimension(BHGA.Dimension.CARRIER),
+		// DeviceSupport.getCarrier(getBaseContext()));
+		// mTracker.set(Fields.customDimension(BHGA.Dimension.EM), "" +
+		// DeviceSupport.getMacAdd(getBaseContext()));
+		// mTracker.set(Fields.customDimension(BHGA.Dimension.JB), "" +
+		// RootSupport.isDeviceRooted());
+		// mTracker.set(Fields.customDimension(BHGA.Dimension.NS), ns);
+		// mTracker.set(Fields.customDimension(BHGA.Dimension.PLATFORM), "" +
+		// Build.VERSION.RELEASE);
+		// mTracker.set(Fields.customDimension(BHGA.Dimension.USER_TYPE),
+		// Defi.USER_TYPE);
+		// mTracker.send(MapBuilder.createAppView().build());
 
 	}
 

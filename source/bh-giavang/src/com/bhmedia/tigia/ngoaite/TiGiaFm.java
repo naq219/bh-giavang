@@ -31,12 +31,12 @@ import com.telpoo.frame.utils.TimeUtils;
 public class TiGiaFm extends TiGiaLayout implements OnClickListener, TaskType, Idelegate {
 	ArrayList<BaseObject> curLvData = new ArrayList<BaseObject>();
 	Calendar curcal;
-	int type=0;
+	int type=5;
 	private static boolean firstGoto=true;
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
+		type=5;
 		btn_reload.setOnClickListener(this);
 		btnShare.setOnClickListener(this);
 		btnMaSo.setOnClickListener(this);
@@ -219,7 +219,8 @@ public class TiGiaFm extends TiGiaLayout implements OnClickListener, TaskType, I
 				if(!BaseNetSupportBeta.isNetworkAvailable(getActivity()))
 					showToast(getString(R.string.no_network));
 				else
-				DialogUtils.datePicker(getActivity(), this);
+				MyDialog.datePicker(getActivity(), this,1);
+				
 
 			}
 			if (vlChoose == 0)// quy doi ngoai te
