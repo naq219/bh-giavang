@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/item_composer_header" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingLeft="5dp"
+        android:id="@+id/lvitem"
+        android:paddingRight="5dp"
+        android:paddingTop="10dp"
+        android:weightSum="100" >
+
+        <TextView
+            android:id="@+id/gold_name"
+            style="@style/text"
+            android:layout_width="0dp"
+            android:layout_weight="50"
+            android:text="vietcombank"
+            android:textColor="#c10d2b" />
+
+        <TextView
+            android:id="@+id/buy"
+            style="@style/text"
+            android:layout_width="0dp"
+            android:layout_weight="25"
+            android:gravity="center"
+            android:text="15000"
+            android:textColor="#c10d2b" />
+
+        <TextView
+            android:id="@+id/sale"
+            style="@style/text"
+            android:layout_width="0dp"
+            android:layout_weight="25"
+            android:gravity="center"
+            android:text="1-1600"
+            android:textColor="#c10d2b" />
+    </LinearLayout>
+
+</LinearLayout>
