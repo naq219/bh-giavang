@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"    
+    android:background="@drawable/bgh586"
+     >
+     <TextView
+          style="@style/text_top"
+          android:layout_height="@dimen/top_heigh"
+          android:background="@drawable/thanhtren"
+          android:text="Tin tức"
+         />
+
+    <com.markupartist.android.widget.PullToRefreshListView
+        android:id="@+id/lv"
+        style="@style/form_ff"        
+        android:cacheColorHint="#00000000"
+        android:dividerHeight="4dp"
+        >
+    </com.markupartist.android.widget.PullToRefreshListView>
+</LinearLayout>
+

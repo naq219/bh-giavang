@@ -1,0 +1,8 @@
+public static final String appname = "Xo_so_Android";
+	public static final String appcat = "education";
+	public static final String GOOGLE_ANALYTIC_ID = "UA-48254014-3";
+		public static final String USER_TYPE = "free";
+		
+		
+		2.
+		//	BHAds.getInstance().countclick_hidekeyboard(getView(), getActivity())

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:id="@+id/root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout style="@style/rel_top" >
+
+        <ImageView
+            android:id="@+id/btn_top"
+            style="@style/btn_top"
+            android:src="@drawable/close" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/text_top"
+            android:text="" />
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/form_fw"
+        android:background="@drawable/bg_tab2"
+        android:orientation="horizontal"
+        android:weightSum="100" >
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="5" />
+
+        <TextView
+            android:id="@+id/tv1"
+            style="@style/spinnertv"
+            android:layout_width="0dp"
+            android:layout_margin="7dp"
+            android:layout_weight="45"
+            android:background="@drawable/texbox2"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            style="@style/text"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="/"
+            android:textSize="27sp" />
+
+        <TextView
+            android:id="@+id/tv2"
+            style="@style/spinnertv"
+            android:layout_width="0dp"
+            android:layout_margin="7dp"
+            android:layout_weight="45"
+            android:background="@drawable/texbox2"
+            android:singleLine="true" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="5" />
+    </LinearLayout>
+
+    <WebView
+        android:id="@+id/wv"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+</LinearLayout>
