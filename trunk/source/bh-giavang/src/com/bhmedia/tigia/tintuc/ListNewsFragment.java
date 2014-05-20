@@ -223,6 +223,7 @@ public class ListNewsFragment extends MyFragment implements OnItemClickListener,
 		super.onFail(taskType, msg);
 		switch (taskType) {
 		case NEWS_ASYNCTASK: // kieu j the nay @@ :D
+			closeProgressDialog();
 			showToast(getString(R.string.connect_error));
 			break;
 		case TASKTYPE_LOADMORE:
